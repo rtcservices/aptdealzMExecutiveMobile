@@ -1,0 +1,300 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="aptdealzMExecutiveMobile.Views.MainTabbedPages.AccountView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ext="clr-namespace:aptdealzMExecutiveMobile.Extention"
+    xmlns:panCake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    BackgroundColor="White"
+    NavigationPage.HasNavigationBar="False">
+    <ContentView.Content>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!--  Header  -->
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <ImageButton
+                    x:Name="ImgMenu"
+                    Grid.Column="0"
+                    Clicked="ImgMenu_Clicked"
+                    Source="iconMenu.png"
+                    Style="{StaticResource imgMenu}" />
+
+                <Image
+                    Grid.Column="1"
+                    Margin="0"
+                    Aspect="AspectFit"
+                    HeightRequest="45"
+                    HorizontalOptions="CenterAndExpand"
+                    Source="iconHeaderLogo.png"
+                    VerticalOptions="CenterAndExpand"
+                    WidthRequest="45" />
+
+                <StackLayout
+                    Grid.Column="2"
+                    Margin="0,0,10,0"
+                    HorizontalOptions="EndAndExpand"
+                    Orientation="Horizontal">
+                    <Image
+                        x:Name="ImgNotification"
+                        Margin="0"
+                        HeightRequest="40"
+                        HorizontalOptions="CenterAndExpand"
+                        Source="iconNotification.png"
+                        VerticalOptions="CenterAndExpand">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ImgNotification_Tapped" />
+                        </Image.GestureRecognizers>
+                    </Image>
+
+                    <Image
+                        x:Name="ImgQuestion"
+                        Margin="0"
+                        HeightRequest="40"
+                        HorizontalOptions="CenterAndExpand"
+                        Source="iconQuestion.png"
+                        VerticalOptions="CenterAndExpand">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ImgQuestion_Tapped" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                </StackLayout>
+
+                <BoxView
+                    Grid.ColumnSpan="3"
+                    BackgroundColor="{StaticResource LightGray}"
+                    HeightRequest="1"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="EndAndExpand" />
+            </Grid>
+
+            <Grid Grid.Row="1" RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <!--  Back Arrow  -->
+                <StackLayout
+                    x:Name="StkBack"
+                    Grid.Row="0"
+                    Margin="20,0,10,0"
+                    HorizontalOptions="FillAndExpand"
+                    Orientation="Horizontal"
+                    VerticalOptions="CenterAndExpand">
+                    <Image
+                        Margin="0"
+                        Aspect="AspectFit"
+                        HeightRequest="25"
+                        HorizontalOptions="Start"
+                        Source="iconBackArrow.png"
+                        VerticalOptions="Center"
+                        WidthRequest="25">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ImgBack_Tapped" />
+                        </Image.GestureRecognizers>
+                    </Image>
+
+                    <Label
+                        Margin="0,3,0,0"
+                        FontSize="17"
+                        HorizontalOptions="StartAndExpand"
+                        HorizontalTextAlignment="Start"
+                        Style="{StaticResource lblSemiBold}"
+                        Text="Account"
+                        TextColor="{StaticResource Black}" />
+                </StackLayout>
+
+                <ScrollView Grid.Row="2" Style="{StaticResource scrPrimary}">
+                    <Grid Padding="20,5" RowSpacing="15">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <!--  Profile  -->
+                        <Frame
+                            Grid.Row="0"
+                            Margin="0"
+                            Padding="0"
+                            BorderColor="{StaticResource LightGray}"
+                            CornerRadius="10"
+                            HasShadow="False"
+                            IsClippedToBounds="True">
+                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                <Grid
+                                    Margin="0,40"
+                                    HorizontalOptions="CenterAndExpand"
+                                    VerticalOptions="CenterAndExpand">
+                                    <Image
+                                        Margin="0"
+                                        Aspect="Fill"
+                                        HeightRequest="120"
+                                        HorizontalOptions="CenterAndExpand"
+                                        Source="iconUserAccount.png"
+                                        VerticalOptions="CenterAndExpand"
+                                        WidthRequest="120" />
+                                    <Image
+                                        x:Name="ImgCamera"
+                                        Margin="0"
+                                        Aspect="Fill"
+                                        HeightRequest="30"
+                                        HorizontalOptions="EndAndExpand"
+                                        Source="iconCamera.png"
+                                        VerticalOptions="EndAndExpand"
+                                        WidthRequest="30">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ImgCamera_Tapped" />
+                                        </Image.GestureRecognizers>
+                                    </Image>
+                                </Grid>
+
+                                <panCake:PancakeView
+                                    BackgroundColor="#006027"
+                                    CornerRadius="0,10,10,0"
+                                    HorizontalOptions="EndAndExpand"
+                                    VerticalOptions="StartAndExpand">
+                                    <Image
+                                        x:Name="ImgEdit"
+                                        Margin="10"
+                                        Aspect="Fill"
+                                        HeightRequest="25"
+                                        HorizontalOptions="CenterAndExpand"
+                                        Source="iconEdit.png"
+                                        VerticalOptions="CenterAndExpand"
+                                        WidthRequest="25" />
+                                    <panCake:PancakeView.GestureRecognizers>
+                                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ImgEdit_Tapped" />
+                                    </panCake:PancakeView.GestureRecognizers>
+                                </panCake:PancakeView>
+
+                            </Grid>
+                        </Frame>
+
+                        <!--  Entrys  -->
+                        <Grid Grid.Row="1" RowSpacing="15">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <Frame Grid.Row="0" Style="{StaticResource frmBorder}">
+                                <ext:ExtEntry
+                                    Keyboard="Email"
+                                    Placeholder="Email Id"
+                                    Style="{StaticResource entrPrimary}" />
+                            </Frame>
+
+                            <Frame Grid.Row="1" Style="{StaticResource frmBorder}">
+                                <ext:ExtEntry
+                                    Keyboard="Numeric"
+                                    Placeholder="Phone Number"
+                                    Style="{StaticResource entrPrimary}" />
+                            </Frame>
+
+                            <Frame Grid.Row="2" Style="{StaticResource frmBorder}">
+                                <ext:ExtEntry
+                                    Keyboard="Numeric"
+                                    Placeholder="Alternate Phone Number"
+                                    Style="{StaticResource entrPrimary}" />
+                            </Frame>
+
+                            <Frame Grid.Row="3" Style="{StaticResource frmBorder}">
+                                <ext:ExtEntry
+                                    Keyboard="Numeric"
+                                    Placeholder="Building No/Name"
+                                    Style="{StaticResource entrPrimary}" />
+                            </Frame>
+
+                            <Frame Grid.Row="4" Style="{StaticResource frmBorder}">
+                                <ext:ExtEntry
+                                    Keyboard="Text"
+                                    Placeholder="Street"
+                                    Style="{StaticResource entrPrimary}" />
+                            </Frame>
+
+                            <Frame Grid.Row="5" Style="{StaticResource frmBorder}">
+                                <ext:ExtEntry
+                                    Keyboard="Text"
+                                    Placeholder="City"
+                                    Style="{StaticResource entrPrimary}" />
+                            </Frame>
+
+                            <Frame
+                                x:Name="frmState"
+                                Grid.Row="6"
+                                Style="{StaticResource frmBorder}">
+                                <Grid>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label
+                                            x:Name="lblState"
+                                            FontSize="15"
+                                            HorizontalOptions="Center"
+                                            Style="{StaticResource lblRegular}"
+                                            Text="State"
+                                            TextColor="{StaticResource Gray}" />
+                                        <Image
+                                            HeightRequest="20"
+                                            HorizontalOptions="EndAndExpand"
+                                            Source="iconDownArrow.png"
+                                            VerticalOptions="Center"
+                                            WidthRequest="20" />
+                                    </StackLayout>
+                                    <Picker
+                                        x:Name="pckState"
+                                        BackgroundColor="Transparent"
+                                        IsVisible="false"
+                                        Unfocused="pckState_Unfocused">
+                                        <Picker.Items>
+                                            <x:String>Option 1</x:String>
+                                            <x:String>Option 2</x:String>
+                                            <x:String>Option 3</x:String>
+                                        </Picker.Items>
+                                    </Picker>
+                                </Grid>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="frmState_Tapped" />
+                                </Frame.GestureRecognizers>
+                            </Frame>
+
+                            <Frame Grid.Row="7" Style="{StaticResource frmBorder}">
+                                <ext:ExtEntry
+                                    Keyboard="Numeric"
+                                    Placeholder="PIN Code"
+                                    Style="{StaticResource entrPrimary}" />
+                            </Frame>
+                        </Grid>
+                    </Grid>
+
+                </ScrollView>
+
+                <!--  Update Button  -->
+                <Button
+                    x:Name="BtnUpdate"
+                    Grid.Row="3"
+                    Margin="20"
+                    Clicked="BtnUpdate_Clicked"
+                    Style="{StaticResource btnPrimary}"
+                    Text="Update" />
+            </Grid>
+        </Grid>
+
+    </ContentView.Content>
+</ContentView>

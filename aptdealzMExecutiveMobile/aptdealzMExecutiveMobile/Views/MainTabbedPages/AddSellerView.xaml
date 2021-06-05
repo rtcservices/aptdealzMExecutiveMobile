@@ -1,0 +1,625 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="aptdealzMExecutiveMobile.Views.MainTabbedPages.AddSellerView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ext="clr-namespace:aptdealzMExecutiveMobile.Extention"
+    BackgroundColor="White">
+    <ContentView.Content>
+        <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <!--  Header  -->
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <ImageButton
+                    x:Name="ImgMenu"
+                    Grid.Column="0"
+                    Clicked="ImgMenu_Clicked"
+                    Source="iconMenu.png"
+                    Style="{StaticResource imgMenu}" />
+
+                <Image
+                    Grid.Column="1"
+                    Margin="0"
+                    Aspect="AspectFit"
+                    HeightRequest="45"
+                    HorizontalOptions="CenterAndExpand"
+                    Source="iconHeaderLogo.png"
+                    VerticalOptions="CenterAndExpand"
+                    WidthRequest="45" />
+
+                <StackLayout
+                    Grid.Column="2"
+                    Margin="0,0,10,0"
+                    HorizontalOptions="EndAndExpand"
+                    Orientation="Horizontal">
+                    <Image
+                        x:Name="ImgNotification"
+                        Margin="0"
+                        HeightRequest="40"
+                        HorizontalOptions="CenterAndExpand"
+                        Source="iconNotification.png"
+                        VerticalOptions="CenterAndExpand">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ImgNotification_Tapped" />
+                        </Image.GestureRecognizers>
+                    </Image>
+
+                    <Image
+                        x:Name="ImgQuestion"
+                        Margin="0"
+                        HeightRequest="40"
+                        HorizontalOptions="CenterAndExpand"
+                        Source="iconQuestion.png"
+                        VerticalOptions="CenterAndExpand">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ImgQuestion_Tapped" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                </StackLayout>
+
+                <BoxView
+                    Grid.ColumnSpan="3"
+                    BackgroundColor="{StaticResource LightGray}"
+                    HeightRequest="1"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="EndAndExpand" />
+            </Grid>
+
+            <!--  Forms  -->
+            <Grid Grid.Row="1" RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <StackLayout
+                    Grid.Row="0"
+                    Margin="20,10,10,0"
+                    Orientation="Horizontal">
+                    <Image
+                        x:Name="imgBack"
+                        Margin="0"
+                        Aspect="AspectFit"
+                        HeightRequest="25"
+                        HorizontalOptions="Start"
+                        IsVisible="false"
+                        Source="iconBackArrow.png"
+                        VerticalOptions="Center"
+                        WidthRequest="25">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ImgBack_Tapped" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Label
+                        x:Name="lblHeader"
+                        Margin="0,3,0,0"
+                        FontSize="17"
+                        HorizontalOptions="StartAndExpand"
+                        Style="{StaticResource lblSemiBold}"
+                        Text="Add Seller"
+                        TextColor="{StaticResource Black}" />
+                </StackLayout>
+
+                <ScrollView Grid.Row="2" Style="{StaticResource scrPrimary}">
+                    <Grid RowSpacing="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <!--  Seller Personal Details  -->
+                        <Grid
+                            Grid.Row="0"
+                            Padding="15"
+                            RowSpacing="15">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Frame Grid.Row="0" Style="{StaticResource frmEntry}">
+                                <ext:ExtEntry
+                                    x:Name="entrFullName"
+                                    Keyboard="Text"
+                                    Placeholder="Full Name"
+                                    Style="{StaticResource entrPrimary}"
+                                    TabIndex="1" />
+                            </Frame>
+
+                            <Frame Grid.Row="1" Style="{StaticResource frmEntry}">
+                                <ext:ExtEntry
+                                    x:Name="entrEmail"
+                                    Keyboard="Email"
+                                    Placeholder="Email Id"
+                                    Style="{StaticResource entrPrimary}"
+                                    TabIndex="2" />
+                            </Frame>
+
+                            <Frame Grid.Row="2" Style="{StaticResource frmEntry}">
+                                <ext:ExtEntry
+                                    x:Name="entrPhone"
+                                    Keyboard="Numeric"
+                                    Placeholder="Phone Number"
+                                    Style="{StaticResource entrPrimary}"
+                                    TabIndex="3" />
+                            </Frame>
+
+                            <Frame Grid.Row="3" Style="{StaticResource frmEntry}">
+                                <ext:ExtEntry
+                                    x:Name="entrAPhone"
+                                    Keyboard="Numeric"
+                                    Placeholder="Alternative Phone Number"
+                                    Style="{StaticResource entrPrimary}"
+                                    TabIndex="4" />
+                            </Frame>
+
+                            <Frame Grid.Row="4" Style="{StaticResource frmEntry}">
+                                <ext:ExtEntry
+                                    x:Name="entrBuildingNo"
+                                    Keyboard="Text"
+                                    Placeholder="Building Number"
+                                    Style="{StaticResource entrPrimary}"
+                                    TabIndex="5" />
+                            </Frame>
+
+                            <Frame Grid.Row="5" Style="{StaticResource frmEntry}">
+                                <ext:ExtEntry
+                                    x:Name="entrStreet"
+                                    Keyboard="Text"
+                                    Placeholder="Street"
+                                    Style="{StaticResource entrPrimary}"
+                                    TabIndex="6" />
+                            </Frame>
+
+                            <Frame Grid.Row="6" Style="{StaticResource frmEntry}">
+                                <ext:ExtEntry
+                                    x:Name="entrCity"
+                                    Keyboard="Text"
+                                    Placeholder="City"
+                                    Style="{StaticResource entrPrimary}"
+                                    TabIndex="7" />
+                            </Frame>
+
+                            <Frame Grid.Row="7" Style="{StaticResource frmEntry}">
+                                <ext:ExtEntry
+                                    x:Name="entrLandmark"
+                                    Keyboard="Text"
+                                    Placeholder="Landmark"
+                                    Style="{StaticResource entrPrimary}"
+                                    TabIndex="8" />
+                            </Frame>
+
+                            <Frame
+                                x:Name="frmNationality"
+                                Grid.Row="8"
+                                Style="{StaticResource frmEntry}">
+                                <Grid>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label
+                                            x:Name="lblNationality"
+                                            FontSize="15"
+                                            HorizontalOptions="Center"
+                                            Style="{StaticResource lblRegular}"
+                                            Text="Nationality"
+                                            TextColor="{StaticResource Gray}" />
+                                        <Image
+                                            HeightRequest="20"
+                                            HorizontalOptions="EndAndExpand"
+                                            Source="iconDownArrow.png"
+                                            VerticalOptions="Center"
+                                            WidthRequest="20" />
+                                    </StackLayout>
+                                    <Picker
+                                        x:Name="pckNationality"
+                                        BackgroundColor="Transparent"
+                                        IsVisible="false"
+                                        Unfocused="pckNationality_Unfocused">
+                                        <Picker.Items>
+                                            <x:String>Indian</x:String>
+                                            <x:String>Option 2</x:String>
+                                            <x:String>Option 3</x:String>
+                                        </Picker.Items>
+                                    </Picker>
+                                </Grid>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="frmNationality_Tapped" />
+                                </Frame.GestureRecognizers>
+                            </Frame>
+
+                            <Frame Grid.Row="9" Style="{StaticResource frmEntry}">
+                                <ext:ExtEntry
+                                    Keyboard="Text"
+                                    Placeholder="Location (GPS Based)"
+                                    Style="{StaticResource entrPrimary}" />
+                            </Frame>
+
+                        </Grid>
+
+                        <!--  CompanyProfile Header  -->
+                        <Grid
+                            Grid.Row="1"
+                            Padding="15,0"
+                            BackgroundColor="{StaticResource DarkGray}"
+                            HeightRequest="50">
+                            <Label
+                                FontSize="17"
+                                HorizontalOptions="StartAndExpand"
+                                Style="{StaticResource lblSemiBold}"
+                                Text="Company Profile"
+                                TextColor="White" />
+                            <Image
+                                x:Name="ImgDownDownCompanyProfile"
+                                HeightRequest="20"
+                                HorizontalOptions="EndAndExpand"
+                                Source="iconDownArrow.png"
+                                VerticalOptions="Center"
+                                WidthRequest="20" />
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="GrdCompanyProfile_Tapped" />
+                            </Grid.GestureRecognizers>
+                        </Grid>
+
+                        <!--  CompanyProfile Form  -->
+                        <Grid
+                            x:Name="GrdCompanyProfile"
+                            Grid.Row="2"
+                            Padding="15"
+                            IsVisible="false"
+                            RowSpacing="15">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <Frame
+                                Grid.Row="0"
+                                Margin="0"
+                                Padding="15,0"
+                                BackgroundColor="{StaticResource LightGray}"
+                                BorderColor="{StaticResource LightGray}"
+                                CornerRadius="5"
+                                HasShadow="False"
+                                HeightRequest="120"
+                                IsClippedToBounds="True">
+                                <Editor
+                                    x:Name="edtrDescription"
+                                    BackgroundColor="Transparent"
+                                    FontFamily="Poppins-Regular"
+                                    FontSize="15"
+                                    HeightRequest="100"
+                                    Placeholder="Description"
+                                    PlaceholderColor="{StaticResource Gray}"
+                                    TextColor="{StaticResource Black}" />
+                            </Frame>
+
+                            <Grid Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Frame
+                                    x:Name="frmCategory"
+                                    Grid.Column="0"
+                                    Style="{StaticResource frmEntry}">
+                                    <Grid>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label
+                                                x:Name="lblCategory"
+                                                FontSize="15"
+                                                HorizontalOptions="Center"
+                                                LineBreakMode="TailTruncation"
+                                                Style="{StaticResource lblRegular}"
+                                                Text="Category"
+                                                TextColor="{StaticResource Gray}" />
+                                            <Image
+                                                HeightRequest="20"
+                                                HorizontalOptions="EndAndExpand"
+                                                Source="iconDownArrow.png"
+                                                VerticalOptions="Center"
+                                                WidthRequest="20" />
+                                        </StackLayout>
+                                        <Picker
+                                            x:Name="pckCategory"
+                                            BackgroundColor="Transparent"
+                                            IsVisible="false"
+                                            Unfocused="pckCategory_Unfocused">
+                                            <Picker.Items>
+                                                <x:String>Electricals and XYZ</x:String>
+                                                <x:String>Option 2</x:String>
+                                                <x:String>Option 3</x:String>
+                                            </Picker.Items>
+                                        </Picker>
+                                    </Grid>
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="frmCategory_Tapped" />
+                                    </Frame.GestureRecognizers>
+                                </Frame>
+
+                                <Frame Grid.Column="1" Style="{StaticResource frmEntry}">
+                                    <ext:ExtEntry
+                                        x:Name="entrCategoryIf"
+                                        Keyboard="Text"
+                                        Placeholder="If Other, specify"
+                                        Style="{StaticResource entrDark}" />
+                                </Frame>
+                            </Grid>
+
+                            <Grid Grid.Row="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Frame
+                                    x:Name="frmSubCategory"
+                                    Grid.Column="0"
+                                    Style="{StaticResource frmEntry}">
+                                    <Grid>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label
+                                                x:Name="lblSubCategory"
+                                                FontSize="15"
+                                                HorizontalOptions="Center"
+                                                Style="{StaticResource lblRegular}"
+                                                Text="Sub Category"
+                                                TextColor="{StaticResource Gray}" />
+                                            <Image
+                                                HeightRequest="20"
+                                                HorizontalOptions="EndAndExpand"
+                                                Source="iconDownArrow.png"
+                                                VerticalOptions="Center"
+                                                WidthRequest="20" />
+                                        </StackLayout>
+                                        <Picker
+                                            x:Name="pckSubCategory"
+                                            BackgroundColor="Transparent"
+                                            IsVisible="false"
+                                            Unfocused="pckSubCategory_Unfocused">
+                                            <Picker.Items>
+                                                <x:String>Option 1</x:String>
+                                                <x:String>Option 2</x:String>
+                                                <x:String>Option 3</x:String>
+                                            </Picker.Items>
+                                        </Picker>
+                                    </Grid>
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="frmSubCategory_Tapped" />
+                                    </Frame.GestureRecognizers>
+                                </Frame>
+
+                                <Frame Grid.Column="1" Style="{StaticResource frmEntry}">
+                                    <ext:ExtEntry
+                                        x:Name="entrSubCategoryIf"
+                                        Keyboard="Text"
+                                        Placeholder="If Other, specify"
+                                        Style="{StaticResource entrDark}" />
+                                </Frame>
+                            </Grid>
+
+                            <Grid Grid.Row="3" ColumnSpacing="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Frame Grid.Column="0" Style="{StaticResource frmEntry}">
+                                    <ext:ExtEntry
+                                        Keyboard="Text"
+                                        Placeholder="Electronics X"
+                                        Style="{StaticResource entrDark}" />
+                                </Frame>
+                                <Frame Grid.Column="1" Style="{StaticResource frmEntry}">
+                                    <ext:ExtEntry
+                                        Keyboard="Text"
+                                        Placeholder="Tech X"
+                                        Style="{StaticResource entrDark}" />
+                                </Frame>
+                                <Frame Grid.Column="2" Style="{StaticResource frmEntry}">
+                                    <ext:ExtEntry
+                                        Keyboard="Text"
+                                        Placeholder="IT X"
+                                        Style="{StaticResource entrDark}" />
+                                </Frame>
+                            </Grid>
+
+                            <Frame Grid.Row="4" Style="{StaticResource frmEntry}">
+                                <ext:ExtEntry
+                                    x:Name="entrExperience"
+                                    Keyboard="Text"
+                                    Placeholder="Experience"
+                                    Style="{StaticResource entrPrimary}" />
+                            </Frame>
+
+                            <Frame Grid.Row="5" Style="{StaticResource frmEntry}">
+                                <ext:ExtEntry
+                                    x:Name="entrSupply"
+                                    Keyboard="Text"
+                                    Placeholder="Ared of Supply"
+                                    Style="{StaticResource entrPrimary}" />
+                            </Frame>
+                        </Grid>
+
+                        <!--  Gst/Bank Header  -->
+                        <Grid
+                            Grid.Row="3"
+                            Padding="15,0"
+                            BackgroundColor="{StaticResource DarkGray}"
+                            HeightRequest="50">
+                            <Label
+                                FontSize="17"
+                                HorizontalOptions="StartAndExpand"
+                                Style="{StaticResource lblSemiBold}"
+                                Text="GST &amp; Bank Information"
+                                TextColor="White" />
+                            <Image
+                                x:Name="ImgDropDownGSTInfo"
+                                HeightRequest="20"
+                                HorizontalOptions="EndAndExpand"
+                                Source="iconDownArrow.png"
+                                VerticalOptions="Center"
+                                WidthRequest="20" />
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="GrdGSTInfo_Tapped" />
+                            </Grid.GestureRecognizers>
+                        </Grid>
+
+                        <!--  Gst/Bank Form  -->
+                        <Grid
+                            x:Name="GrdGSTInfo"
+                            Grid.Row="4"
+                            Padding="15"
+                            IsVisible="false"
+                            RowSpacing="15">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <Frame Grid.Row="0" Style="{StaticResource frmEntry}">
+                                <ext:ExtEntry
+                                    Keyboard="Text"
+                                    Placeholder="GST Number"
+                                    Style="{StaticResource entrPrimary}" />
+                            </Frame>
+
+                            <Frame Grid.Row="1" Style="{StaticResource frmEntry}">
+                                <ext:ExtEntry
+                                    Keyboard="Text"
+                                    Placeholder="PAN"
+                                    Style="{StaticResource entrPrimary}" />
+                            </Frame>
+
+                            <Frame Grid.Row="2" Style="{StaticResource frmEntry}">
+                                <ext:ExtEntry
+                                    Keyboard="Numeric"
+                                    Placeholder="Bank Account Number"
+                                    Style="{StaticResource entrPrimary}" />
+                            </Frame>
+
+                            <Frame Grid.Row="3" Style="{StaticResource frmEntry}">
+                                <ext:ExtEntry
+                                    Keyboard="Text"
+                                    Placeholder="Bank Name"
+                                    Style="{StaticResource entrPrimary}" />
+                            </Frame>
+
+                            <Frame Grid.Row="4" Style="{StaticResource frmEntry}">
+                                <ext:ExtEntry
+                                    Keyboard="Text"
+                                    Placeholder="IFSC"
+                                    Style="{StaticResource entrPrimary}" />
+                            </Frame>
+
+                            <Grid Grid.Row="5" RowSpacing="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Label
+                                    Grid.Row="0"
+                                    FontSize="15"
+                                    Style="{StaticResource lblRegular}"
+                                    Text="Attach Scanned Docs"
+                                    TextColor="{StaticResource Black}" />
+
+                                <Grid Grid.Row="1" VerticalOptions="StartAndExpand">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <StackLayout Grid.Column="0" Orientation="Horizontal">
+                                        <Image
+                                            Aspect="AspectFit"
+                                            HeightRequest="30"
+                                            Source="iconRequirements.png"
+                                            WidthRequest="30" />
+                                        <Image
+                                            HeightRequest="30"
+                                            Source="iconRequirements.png"
+                                            WidthRequest="30" />
+                                        <Image
+                                            HeightRequest="30"
+                                            Source="iconRequirements.png"
+                                            WidthRequest="30" />
+                                    </StackLayout>
+
+                                    <ImageButton
+                                        x:Name="BtnUplodeDocs"
+                                        Grid.Column="1"
+                                        Clicked="BtnUplodeDocs_Clicked"
+                                        Source="iconGreenCircle.png"
+                                        Style="{StaticResource imgMenu}" />
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </ScrollView>
+
+            </Grid>
+
+            <!--  Terms/Conditions  -->
+            <StackLayout
+                x:Name="StkTerms"
+                Grid.Row="2"
+                Margin="20,20,20,0"
+                HorizontalOptions="StartAndExpand"
+                Orientation="Horizontal"
+                Spacing="10">
+                <Image
+                    x:Name="imgCheck"
+                    HeightRequest="25"
+                    HorizontalOptions="StartAndExpand"
+                    Source="iconCheck.png"
+                    VerticalOptions="CenterAndExpand" />
+                <Label
+                    FontSize="14"
+                    HorizontalOptions="StartAndExpand"
+                    Style="{StaticResource lblRegular}"
+                    Text="Accept Terms &amp; Conditions"
+                    TextColor="{StaticResource Black}" />
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="StkTerms_Tapped" />
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+
+            <!--  Login Button  -->
+            <Button
+                x:Name="BtnSubmit"
+                Grid.Row="3"
+                Margin="20"
+                Clicked="BtnSubmit_Clicked"
+                Style="{StaticResource btnPrimary}"
+                Text="Submit" />
+        </Grid>
+    </ContentView.Content>
+</ContentView>

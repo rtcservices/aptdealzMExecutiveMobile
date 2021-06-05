@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application
+    x:Class="aptdealzMExecutiveMobile.App"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ext="clr-namespace:aptdealzMExecutiveMobile.Extention">
+    <Application.Resources>
+
+        <!--#region Colors-->
+        <Color x:Key="Green">#006027</Color>
+        <Color x:Key="Black">#1A1818</Color>
+        <Color x:Key="Gray">#bbbbbb</Color>
+        <Color x:Key="LightGray">#F0F0F0</Color>
+        <Color x:Key="DarkGray">#8C8B8B</Color>
+        <!--#endregion-->
+
+        <!--#region Label-->
+        <Style x:Key="lblMedium" TargetType="Label">
+            <Setter Property="FontFamily" Value="Poppins-Medium" />
+            <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+            <Setter Property="VerticalTextAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="lblRegular" TargetType="Label">
+            <Setter Property="FontFamily" Value="Poppins-Regular" />
+            <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+            <Setter Property="VerticalTextAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="lblSemiBold" TargetType="Label">
+            <Setter Property="FontFamily" Value="Poppins-SemiBold" />
+            <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+            <Setter Property="VerticalTextAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="lblBold" TargetType="Label">
+            <Setter Property="FontFamily" Value="Poppins-Bold" />
+            <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+            <Setter Property="VerticalTextAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="lblLight" TargetType="Label">
+            <Setter Property="FontFamily" Value="Poppins-Light" />
+            <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+            <Setter Property="VerticalTextAlignment" Value="Center" />
+        </Style>
+        <!--#endregion-->
+
+        <!--#region Button-->
+        <Style x:Key="btnPrimary" TargetType="Button">
+            <Setter Property="HeightRequest" Value="50" />
+            <Setter Property="CornerRadius" Value="5" />
+            <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+            <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Margin" Value="0" />
+            <Setter Property="BackgroundColor" Value="{StaticResource Green}" />
+            <Setter Property="FontSize" Value="17" />
+            <Setter Property="FontFamily" Value="Poppins-SemiBold" />
+            <Setter Property="TextColor" Value="White" />
+        </Style>
+        <!--#endregion-->
+
+        <!--#region Image / ImageButton-->
+        <Style x:Key="imgMenu" TargetType="ImageButton">
+            <Setter Property="HeightRequest" Value="50" />
+            <Setter Property="WidthRequest" Value="50" />
+            <Setter Property="Aspect" Value="AspectFit" />
+            <Setter Property="HorizontalOptions" Value="StartAndExpand" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="BackgroundColor" Value="Transparent" />
+        </Style>
+        <!--#endregion-->
+
+        <!--#region Frame-->
+        <Style x:Key="frmEntry" TargetType="Frame">
+            <Setter Property="Padding" Value="15,0" />
+            <Setter Property="Margin" Value="0" />
+            <Setter Property="BackgroundColor" Value="{StaticResource LightGray}" />
+            <Setter Property="BorderColor" Value="{StaticResource LightGray}" />
+            <Setter Property="CornerRadius" Value="5" />
+            <Setter Property="HasShadow" Value="False" />
+            <Setter Property="HeightRequest" Value="45" />
+            <Setter Property="IsClippedToBounds" Value="True" />
+            <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+        </Style>
+
+        <Style x:Key="frmBorder" TargetType="Frame">
+            <Setter Property="Padding" Value="15,0" />
+            <Setter Property="Margin" Value="0" />
+            <Setter Property="BackgroundColor" Value="Transparent" />
+            <Setter Property="BorderColor" Value="{StaticResource LightGray}" />
+            <Setter Property="CornerRadius" Value="5" />
+            <Setter Property="HasShadow" Value="False" />
+            <Setter Property="HeightRequest" Value="45" />
+            <Setter Property="IsClippedToBounds" Value="True" />
+            <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+        </Style>
+        <!--#endregion-->
+
+        <!--#region Extentions-->
+        <Style x:Key="entrPrimary" TargetType="ext:ExtEntry">
+            <Setter Property="TextColor" Value="{StaticResource Black}" />
+            <Setter Property="PlaceholderColor" Value="{StaticResource Gray}" />
+            <Setter Property="VerticalOptions" Value="FillAndExpand" />
+            <Setter Property="VerticalTextAlignment" Value="Center" />
+            <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontFamily" Value="Poppins-Regular" />
+        </Style>
+
+        <Style x:Key="entrDark" TargetType="ext:ExtEntry">
+            <Setter Property="TextColor" Value="{StaticResource Black}" />
+            <Setter Property="PlaceholderColor" Value="{StaticResource Black}" />
+            <Setter Property="VerticalOptions" Value="FillAndExpand" />
+            <Setter Property="VerticalTextAlignment" Value="Center" />
+            <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontFamily" Value="Poppins-Regular" />
+        </Style>
+        <!--#endregion-->
+
+        <!--#region Views-->
+        <Style x:Key="scrPrimary" TargetType="ScrollView">
+            <Setter Property="HorizontalScrollBarVisibility" Value="Never" />
+            <Setter Property="VerticalScrollBarVisibility" Value="Never" />
+        </Style>
+
+        <Style x:Key="lstPrimary" TargetType="ListView">
+            <Setter Property="BackgroundColor" Value="Transparent" />
+            <Setter Property="HasUnevenRows" Value="True" />
+            <Setter Property="HorizontalScrollBarVisibility" Value="Never" />
+            <Setter Property="VerticalScrollBarVisibility" Value="Never" />
+            <Setter Property="VerticalOptions" Value="StartAndExpand" />
+        </Style>
+        <!--#endregion-->
+    </Application.Resources>
+</Application>

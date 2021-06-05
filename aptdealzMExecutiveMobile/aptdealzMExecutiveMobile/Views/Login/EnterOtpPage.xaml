@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="aptdealzMExecutiveMobile.Views.Login.EnterOtpPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ext="clr-namespace:aptdealzMExecutiveMobile.Extention"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    Title="Onboarding"
+    Padding="{OnPlatform Android=0,
+                         iOS='0,30,0,0'}"
+    ios:Page.PrefersHomeIndicatorAutoHidden="True"
+    ios:Page.UseSafeArea="False"
+    BackgroundColor="White"
+    NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <Grid
+            HorizontalOptions="FillAndExpand"
+            RowSpacing="0"
+            VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="60" />
+                </Grid.ColumnDefinitions>
+                <ImageButton
+                    x:Name="ImgBack"
+                    Grid.Column="0"
+                    Clicked="ImgBack_Tapped"
+                    Source="iconBackArrow.png"
+                    Style="{StaticResource imgMenu}" />
+            </Grid>
+
+            <Grid Grid.Row="1" RowSpacing="25">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Image
+                        Grid.Row="0"
+                        Aspect="AspectFit"
+                        HeightRequest="120"
+                        HorizontalOptions="CenterAndExpand"
+                        Source="iconLogo.png"
+                        VerticalOptions="CenterAndExpand"
+                        WidthRequest="120" />
+
+                    <StackLayout Grid.Row="1">
+                        <Label
+                            Margin="0"
+                            FontSize="21"
+                            HorizontalOptions="CenterAndExpand"
+                            Style="{StaticResource lblMedium}"
+                            Text="Enter OTP"
+                            TextColor="{StaticResource Black}" />
+
+                        <Label
+                            Margin="0"
+                            FontSize="14"
+                            HorizontalOptions="CenterAndExpand"
+                            HorizontalTextAlignment="Center"
+                            LineHeight="1.2"
+                            Style="{StaticResource lblRegular}"
+                            Text="Please enter the 4 digit OTP &#x0a; received on your phone number."
+                            TextColor="{StaticResource Black}" />
+                    </StackLayout>
+                </Grid>
+
+                <ext:ExtEntry
+                    x:Name="txtOtpOne"
+                    Grid.Row="1"
+                    Margin="20,60"
+                    FontFamily="Poppins-Regular"
+                    FontSize="16"
+                    HorizontalOptions="CenterAndExpand"
+                    Keyboard="Numeric"
+                    TextChanged="TxtOtpOne_TextChanged"
+                    VerticalOptions="CenterAndExpand" />
+
+                <StackLayout
+                    Grid.Row="1"
+                    Margin="20,60"
+                    BackgroundColor="White"
+                    HorizontalOptions="CenterAndExpand"
+                    Orientation="Horizontal"
+                    Spacing="20"
+                    VerticalOptions="CenterAndExpand">
+                    <ext:CustomShadowFrame
+                        Margin="0"
+                        Padding="0"
+                        BackgroundColor="{StaticResource LightGray}"
+                        CornerRadius="5"
+                        HasShadow="False"
+                        HeightRequest="65"
+                        WidthRequest="65">
+                        <Grid>
+                            <Image
+                                x:Name="imgOtpOne"
+                                HeightRequest="20"
+                                HorizontalOptions="CenterAndExpand"
+                                IsVisible="False"
+                                Source="iconGrayCircle.png"
+                                VerticalOptions="CenterAndExpand" />
+                        </Grid>
+                        <ext:CustomShadowFrame.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="FrmShadow_Tapped" />
+                        </ext:CustomShadowFrame.GestureRecognizers>
+                    </ext:CustomShadowFrame>
+
+                    <ext:CustomShadowFrame
+                        Margin="0"
+                        Padding="0"
+                        BackgroundColor="{StaticResource LightGray}"
+                        CornerRadius="5"
+                        HasShadow="False"
+                        HeightRequest="65"
+                        WidthRequest="65">
+                        <Grid>
+                            <Image
+                                x:Name="imgOtpTwo"
+                                HeightRequest="20"
+                                HorizontalOptions="CenterAndExpand"
+                                IsVisible="False"
+                                Source="iconGrayCircle.png"
+                                VerticalOptions="CenterAndExpand" />
+                        </Grid>
+                    </ext:CustomShadowFrame>
+
+                    <ext:CustomShadowFrame
+                        Margin="0"
+                        Padding="0"
+                        BackgroundColor="{StaticResource LightGray}"
+                        CornerRadius="5"
+                        HasShadow="False"
+                        HeightRequest="65"
+                        WidthRequest="65">
+                        <Grid>
+                            <Image
+                                x:Name="imgOtpThree"
+                                HeightRequest="20"
+                                HorizontalOptions="CenterAndExpand"
+                                IsVisible="False"
+                                Source="iconGrayCircle.png"
+                                VerticalOptions="CenterAndExpand" />
+                        </Grid>
+                    </ext:CustomShadowFrame>
+
+                    <ext:CustomShadowFrame
+                        Margin="0"
+                        Padding="0"
+                        BackgroundColor="{StaticResource LightGray}"
+                        CornerRadius="5"
+                        HasShadow="False"
+                        HeightRequest="65"
+                        WidthRequest="65">
+                        <Grid>
+                            <Image
+                                x:Name="imgOtpFour"
+                                HeightRequest="20"
+                                HorizontalOptions="CenterAndExpand"
+                                IsVisible="False"
+                                Source="iconGrayCircle.png"
+                                VerticalOptions="CenterAndExpand" />
+                        </Grid>
+                    </ext:CustomShadowFrame>
+
+                </StackLayout>
+
+                <!--  GetOTP Button  -->
+                <Button
+                    x:Name="BtnSubmit"
+                    Grid.Row="2"
+                    Margin="20"
+                    BackgroundColor="#C1C1C1"
+                    Clicked="BtnSubmit_Clicked"
+                    Style="{StaticResource btnPrimary}"
+                    Text="Submit" />
+
+                <!--<ext:CustomShadowFrame
+                    x:Name="frmSubmit"
+                    Grid.Row="2"
+                    Margin="20,0"
+                    Padding="10,5"
+                    BackgroundColor="#C1C1C1"
+                    CornerRadius="5"
+                    HasShadow="False"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="CenterAndExpand">
+                    <Label
+                        Margin="15,10"
+                        FontFamily="Poppins-Medium"
+                        HorizontalOptions="CenterAndExpand"
+                        Text="Submit"
+                        TextColor="#FFFFFF"
+                        VerticalOptions="CenterAndExpand" />
+                    <ext:CustomShadowFrame.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="FrmSubmit_Tapped" />
+                    </ext:CustomShadowFrame.GestureRecognizers>
+                </ext:CustomShadowFrame>-->
+            </Grid>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

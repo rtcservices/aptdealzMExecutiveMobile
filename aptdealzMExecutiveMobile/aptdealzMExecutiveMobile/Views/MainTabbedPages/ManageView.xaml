@@ -1,0 +1,257 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="aptdealzMExecutiveMobile.Views.MainTabbedPages.ManageView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="White">
+    <ContentView.Content>
+        <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!--  Header  -->
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <ImageButton
+                    x:Name="ImgMenu"
+                    Grid.Column="0"
+                    Clicked="ImgMenu_Clicked"
+                    Source="iconMenu.png"
+                    Style="{StaticResource imgMenu}" />
+
+                <Image
+                    Grid.Column="1"
+                    Margin="0"
+                    Aspect="AspectFit"
+                    HeightRequest="45"
+                    HorizontalOptions="CenterAndExpand"
+                    Source="iconHeaderLogo.png"
+                    VerticalOptions="CenterAndExpand"
+                    WidthRequest="45" />
+
+                <StackLayout
+                    Grid.Column="2"
+                    Margin="0,0,10,0"
+                    HorizontalOptions="EndAndExpand"
+                    Orientation="Horizontal">
+                    <Image
+                        x:Name="ImgNotification"
+                        Margin="0"
+                        HeightRequest="40"
+                        HorizontalOptions="CenterAndExpand"
+                        Source="iconNotification.png"
+                        VerticalOptions="CenterAndExpand">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ImgNotification_Tapped" />
+                        </Image.GestureRecognizers>
+                    </Image>
+
+                    <Image
+                        x:Name="ImgQuestion"
+                        Margin="0"
+                        HeightRequest="40"
+                        HorizontalOptions="CenterAndExpand"
+                        Source="iconQuestion.png"
+                        VerticalOptions="CenterAndExpand">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ImgQuestion_Tapped" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                </StackLayout>
+
+                <BoxView
+                    Grid.ColumnSpan="3"
+                    BackgroundColor="{StaticResource LightGray}"
+                    HeightRequest="1"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="EndAndExpand" />
+            </Grid>
+
+            <!--  Manage Seller  -->
+            <Grid Grid.Row="1" Padding="20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Label
+                    Grid.Column="0"
+                    FontSize="17"
+                    HorizontalOptions="StartAndExpand"
+                    Style="{StaticResource lblSemiBold}"
+                    Text="Manage Sellers"
+                    TextColor="{StaticResource Black}" />
+
+                <Frame
+                    x:Name="FrmSortBy"
+                    Grid.Column="1"
+                    Margin="0"
+                    Padding="{OnPlatform Android='5,2',
+                                         iOS='7,4'}"
+                    BackgroundColor="Transparent"
+                    BorderColor="{StaticResource Gray}"
+                    HasShadow="False"
+                    HorizontalOptions="EndAndExpand"
+                    IsClippedToBounds="True"
+                    VerticalOptions="Center">
+                    <StackLayout
+                        HorizontalOptions="Center"
+                        Orientation="Horizontal"
+                        Spacing="0"
+                        VerticalOptions="Center">
+                        <Image
+                            Aspect="AspectFit"
+                            HeightRequest="{OnPlatform Android=20,
+                                                       iOS=25}"
+                            HorizontalOptions="Center"
+                            Source="iconSort.png"
+                            VerticalOptions="Center"
+                            WidthRequest="{OnPlatform Android=20,
+                                                      iOS=25}" />
+                        <Label
+                            Margin="{OnPlatform Android='0,3,0,0',
+                                                iOS='0,5,0,0'}"
+                            FontSize="13"
+                            HorizontalOptions="Center"
+                            Style="{StaticResource lblSemiBold}"
+                            Text="Sort by"
+                            TextColor="{StaticResource Black}" />
+                    </StackLayout>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="FrmSortBy_Tapped" />
+                    </Frame.GestureRecognizers>
+                </Frame>
+
+            </Grid>
+
+            <BoxView
+                Grid.Row="1"
+                BackgroundColor="{StaticResource LightGray}"
+                HeightRequest="1"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="EndAndExpand" />
+
+            <!--  List  -->
+            <ListView
+                x:Name="lstManageSeller"
+                Grid.Row="2"
+                Margin="0"
+                HorizontalOptions="FillAndExpand"
+                ItemTapped="lstManageSeller_ItemTapped"
+                SeparatorVisibility="None"
+                Style="{StaticResource lstPrimary}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid
+                                    Padding="20,15,5,5"
+                                    BackgroundColor="{Binding GridBg, Mode=TwoWay}"
+                                    ColumnSpacing="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid Grid.Column="0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Label
+                                            Grid.Row="0"
+                                            FontSize="15"
+                                            HorizontalOptions="StartAndExpand"
+                                            Style="{StaticResource lblSemiBold}"
+                                            Text="{Binding SellerId}"
+                                            TextColor="{StaticResource Black}" />
+
+                                        <Label
+                                            x:Name="lblSellerName"
+                                            Grid.Row="1"
+                                            FontSize="{Binding NameFont, Mode=TwoWay}"
+                                            HorizontalOptions="StartAndExpand"
+                                            Style="{StaticResource lblMedium}"
+                                            Text="{Binding SellerName}"
+                                            TextColor="{StaticResource Black}" />
+
+                                        <Label
+                                            x:Name="lblAddress"
+                                            Grid.Row="2"
+                                            FontSize="15"
+                                            HorizontalOptions="StartAndExpand"
+                                            IsVisible="{Binding MoreDetail, Mode=TwoWay}"
+                                            Style="{StaticResource lblMedium}"
+                                            Text="{Binding SellerAddress}"
+                                            TextColor="{StaticResource Black}" />
+
+                                        <Label
+                                            x:Name="lblDate"
+                                            Grid.Row="3"
+                                            FontSize="15"
+                                            HorizontalOptions="StartAndExpand"
+                                            IsVisible="{Binding MoreDetail, Mode=TwoWay}"
+                                            Style="{StaticResource lblMedium}"
+                                            Text="{Binding Date}"
+                                            TextColor="{StaticResource Black}" />
+                                    </Grid>
+
+                                    <Grid
+                                        Grid.Column="1"
+                                        ColumnSpacing="10"
+                                        RowSpacing="0"
+                                        VerticalOptions="StartAndExpand">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Label
+                                            Grid.Row="0"
+                                            Grid.Column="0"
+                                            BackgroundColor="Transparent"
+                                            FontSize="17"
+                                            HorizontalOptions="StartAndExpand"
+                                            Style="{StaticResource lblSemiBold}"
+                                            Text="{Binding Active}"
+                                            TextColor="{StaticResource Green}" />
+                                        <ImageButton
+                                            Grid.RowSpan="2"
+                                            Grid.Column="1"
+                                            Margin="0"
+                                            Padding="15"
+                                            Aspect="AspectFit"
+                                            BackgroundColor="Transparent"
+                                            Clicked="BtnManageSellers_Tapped"
+                                            HeightRequest="50"
+                                            HorizontalOptions="End"
+                                            Source="{Binding ArrowImage}"
+                                            VerticalOptions="CenterAndExpand"
+                                            WidthRequest="50" />
+                                    </Grid>
+                                </Grid>
+                                <BoxView
+                                    BackgroundColor="{StaticResource Green}"
+                                    HeightRequest="1"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="EndAndExpand" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </Grid>
+    </ContentView.Content>
+</ContentView>

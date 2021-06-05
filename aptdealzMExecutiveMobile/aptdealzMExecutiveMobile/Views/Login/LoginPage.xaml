@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="aptdealzMExecutiveMobile.Views.Login.LoginPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ext="clr-namespace:aptdealzMExecutiveMobile.Extention"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    Title="Onboarding"
+    Padding="{OnPlatform Android=0,
+                         iOS='0,30,0,0'}"
+    ios:Page.PrefersHomeIndicatorAutoHidden="True"
+    ios:Page.UseSafeArea="False"
+    BackgroundColor="White"
+    NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <Grid
+            HorizontalOptions="FillAndExpand"
+            RowSpacing="0"
+            VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="60" />
+                </Grid.ColumnDefinitions>
+                <ImageButton
+                    x:Name="ImgBack"
+                    Grid.Column="0"
+                    Clicked="ImgBack_Tapped"
+                    Source="iconBackArrow.png"
+                    Style="{StaticResource imgMenu}" />
+            </Grid>
+
+            <Grid Grid.Row="1" RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Image
+                        Grid.Row="0"
+                        Aspect="AspectFit"
+                        HeightRequest="120"
+                        HorizontalOptions="CenterAndExpand"
+                        Source="iconLogo.png"
+                        VerticalOptions="CenterAndExpand"
+                        WidthRequest="120" />
+
+                    <StackLayout
+                        Grid.Row="1"
+                        Orientation="Vertical"
+                        Spacing="0">
+                        <Label
+                            FontSize="21"
+                            HorizontalOptions="Center"
+                            Style="{StaticResource lblMedium}"
+                            Text="Welcome Back"
+                            TextColor="{StaticResource Black}" />
+
+                        <Label
+                            FontSize="15"
+                            HorizontalOptions="CenterAndExpand"
+                            Style="{StaticResource lblRegular}"
+                            Text="Login to your AptDealz Account"
+                            TextColor="{StaticResource Black}" />
+                    </StackLayout>
+                </Grid>
+
+                <StackLayout
+                    Grid.Row="1"
+                    Margin="20,60"
+                    HorizontalOptions="FillAndExpand"
+                    Spacing="25"
+                    VerticalOptions="CenterAndExpand">
+                    <Frame Style="{StaticResource frmEntry}">
+                        <ext:ExtEntry
+                            Keyboard="Text"
+                            Placeholder="Email / Phone Number"
+                            Style="{StaticResource entrPrimary}"
+                            TabIndex="1" />
+                    </Frame>
+                    <!--<ext:CustomShadowFrame
+                        Margin="30,10"
+                        Padding="0"
+                        BackgroundColor="{StaticResource LightGray}"
+                        CornerRadius="5">
+                        <ext:ExtEntry
+                            Margin="20,0"
+                            FontFamily="Poppins-Regular"
+                            FontSize="16"
+                            HorizontalOptions="FillAndExpand"
+                            Placeholder="Email / Phone Number"
+                            PlaceholderColor="#ABABAB"
+                            TextColor="#292929"
+                            VerticalOptions="CenterAndExpand" />
+                    </ext:CustomShadowFrame>-->
+
+                    <StackLayout
+                        x:Name="StkRemember"
+                        Margin="5,0,0,0"
+                        HorizontalOptions="StartAndExpand"
+                        Orientation="Horizontal"
+                        Spacing="10">
+                        <Image
+                            x:Name="imgCheck"
+                            HeightRequest="25"
+                            HorizontalOptions="StartAndExpand"
+                            Source="iconCheck.png"
+                            VerticalOptions="CenterAndExpand" />
+
+                        <Label
+                            FontSize="14"
+                            HorizontalOptions="StartAndExpand"
+                            Style="{StaticResource lblRegular}"
+                            Text="Keep me logged in"
+                            TextColor="{StaticResource Black}" />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="StkRemember_Tapped" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                </StackLayout>
+
+                <!--  GetOTP Button  -->
+                <Button
+                    x:Name="BtnGetOTP"
+                    Grid.Row="2"
+                    Margin="20"
+                    Clicked="BtnGetOTP_Clicked"
+                    Style="{StaticResource btnPrimary}"
+                    Text="Get OTP" />
+
+                <!--<ext:CustomShadowFrame
+                    Grid.Row="2"
+                    Margin="20,0"
+                    Padding="10,5"
+                    BackgroundColor="#006027"
+                    CornerRadius="5"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="CenterAndExpand">
+                    <Label
+                        Margin="15,10"
+                        FontFamily="Poppins-Medium"
+                        HorizontalOptions="CenterAndExpand"
+                        Text="Get OTP"
+                        TextColor="#FFFFFF"
+                        VerticalOptions="CenterAndExpand" />
+                    <ext:CustomShadowFrame.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="FrmGetOtp_Tapped" />
+                    </ext:CustomShadowFrame.GestureRecognizers>
+                </ext:CustomShadowFrame>-->
+
+                <!--<StackLayout
+                    Grid.Row="3"
+                    Margin="20,20,20,30"
+                    HorizontalOptions="CenterAndExpand"
+                    Orientation="Horizontal">
+
+                    <Label
+                        Margin="10,0,0,0"
+                        FontFamily="Poppins-Medium"
+                        FontSize="16"
+                        HorizontalOptions="EndAndExpand"
+                        Text="Don't have an Account ?"
+                        TextColor="#292929"
+                        VerticalOptions="CenterAndExpand" />
+
+                    <Label
+                        Margin="10,0,0,0"
+                        FontFamily="Poppins-Medium"
+                        FontSize="16"
+                        HorizontalOptions="StartAndExpand"
+                        Text="Sign Up"
+                        TextColor="#006027"
+                        VerticalOptions="CenterAndExpand" />
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="StkSignup_Tapped" />
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>-->
+
+            </Grid>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
