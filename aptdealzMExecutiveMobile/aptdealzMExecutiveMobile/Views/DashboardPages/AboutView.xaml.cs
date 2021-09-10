@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using aptdealzMExecutiveMobile.Utility;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -12,42 +8,32 @@ namespace aptdealzMExecutiveMobile.Views.DashboardPages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AboutView : ContentView
     {
-        #region Objects
-        // create objects here
-        public event EventHandler isRefresh;
+        #region [ Objects ]
         #endregion
 
-        #region Constructor
+        #region [ Constructor ]
         public AboutView()
         {
-            InitializeComponent();
+            try
+            {
+                InitializeComponent();
+            }
+            catch (Exception ex)
+            {
+                Common.DisplayErrorMessage("AboutView/Ctor: " + ex.Message);
+            }
         }
         #endregion
 
-        #region Methods
-        // write methods here
+        #region [ Methods ]
+
         #endregion
 
-        #region Events
-        // create events here
-        private void ImgMenu_Tapped(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ImgNotification_Tapped(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ImgQuestion_Tapped(object sender, EventArgs e)
-        {
-
-        }
-
+        #region [ Events ]
         private void ImgBack_Tapped(object sender, EventArgs e)
         {
-            Navigation.PopAsync();
+            Common.BindAnimation(imageButton: ImgBack);
+            Common.MasterData.Detail = new NavigationPage(new MainTabbedPages.MainTabbedPage(Constraints.Str_Home));
         }
         #endregion
     }

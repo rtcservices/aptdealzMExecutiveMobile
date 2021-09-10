@@ -9,58 +9,20 @@
                          iOS='0,0,0,30'}"
     ios:Page.PrefersHomeIndicatorAutoHidden="True"
     ios:Page.UseSafeArea="False"
-    BackgroundColor="White"
+    BackgroundColor="{StaticResource appColor6}"
     NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
-        <Grid
-            HorizontalOptions="FillAndExpand"
-            RowSpacing="0"
-            VerticalOptions="FillAndExpand">
+        <Grid RowSpacing="20">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <!--  Skip Button  -->
-            <Grid
-                x:Name="FrmSkip"
-                Grid.Row="0"
-                Margin="{OnPlatform Android='0,-45,-45,0',
-                                    iOS='0,-35,-35,0'}">
-                <Frame
-                    Margin="0"
-                    Padding="10"
-                    BackgroundColor="#FC9200"
-                    CornerRadius="55"
-                    HeightRequest="90"
-                    HorizontalOptions="EndAndExpand"
-                    VerticalOptions="StartAndExpand"
-                    WidthRequest="90">
-                    <Label
-                        Margin="15,0,0,15"
-                        BackgroundColor="Transparent"
-                        FontFamily="Poppins-SemiBold"
-                        FontSize="15"
-                        HorizontalOptions="Start"
-                        Text="Skip"
-                        TextColor="#FFFFFF"
-                        VerticalOptions="End" />
-                    <Frame.GestureRecognizers>
-                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="FrmSkip_Tapped" />
-                    </Frame.GestureRecognizers>
-                </Frame>
-            </Grid>
-
             <!--  Carousal  -->
-            <Grid
-                Grid.Row="1"
-                Padding="0"
-                RowSpacing="25"
-                VerticalOptions="CenterAndExpand">
+            <Grid Grid.Row="0" RowSpacing="20">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
@@ -95,19 +57,18 @@
                     Spacing="10"
                     VerticalOptions="CenterAndExpand">
                     <Label
-                        FontSize="17"
+                        FontSize="21"
                         HorizontalOptions="CenterAndExpand"
                         HorizontalTextAlignment="Center"
                         Style="{StaticResource lblSemiBold}"
-                        Text="What is Lorem Ipsum"
-                        TextColor="{StaticResource Black}" />
+                        Text="What is Lorem Ipsum" />
 
                     <Label
                         HorizontalOptions="CenterAndExpand"
                         HorizontalTextAlignment="Center"
                         Style="{StaticResource lblLight}"
                         Text="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
-                        TextColor="{StaticResource Black}" />
+                        TextColor="{StaticResource appColor4}" />
                 </StackLayout>
 
                 <IndicatorView
@@ -116,10 +77,10 @@
                     Margin="{OnPlatform Android='0',
                                         iOS='20'}"
                     HeightRequest="30"
-                    IndicatorColor="{StaticResource DarkGray}"
+                    IndicatorColor="{StaticResource appColor9}"
                     IndicatorSize="15"
                     Position="{Binding Source={x:Reference cvWelcome}, Path=Position}"
-                    SelectedIndicatorColor="{StaticResource Green}"
+                    SelectedIndicatorColor="{StaticResource appColor1}"
                     VerticalOptions="CenterAndExpand"
                     WidthRequest="30" />
             </Grid>
@@ -127,8 +88,8 @@
             <!--  Login Button  -->
             <Button
                 x:Name="BtnLogin"
-                Grid.Row="2"
-                Margin="20"
+                Grid.Row="1"
+                Margin="20,0,20,20"
                 Clicked="BtnLogin_Clicked"
                 Style="{StaticResource btnPrimary}"
                 Text="Login" />

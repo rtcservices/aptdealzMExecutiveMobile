@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using DLToolkit.Forms.Controls;
+﻿using DLToolkit.Forms.Controls;
+using FFImageLoading.Forms.Platform;
 using Foundation;
 using UIKit;
 
@@ -14,6 +12,7 @@ namespace aptdealzMExecutiveMobile.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             FlowListView.Init();
+            CachedImageRenderer.Init();
             Rg.Plugins.Popup.Popup.Init();
 
             LoadApplication(new App());

@@ -2,6 +2,8 @@
 using aptdealzMExecutiveMobile.iOS.CustomRenderers;
 using aptdealzMExecutiveMobile.Utility;
 using CoreGraphics;
+using dotMorten.Xamarin.Forms;
+using dotMorten.Xamarin.Forms.Platform.iOS;
 using Foundation;
 using System;
 using System.ComponentModel;
@@ -12,94 +14,13 @@ using Xamarin.Forms.Platform.iOS;
 [assembly: ExportRenderer(typeof(ExtEntry), typeof(CustomEntryRenderer))]
 [assembly: ExportRenderer(typeof(Picker), typeof(CustomPickerRenderer))]
 [assembly: ExportRenderer(typeof(Editor), typeof(CustomEditorRenderer))]
-[assembly: ExportRenderer(typeof(DatePicker), typeof(CustomeDatePickerRenderer))]
 [assembly: ExportRenderer(typeof(ContentPage), typeof(Xamarin.Forms.Platform.iOS.PageRenderer))]
 [assembly: ExportRenderer(typeof(ExtKeyboard), typeof(KeyboardViewRenderer))]
+[assembly: ExportRenderer(typeof(Label), typeof(CustomLabelRenderer))]
+[assembly: ExportRenderer(typeof(ExtAutoSuggestBox), typeof(CustomAutoSuggestBoxRenderer))]
 
 namespace aptdealzMExecutiveMobile.iOS.CustomRenderers
 {
-    public class CustomEntryRenderer : EntryRenderer
-    {
-        protected override void OnElementChanged(ElementChangedEventArgs<Entry> e)
-        {
-            try
-            {
-                base.OnElementChanged(e);
-                if (Control != null)
-                {
-                    Control.LeftView = new UIView(new CGRect(0, 0, 5, 0));
-                    Control.LeftViewMode = UITextFieldViewMode.Always;
-                    Control.BackgroundColor = UIColor.Clear;
-                    Control.BorderStyle = UITextBorderStyle.None;
-                }
-            }
-            catch (Exception ex)
-            {
-                Common.DisplayErrorMessage("iOS/EntryRender: " + ex.Message);
-            }
-        }
-    }
-
-    public class CustomPickerRenderer : PickerRenderer
-    {
-        protected override void OnElementChanged(ElementChangedEventArgs<Picker> e)
-        {
-            try
-            {
-                base.OnElementChanged(e);
-                if (Control != null)
-                {
-                    Control.BorderStyle = UITextBorderStyle.None;
-                    Control.BackgroundColor = UIColor.Clear;
-                }
-            }
-            catch (Exception ex)
-            {
-                Common.DisplayErrorMessage("iOS/PickerRenderer: " + ex.Message);
-            }
-        }
-    }
-
-    public class CustomEditorRenderer : EditorRenderer
-    {
-        protected override void OnElementChanged(ElementChangedEventArgs<Editor> e)
-        {
-            try
-            {
-                base.OnElementChanged(e);
-                if (Control != null)
-                {
-                    Control.Layer.CornerRadius = 0;
-                }
-            }
-            catch (Exception ex)
-            {
-                Common.DisplayErrorMessage("iOS/EditorRenderer: " + ex.Message);
-            }
-        }
-    }
-
-    public class CustomeDatePickerRenderer : DatePickerRenderer
-    {
-#pragma warning disable CS0108 // Member hides inherited member; missing new keyword
-        public static void Init() { }
-#pragma warning restore CS0108 // Member hides inherited member; missing new keyword
-        protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            try
-            {
-                base.OnElementPropertyChanged(sender, e);
-
-                Control.Layer.BorderWidth = 0;
-                Control.BorderStyle = UITextBorderStyle.None;
-            }
-            catch (Exception)
-            {
-                //Common.DisplayErrorMessage("iOS/DatePickerRenderer: " + ex.Message);
-            }
-        }
-    }
-
     public class PageRenderer : Xamarin.Forms.Platform.iOS.PageRenderer
     {
         public PageRenderer()
@@ -113,6 +34,124 @@ namespace aptdealzMExecutiveMobile.iOS.CustomRenderers
             if (parent != null)
             {
                 parent.ModalPresentationStyle = UIModalPresentationStyle.FullScreen;
+            }
+        }
+    }
+
+    public class CustomLabelRenderer : LabelRenderer
+    {
+        protected override void OnElementChanged(ElementChangedEventArgs<Label> e)
+        {
+            try
+            {
+                base.OnElementChanged(e);
+                if (Control != null)
+                {
+                    if (e.NewElement != null && e.NewElement.Text != null)
+                    {
+                        if (!string.IsNullOrEmpty(Element.FontFamily))
+                            Control.Font = UIFont.FromName(this.Element.FontFamily, (nfloat)e.NewElement.FontSize);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Common.DisplayErrorMessage("iOS/CustomLabelRenderer: " + ex.Message);
+            }
+        }
+    }
+
+    public class CustomEntryRenderer : EntryRenderer
+    {
+        protected override void OnElementChanged(ElementChangedEventArgs<Entry> e)
+        {
+            base.OnElementChanged(e);
+            try
+            {
+                if (Control != null)
+                {
+                    Control.BorderStyle = UITextBorderStyle.None;
+
+                    Control.Layer.BackgroundColor = Color.Transparent.ToCGColor();
+                    Control.Layer.BorderColor = Color.Transparent.ToCGColor();
+                    Control.Layer.CornerRadius = (nfloat)0.0;
+                    Control.LeftView = new UIView(new CGRect(0, 0, 0, 0));
+                    Control.LeftViewMode = UITextFieldViewMode.Always;
+                    Control.RightView = new UIView(new CGRect(0, 0, 0, 0));
+                    Control.RightViewMode = UITextFieldViewMode.Always;
+                }
+            }
+            catch (Exception ex)
+            {
+                Common.DisplayErrorMessage("iOS/CustomEntryRenderer: " + ex.Message);
+            }
+        }
+    }
+
+    public class CustomPickerRenderer : PickerRenderer
+    {
+        protected override void OnElementChanged(ElementChangedEventArgs<Picker> e)
+        {
+            base.OnElementChanged(e);
+            try
+            {
+                if (Control != null)
+                {
+                    Control.Layer.BackgroundColor = Color.White.ToCGColor();
+                    Control.Layer.CornerRadius = (nfloat)0.0;
+                    Control.LeftView = new UIView(new CGRect(0, 0, 5, 0));
+                    Control.LeftViewMode = UITextFieldViewMode.Always;
+                    Control.RightView = new UIView(new CGRect(0, 0, 5, 0));
+                    Control.RightViewMode = UITextFieldViewMode.Always;
+                    this.Control.BorderStyle = UITextBorderStyle.None;
+                }
+            }
+            catch (Exception ex)
+            {
+                Common.DisplayErrorMessage("iOS/CustomPickerRenderer: " + ex.Message);
+            }
+        }
+    }
+
+    public class CustomEditorRenderer : EditorRenderer
+    {
+        protected override void OnElementChanged(ElementChangedEventArgs<Editor> e)
+        {
+            base.OnElementChanged(e);
+            try
+            {
+                if (Control != null)
+                {
+                    Control.Layer.BorderColor = Color.Transparent.ToCGColor();
+                    Control.Layer.BorderWidth = 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                Common.DisplayErrorMessage("iOS/CustomEditorRenderer: " + ex.Message);
+            }
+        }
+    }
+
+    public class CustomAutoSuggestBoxRenderer : AutoSuggestBoxRenderer
+    {
+        protected override void OnElementChanged(ElementChangedEventArgs<AutoSuggestBox> e)
+        {
+            base.OnElementChanged(e);
+            try
+            {
+                if (Control != null)
+                {
+                    Control.Layer.BackgroundColor = Color.Transparent.ToCGColor();
+                    Control.Layer.BorderColor = Color.Transparent.ToCGColor();
+                    Control.Layer.CornerRadius = (nfloat)0.0;
+                    Control.IsSuggestionListOpen = false;
+                    Control.ShowBottomBorder = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Common.DisplayErrorMessage("iOS/ExtAutoSuggestBoxRenderer: " + ex.Message);
             }
         }
     }

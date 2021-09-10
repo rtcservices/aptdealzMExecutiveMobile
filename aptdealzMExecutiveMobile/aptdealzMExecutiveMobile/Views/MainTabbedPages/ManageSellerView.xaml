@@ -1,0 +1,288 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="aptdealzMExecutiveMobile.Views.MainTabbedPages.ManageSellerView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ext="clr-namespace:aptdealzMExecutiveMobile.Extention"
+    xmlns:iOS="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    iOS:Page.UseSafeArea="True"
+    BackgroundColor="{StaticResource appColor6}"
+    NavigationPage.HasNavigationBar="False">
+    <ContentView.Content>
+        <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!--  Title  -->
+            <Grid
+                Grid.Row="0"
+                Margin="5,5,5,0"
+                ColumnDefinitions="Auto,*"
+                ColumnSpacing="0">
+                <ImageButton
+                    x:Name="ImgBack"
+                    Grid.Column="0"
+                    Clicked="ImgBack_Tapped"
+                    Source="iconBackArrow.png"
+                    Style="{StaticResource ImgBtnPrimary}" />
+                <Label
+                    Grid.Column="1"
+                    Style="{StaticResource lblHeader}"
+                    Text="Manage Seller" />
+            </Grid>
+
+            <!--  Search/SortBy/Filter  -->
+            <Grid
+                Grid.Row="1"
+                Padding="15,0"
+                RowSpacing="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Frame
+                    x:Name="FrmSearchBy"
+                    Grid.Row="0"
+                    Margin="0"
+                    Padding="0"
+                    BackgroundColor="Transparent"
+                    BorderColor="Transparent"
+                    CornerRadius="5"
+                    HasShadow="False"
+                    IsClippedToBounds="True">
+
+                    <Grid BackgroundColor="Transparent">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="40" />
+                        </Grid.ColumnDefinitions>
+                        <Image
+                            Grid.Column="0"
+                            Aspect="AspectFit"
+                            Source="iconSearch.png"
+                            Style="{StaticResource imgSearch}" />
+
+                        <ext:ExtEntry
+                            x:Name="entrSearch"
+                            Grid.Column="1"
+                            Placeholder="Search"
+                            Style="{StaticResource entrPrimary}"
+                            TextChanged="entrSearch_TextChanged" />
+
+
+                        <ImageButton
+                            x:Name="BtnClose"
+                            Grid.Column="2"
+                            Clicked="BtnClose_Clicked"
+                            Source="iconClose.png"
+                            Style="{StaticResource ImgBtnH40P13}" />
+
+                        <BoxView Grid.ColumnSpan="3" Style="{StaticResource boxHorizontalGreen}" />
+                    </Grid>
+                </Frame>
+
+                <Grid
+                    Grid.Row="1"
+                    ColumnSpacing="10"
+                    HorizontalOptions="EndAndExpand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Frame
+                        x:Name="FrmSortBy"
+                        Grid.Column="0"
+                        Margin="0"
+                        Padding="0"
+                        BackgroundColor="Transparent"
+                        BorderColor="{StaticResource appColor8}"
+                        CornerRadius="5"
+                        HasShadow="False"
+                        HorizontalOptions="EndAndExpand"
+                        IsClippedToBounds="True">
+                        <Grid
+                            Margin="5"
+                            ColumnDefinitions="Auto,*"
+                            ColumnSpacing="0">
+                            <Image
+                                x:Name="ImgSort"
+                                Grid.Column="0"
+                                Margin="0"
+                                HeightRequest="20"
+                                HorizontalOptions="CenterAndExpand"
+                                Source="iconSortDSC.png"
+                                VerticalOptions="CenterAndExpand" />
+
+                            <Label
+                                Grid.Column="1"
+                                Margin="0,5,0,0"
+                                FontSize="12"
+                                HorizontalOptions="CenterAndExpand"
+                                Style="{StaticResource lblLight}"
+                                Text="Sort by" />
+                        </Grid>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="FrmSortBy_Tapped" />
+                        </Frame.GestureRecognizers>
+                    </Frame>
+
+                    <Frame
+                        x:Name="FrmFilterBy"
+                        Grid.Column="1"
+                        Margin="0"
+                        Padding="0"
+                        BackgroundColor="Transparent"
+                        BorderColor="{StaticResource appColor8}"
+                        CornerRadius="5"
+                        HasShadow="False"
+                        HorizontalOptions="EndAndExpand"
+                        IsClippedToBounds="True">
+                        <Grid
+                            Margin="5"
+                            ColumnDefinitions="Auto,*"
+                            ColumnSpacing="0">
+                            <Image
+                                Grid.Column="0"
+                                Margin="0"
+                                HeightRequest="20"
+                                HorizontalOptions="CenterAndExpand"
+                                Source="iconFilter.png"
+                                VerticalOptions="CenterAndExpand" />
+
+                            <Label
+                                x:Name="lblFilterBy"
+                                Grid.Column="1"
+                                Margin="0,5,0,0"
+                                FontSize="12"
+                                HorizontalOptions="CenterAndExpand"
+                                Style="{StaticResource lblLight}"
+                                Text="Filter by" />
+                        </Grid>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="FrmFilterBy_Tapped" />
+                        </Frame.GestureRecognizers>
+                    </Frame>
+                </Grid>
+            </Grid>
+
+            <ListView
+                x:Name="lstManageSeller"
+                Grid.Row="2"
+                HorizontalOptions="FillAndExpand"
+                IsPullToRefreshEnabled="True"
+                ItemAppearing="lstManageSeller_ItemAppearing"
+                ItemTapped="lstManageSeller_ItemTapped"
+                Refreshing="lstManageSeller_Refreshing"
+                SeparatorVisibility="None"
+                Style="{StaticResource lstPrimary}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid
+                                    Padding="20,15,5,5"
+                                    BackgroundColor="{Binding GridBg, Mode=TwoWay}"
+                                    ColumnSpacing="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid Grid.Column="0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Label
+                                            Grid.Row="0"
+                                            FontSize="15"
+                                            HorizontalOptions="StartAndExpand"
+                                            Style="{StaticResource lblSemiBold}"
+                                            Text="{Binding SellerNo}" />
+                                        <Label
+                                            Grid.Row="1"
+                                            FontSize="{Binding NameFont, Mode=TwoWay}"
+                                            HorizontalOptions="StartAndExpand"
+                                            Style="{StaticResource lblMedium}"
+                                            Text="{Binding Name}" />
+                                        <Label
+                                            Grid.Row="2"
+                                            FontSize="15"
+                                            HorizontalOptions="StartAndExpand"
+                                            IsVisible="{Binding MoreDetail, Mode=TwoWay}"
+                                            Style="{StaticResource lblMedium}"
+                                            Text="{Binding Address}" />
+                                        <Label
+                                            Grid.Row="3"
+                                            FontSize="15"
+                                            HorizontalOptions="StartAndExpand"
+                                            IsVisible="{Binding MoreDetail, Mode=TwoWay}"
+                                            Style="{StaticResource lblMedium}"
+                                            Text="{Binding Category}" />
+                                    </Grid>
+
+                                    <Grid
+                                        Grid.Column="1"
+                                        ColumnSpacing="10"
+                                        RowSpacing="0"
+                                        VerticalOptions="StartAndExpand">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Label
+                                            Grid.Row="0"
+                                            Grid.Column="0"
+                                            BackgroundColor="Transparent"
+                                            FontSize="15"
+                                            HorizontalOptions="StartAndExpand"
+                                            Style="{StaticResource lblSemiBold}"
+                                            Text="{Binding Status}"
+                                            TextColor="{StaticResource appColor1}" />
+                                        <ImageButton
+                                            Grid.RowSpan="2"
+                                            Grid.Column="1"
+                                            Margin="0"
+                                            Padding="15"
+                                            Aspect="AspectFit"
+                                            BackgroundColor="Transparent"
+                                            Clicked="BtnManageSellers_Tapped"
+                                            HeightRequest="50"
+                                            HorizontalOptions="End"
+                                            Source="{Binding ArrowImage}"
+                                            VerticalOptions="CenterAndExpand"
+                                            WidthRequest="50" />
+                                    </Grid>
+                                </Grid>
+                                <BoxView Style="{StaticResource boxHorizontalGreen}" />
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="GrdSeller_Tapped" />
+                                </Grid.GestureRecognizers>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <Label
+                x:Name="lblNoRecord"
+                Grid.Row="2"
+                FontSize="15"
+                HorizontalOptions="CenterAndExpand"
+                IsVisible="false"
+                Style="{StaticResource lblMedium}"
+                Text="No seller found" />
+        </Grid>
+    </ContentView.Content>
+</ContentView>

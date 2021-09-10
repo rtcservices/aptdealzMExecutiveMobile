@@ -12,90 +12,100 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HomeView : ContentView
     {
-        #region Objects   
-        public event EventHandler isRefresh;
+        #region [ Objects ]         
         public List<HomeMenu> mHomeMenu = new List<HomeMenu>();
         #endregion
 
-        #region Constructor
+        #region [ Constructor ]
         public HomeView()
         {
-            InitializeComponent();
-            BindMenus();
+            try
+            {
+                InitializeComponent();
+                BindMenus();
+            }
+            catch (Exception ex)
+            {
+                Common.DisplayErrorMessage("HomeView/Ctor: " + ex.Message);
+            }
         }
         #endregion
 
-        #region Methods
-
+        #region [ Methods ]
         public void BindMenus()
         {
             mHomeMenu = new List<HomeMenu>()
             {
-                new HomeMenu{Id=1, MenuImage="imgActiveRequirements.png", UiName="Add Seller"},
-                new HomeMenu{Id=2, MenuImage="imgPostRequirements.png", UiName="Manage Sellers"},
-                new HomeMenu{Id=3, MenuImage="imgNotifications.png", UiName="Notifications"},
-                new HomeMenu{Id=4, MenuImage="imgProfile.png", UiName="Account"},
-                new HomeMenu{Id=5, MenuImage="imgAboutAptDealz.png", UiName="About\nAptDealz"},
-                new HomeMenu{Id=6, MenuImage="imgContactSupport.png", UiName="Contact\nSupport"},
+                new HomeMenu{MenuImage="iconAddSeller.png", UiName="Add Seller",MenuName=Constraints.Str_AddSeller},
+                new HomeMenu{MenuImage="iconManageSeller.png", UiName="Manage Sellers",MenuName=Constraints.Str_Manage},
+                new HomeMenu{MenuImage="imgNotifications.png", UiName="Notifications",MenuName=Constraints.Str_Notifications},
+                new HomeMenu{MenuImage="imgProfile.png", UiName="Account",MenuName=Constraints.Str_Account},
+                new HomeMenu{MenuImage="imgAboutAptDealz.png", UiName="About\nAptDealz",MenuName=Constraints.Str_About},
+                new HomeMenu{MenuImage="imgContactSupport.png", UiName="Contact\nSupport",MenuName=Constraints.Str_Support},
             };
 
             flvMenus.FlowItemsSource = mHomeMenu.ToList();
         }
         #endregion
 
-        #region Events   
-        private void ImgMenu_Clicked(object sender, EventArgs e)
+        #region [ Events ]  
+        private void ImgMenu_Tapped(object sender, EventArgs e)
         {
-            Common.BindAnimation(ImgMenu);
+            //Common.OpenMenu();
         }
 
-        private void ImgNotification_Tapped(object sender, EventArgs e)
+        private async void ImgNotification_Tapped(object sender, EventArgs e)
         {
-            Common.BindAnimation(null, null, null, null, null, ImgNotification);
+            var Tab = (Grid)sender;
+            if (Tab.IsEnabled)
+            {
+                try
+                {
+                    Tab.IsEnabled = false;
+                    await Navigation.PushAsync(new NotificationPage());
+                }
+                catch (Exception ex)
+                {
+                    Common.DisplayErrorMessage("HomeView/ImgNotification_Tapped: " + ex.Message);
+                }
+                finally
+                {
+                    Tab.IsEnabled = true;
+                }
+            }
         }
 
         private void ImgQuestion_Tapped(object sender, EventArgs e)
         {
-            Common.BindAnimation(null, null, null, null, null, ImgQuestion);
+
         }
 
-        private void BtnDivision_Tapped(object sender, EventArgs e)
+        private async void DashboardMenu_Tapped(object sender, EventArgs e)
         {
-            try
+            var MenuTab = (Frame)sender;
+            if (MenuTab.IsEnabled)
             {
-                var stk = (Extention.CustomShadowFrame)sender;
-                var menu = stk.BindingContext as HomeMenu;
-                if (menu != null)
+                try
                 {
-                    if (menu.Id == 1)
+                    MenuTab.IsEnabled = false;
+                    var mHomeMenu = MenuTab.BindingContext as HomeMenu;
+                    if (mHomeMenu != null && mHomeMenu.MenuName == Constraints.Str_Notifications)
                     {
-                        Navigation.PushAsync(new MainTabbedPage("AddSeller"));
+                        await Navigation.PushAsync(new NotificationPage());
                     }
-                    else if (menu.Id == 2)
+                    else if (mHomeMenu != null && mHomeMenu.MenuName != null)
                     {
-                        Navigation.PushAsync(new MainTabbedPage("Manage"));
-                    }
-                    else if (menu.Id == 3)
-                    {
-                        Navigation.PushAsync(new NotificationPage());
-                    }
-                    else if (menu.Id == 4)
-                    {
-                        Navigation.PushAsync(new MainTabbedPage("Account"));
-                    }
-                    else if (menu.Id == 5)
-                    {
-                        Navigation.PushAsync(new MainTabbedPage("About"));
-                    }
-                    else if (menu.Id == 6)
-                    {
-                        Navigation.PushAsync(new ContactSupportPage());
+                        Common.MasterData.Detail = new NavigationPage(new MainTabbedPage(mHomeMenu.MenuName, true));
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                Common.DisplayErrorMessage("HomeView/BtnDivision_Tapped: " + ex.Message);
+                catch (Exception ex)
+                {
+                    Common.DisplayErrorMessage("HomeView/DashboardMenu_Tapped: " + ex.Message);
+                }
+                finally
+                {
+                    MenuTab.IsEnabled = true;
+                }
             }
         }
         #endregion

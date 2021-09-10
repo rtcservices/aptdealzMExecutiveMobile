@@ -3,183 +3,136 @@
     x:Class="aptdealzMExecutiveMobile.Views.DashboardPages.NotificationPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
-    Padding="{OnPlatform Android=0,
-                         iOS='0,30,0,15'}"
-    ios:Page.PrefersHomeIndicatorAutoHidden="True"
-    ios:Page.UseSafeArea="False"
-    BackgroundColor="White"
+    xmlns:iOS="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    iOS:Page.UseSafeArea="True"
+    BackgroundColor="{StaticResource appColor6}"
     NavigationPage.HasNavigationBar="False">
+
     <ContentPage.Content>
-        <Grid>
+        <Grid RowSpacing="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="50" />
+                <RowDefinition Height="55" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <Grid Grid.Row="0">
+            <Grid Grid.Row="0" ColumnSpacing="0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="55" />
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="55" />
                 </Grid.ColumnDefinitions>
                 <ImageButton
                     x:Name="ImgMenu"
                     Grid.Column="0"
+                    Padding="15"
                     BackgroundColor="Transparent"
                     Clicked="ImgMenu_Clicked"
+                    HeightRequest="55"
+                    HorizontalOptions="StartAndExpand"
                     Source="iconMenu.png"
-                    Style="{StaticResource imgMenu}" />
-
-                <Image
-                    Grid.Column="1"
-                    Margin="0"
-                    Aspect="AspectFit"
-                    HeightRequest="45"
-                    HorizontalOptions="CenterAndExpand"
-                    Source="iconHeaderLogo.png"
                     VerticalOptions="CenterAndExpand"
-                    WidthRequest="45" />
+                    WidthRequest="55" />
 
-                <StackLayout
+                <ImageButton
+                    x:Name="BtnLogo"
+                    Grid.Column="1"
+                    Clicked="BtnLogo_Clicked"
+                    Style="{StaticResource imgLogo}" />
+
+                <ImageButton
+                    x:Name="ImgQuestion"
                     Grid.Column="2"
-                    Margin="0,0,10,0"
+                    Padding="5"
+                    BackgroundColor="Transparent"
+                    Clicked="ImgQuestion_Clicked"
+                    HeightRequest="55"
                     HorizontalOptions="EndAndExpand"
-                    Orientation="Horizontal">
-                    <Image
-                        x:Name="ImgNotification"
-                        Margin="0"
-                        HeightRequest="40"
-                        HorizontalOptions="CenterAndExpand"
-                        Source="iconNotification.png"
-                        VerticalOptions="CenterAndExpand">
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ImgNotification_Tapped" />
-                        </Image.GestureRecognizers>
-                    </Image>
-
-                    <Image
-                        x:Name="ImgQuestion"
-                        Margin="0"
-                        HeightRequest="40"
-                        HorizontalOptions="CenterAndExpand"
-                        Source="iconQuestion.png"
-                        VerticalOptions="CenterAndExpand">
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ImgQuestion_Tapped" />
-                        </Image.GestureRecognizers>
-                    </Image>
-                </StackLayout>
-
-                <BoxView
-                    Grid.ColumnSpan="3"
-                    BackgroundColor="{StaticResource LightGray}"
-                    HeightRequest="1"
-                    HorizontalOptions="FillAndExpand"
-                    VerticalOptions="EndAndExpand" />
+                    Source="iconQuestion.png"
+                    VerticalOptions="CenterAndExpand"
+                    WidthRequest="40" />
+                <BoxView Grid.ColumnSpan="3" Style="{StaticResource boxHorizontal}" />
             </Grid>
 
-            <Grid Grid.Row="1" Margin="0">
+            <Grid Grid.Row="1" RowSpacing="0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
-                <StackLayout
+                <Grid
                     Grid.Row="0"
-                    Margin="20,0,0,0"
-                    HorizontalOptions="StartAndExpand"
-                    Orientation="Horizontal">
-                    <Image
+                    Margin="5,5,5,0"
+                    ColumnDefinitions="Auto,*"
+                    ColumnSpacing="0">
+                    <ImageButton
                         x:Name="ImgBack"
-                        Margin="0"
-                        Aspect="AspectFit"
-                        HeightRequest="25"
-                        HorizontalOptions="CenterAndExpand"
+                        Grid.Column="0"
+                        Clicked="ImgBack_Clicked"
                         Source="iconBackArrow.png"
-                        VerticalOptions="CenterAndExpand"
-                        WidthRequest="25">
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ImgBack_Tapped" />
-                        </Image.GestureRecognizers>
-                    </Image>
-
+                        Style="{StaticResource ImgBtnPrimary}" />
                     <Label
-                        Grid.Row="0"
-                        Margin="5,0,0,0"
-                        FontFamily="Poppins-SemiBold"
-                        FontSize="18"
-                        HorizontalOptions="StartAndExpand"
-                        Text="Notifications"
-                        TextColor="#191818"
-                        VerticalOptions="CenterAndExpand" />
-                </StackLayout>
+                        Grid.Column="1"
+                        Style="{StaticResource lblHeader}"
+                        Text=" Notifications" />
+                </Grid>
 
                 <ListView
                     x:Name="lstNotification"
                     Grid.Row="1"
-                    Margin="0,20,0,0"
-                    HasUnevenRows="True"
-                    HorizontalOptions="FillAndExpand"
-                    HorizontalScrollBarVisibility="Never"
-                    VerticalScrollBarVisibility="Never">
+                    IsPullToRefreshEnabled="True"
+                    ItemTapped="lstNotification_ItemTapped"
+                    Refreshing="lstNotification_Refreshing"
+                    Style="{StaticResource lstPrimary}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Grid RowDefinitions="Auto,Auto" RowSpacing="10">
-
+                                <Grid>
                                     <Grid
-                                        Grid.Row="0"
-                                        Margin="20,10,20,0"
-                                        ColumnDefinitions="Auto,*,Auto"
-                                        HorizontalOptions="FillAndExpand">
+                                        Margin="20,15"
+                                        ColumnDefinitions="*,Auto"
+                                        ColumnSpacing="10">
 
-                                        <BoxView
+                                        <StackLayout
                                             Grid.Column="0"
-                                            BackgroundColor="#006027"
-                                            HorizontalOptions="EndAndExpand"
-                                            VerticalOptions="FillAndExpand"
-                                            WidthRequest="1" />
-
-                                        <Label
-                                            Grid.Column="1"
-                                            Margin="10,0,0,0"
-                                            FontFamily="Poppins-Regular"
-                                            FontSize="16"
                                             HorizontalOptions="StartAndExpand"
-                                            LineBreakMode="WordWrap"
-                                            Text="{Binding NotificationTitle}"
-                                            TextColor="#292929"
-                                            VerticalOptions="CenterAndExpand" />
+                                            Orientation="Horizontal">
+                                            <BoxView
+                                                BackgroundColor="{StaticResource appColor1}"
+                                                HorizontalOptions="EndAndExpand"
+                                                VerticalOptions="FillAndExpand"
+                                                WidthRequest="2" />
 
-                                        <Image
-                                            Grid.Column="2"
-                                            Margin="0"
-                                            HeightRequest="15"
-                                            HorizontalOptions="CenterAndExpand"
+                                            <Label
+                                                HorizontalOptions="StartAndExpand"
+                                                LineBreakMode="WordWrap"
+                                                Style="{StaticResource lblLight}"
+                                                Text="{Binding Message}" />
+                                        </StackLayout>
+
+                                        <ImageButton
+                                            Grid.Column="1"
+                                            Clicked="ImgClose_Tapped"
                                             Source="iconClose.png"
-                                            VerticalOptions="CenterAndExpand">
-                                            <Image.GestureRecognizers>
-                                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ImgClose_Tapped" />
-                                            </Image.GestureRecognizers>
-                                        </Image>
-
-
+                                            Style="{StaticResource ImgBtnH40P13}" />
                                     </Grid>
-
-                                    <BoxView
-                                        Grid.Row="1"
-                                        BackgroundColor="{StaticResource LightGray}"
-                                        HeightRequest="1"
-                                        HorizontalOptions="FillAndExpand"
-                                        VerticalOptions="EndAndExpand" />
-
+                                    <BoxView Style="{StaticResource boxHorizontal}" />
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="GrdList_Tapped" />
+                                    </Grid.GestureRecognizers>
                                 </Grid>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
 
+                <Label
+                    x:Name="lblNoRecord"
+                    Grid.Row="1"
+                    FontSize="15"
+                    HorizontalOptions="CenterAndExpand"
+                    IsVisible="false"
+                    Style="{StaticResource lblMedium}"
+                    Text="No notifications found" />
             </Grid>
         </Grid>
     </ContentPage.Content>

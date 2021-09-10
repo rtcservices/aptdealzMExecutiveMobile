@@ -2,7 +2,8 @@
 
 namespace aptdealzMExecutiveMobile.Extention
 {
-    public class ExtEntry : Entry
-    {
+    public class ExtEntry : Entry 
+    { 
+
     }
 }

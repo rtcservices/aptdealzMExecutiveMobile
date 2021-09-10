@@ -3,165 +3,203 @@
     x:Class="aptdealzMExecutiveMobile.Views.MainTabbedPages.MainTabbedPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
-    Padding="{OnPlatform Android=0,
-                         iOS='0,30,0,15'}"
-    ios:Page.PrefersHomeIndicatorAutoHidden="True"
-    ios:Page.UseSafeArea="False"
-    BackgroundColor="White"
+    xmlns:iOS="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    iOS:Page.UseSafeArea="True"
+    BackgroundColor="{StaticResource appColor6}"
     NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <Grid RowSpacing="0">
             <Grid.RowDefinitions>
+                <RowDefinition Height="55" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="70" />
             </Grid.RowDefinitions>
 
-            <Grid x:Name="grdMain" Grid.Row="0" />
-
-            <BoxView
-                Grid.Row="1"
-                BackgroundColor="{StaticResource LightGray}"
-                HeightRequest="1"
-                HorizontalOptions="FillAndExpand"
-                VerticalOptions="EndAndExpand" />
-
-            <Grid
-                Grid.Row="2"
-                BackgroundColor="White"
-                ColumnSpacing="0">
+            <!--#region [ Header ]-->
+            <Grid Grid.Row="0" ColumnSpacing="0">
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80" />
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="80" />
                 </Grid.ColumnDefinitions>
-
-                <Grid
-                    x:Name="stkHome"
+                <ImageButton
                     Grid.Column="0"
-                    HorizontalOptions="FillAndExpand"
-                    RowSpacing="0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="40" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-                    <Image
-                        x:Name="imgHome"
-                        Grid.Row="0"
-                        Aspect="AspectFit"
-                        HeightRequest="40"
-                        HorizontalOptions="CenterAndExpand"
-                        Source="iconVehicalGray.png"
-                        VerticalOptions="CenterAndExpand"
-                        WidthRequest="40" />
-                    <Label
-                        x:Name="lblHome"
-                        Grid.Row="1"
-                        FontSize="15"
-                        HorizontalOptions="CenterAndExpand"
-                        Style="{StaticResource lblRegular}"
-                        Text="Home"
-                        TextColor="{StaticResource Black}" />
-                    <Grid.GestureRecognizers>
-                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="StkHome_Tapped" />
-                    </Grid.GestureRecognizers>
-                </Grid>
+                    Padding="15"
+                    BackgroundColor="Transparent"
+                    Clicked="ImgMenu_Tapped"
+                    HeightRequest="55"
+                    HorizontalOptions="StartAndExpand"
+                    Source="iconMenu.png"
+                    VerticalOptions="CenterAndExpand"
+                    WidthRequest="55" />
 
-                <Grid
-                    x:Name="stkAddSeller"
+                <ImageButton
+                    x:Name="BtnLogo"
                     Grid.Column="1"
-                    HorizontalOptions="FillAndExpand"
-                    RowSpacing="0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="40" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-                    <Image
-                        x:Name="imgAddSeller"
-                        Grid.Row="0"
-                        Aspect="AspectFit"
-                        HeightRequest="40"
-                        HorizontalOptions="CenterAndExpand"
-                        Source="iconRequirements.png"
-                        VerticalOptions="CenterAndExpand"
-                        WidthRequest="40" />
-                    <Label
-                        x:Name="lblAddSeller"
-                        Grid.Row="1"
-                        FontSize="15"
-                        HorizontalOptions="CenterAndExpand"
-                        Style="{StaticResource lblRegular}"
-                        Text="Add Seller"
-                        TextColor="{StaticResource Black}" />
-                    <Grid.GestureRecognizers>
-                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="StkAddSeller_Tapped" />
-                    </Grid.GestureRecognizers>
-                </Grid>
+                    Padding="10"
+                    BackgroundColor="Transparent"
+                    Clicked="BtnLogo_Clicked"
+                    HeightRequest="55"
+                    HorizontalOptions="CenterAndExpand"
+                    Source="iconHeaderLogo.png"
+                    VerticalOptions="CenterAndExpand"
+                    WidthRequest="55" />
 
                 <Grid
-                    x:Name="stkManage"
+                    x:Name="GrdNotification"
                     Grid.Column="2"
-                    HorizontalOptions="FillAndExpand"
-                    RowSpacing="0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="40" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-                    <Image
-                        x:Name="imgManage"
-                        Grid.Row="0"
-                        Aspect="AspectFit"
-                        HeightRequest="40"
+                    ColumnDefinitions="*,*"
+                    ColumnSpacing="0"
+                    HorizontalOptions="EndAndExpand">
+                    <Grid Grid.Column="0" BackgroundColor="Transparent">
+                        <Image Source="iconNotification.png" Style="{StaticResource imgNotification}" />
+                        <Frame
+                            x:Name="frmNotification"
+                            IsVisible="false"
+                            Style="{StaticResource frmNotification}">
+                            <Label x:Name="lblNotificationCount" Style="{StaticResource lblNotification}" />
+                        </Frame>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ImgNotification_Tapped" />
+                        </Grid.GestureRecognizers>
+                    </Grid>
+
+                    <ImageButton
+                        Grid.Column="1"
+                        Padding="5"
+                        BackgroundColor="Transparent"
+                        Clicked="ImgQuestion_Tapped"
+                        HeightRequest="55"
                         HorizontalOptions="CenterAndExpand"
-                        Source="iconOrders.png"
+                        Source="iconQuestion.png"
                         VerticalOptions="CenterAndExpand"
-                        WidthRequest="40" />
-                    <Label
-                        x:Name="lblManage"
-                        Grid.Row="1"
-                        FontSize="15"
-                        HorizontalOptions="CenterAndExpand"
-                        Style="{StaticResource lblRegular}"
-                        Text="Manage"
-                        TextColor="{StaticResource Black}" />
-                    <Grid.GestureRecognizers>
-                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="StkManage_Tapped" />
-                    </Grid.GestureRecognizers>
+                        WidthRequest="55" />
                 </Grid>
 
+                <BoxView Grid.ColumnSpan="3" Style="{StaticResource boxHorizontal}" />
+            </Grid>
+            <!--#endregion-->
+
+            <Grid x:Name="grdMain" Grid.Row="1" />
+
+            <!--#region [ TabBar ]-->
+            <Grid
+                x:Name="GrdTab"
+                Grid.Row="2"
+                RowDefinitions="Auto,Auto"
+                RowSpacing="0"
+                VerticalOptions="EndAndExpand">
+                <BoxView Grid.Row="0" Style="{StaticResource boxHorizontal}" />
+
                 <Grid
-                    x:Name="stkAccount"
-                    Grid.Column="3"
-                    HorizontalOptions="FillAndExpand"
-                    RowSpacing="0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="40" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-                    <Image
-                        x:Name="imgAccount"
-                        Grid.Row="0"
-                        Aspect="AspectFit"
-                        HeightRequest="40"
-                        HorizontalOptions="CenterAndExpand"
-                        Source="iconAccount.png"
-                        VerticalOptions="CenterAndExpand"
-                        WidthRequest="40" />
-                    <Label
-                        x:Name="lblAccount"
-                        Grid.Row="1"
-                        FontSize="15"
-                        HorizontalOptions="CenterAndExpand"
-                        Style="{StaticResource lblRegular}"
-                        Text="Account"
-                        TextColor="{StaticResource Black}" />
-                    <Grid.GestureRecognizers>
-                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="StkAccount_Tapped" />
-                    </Grid.GestureRecognizers>
+                    Grid.Row="1"
+                    BackgroundColor="{StaticResource appColor6}"
+                    ColumnSpacing="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackLayout
+                        x:Name="stkHome"
+                        Grid.Column="0"
+                        Padding="10"
+                        ClassId="Home">
+                        <Image
+                            x:Name="imgHome"
+                            Aspect="AspectFit"
+                            HeightRequest="30"
+                            HorizontalOptions="CenterAndExpand"
+                            Source="iconHome.png"
+                            VerticalOptions="CenterAndExpand"
+                            WidthRequest="30" />
+                        <Label
+                            x:Name="lblHome"
+                            FontSize="12"
+                            HorizontalOptions="CenterAndExpand"
+                            Style="{StaticResource lblLight}"
+                            Text="Home" />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Tab_Tapped" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+
+                    <StackLayout
+                        x:Name="stkAddSeller"
+                        Grid.Column="1"
+                        Padding="10"
+                        ClassId="AddSeller">
+                        <Image
+                            x:Name="imgAddSeller"
+                            Aspect="AspectFit"
+                            HeightRequest="30"
+                            HorizontalOptions="CenterAndExpand"
+                            Source="iconAddSellerBlack.png"
+                            VerticalOptions="CenterAndExpand"
+                            WidthRequest="30" />
+                        <Label
+                            x:Name="lblAddSeller"
+                            FontSize="12"
+                            HorizontalOptions="CenterAndExpand"
+                            Style="{StaticResource lblLight}"
+                            Text="Add Seller" />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Tab_Tapped" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+
+                    <StackLayout
+                        x:Name="stkManage"
+                        Grid.Column="2"
+                        Padding="10"
+                        ClassId="Manage">
+                        <Image
+                            x:Name="imgManage"
+                            Aspect="AspectFit"
+                            HeightRequest="30"
+                            HorizontalOptions="CenterAndExpand"
+                            Source="iconManageSellerBlack.png"
+                            VerticalOptions="CenterAndExpand"
+                            WidthRequest="30" />
+                        <Label
+                            x:Name="lblManage"
+                            FontSize="12"
+                            HorizontalOptions="CenterAndExpand"
+                            Style="{StaticResource lblLight}"
+                            Text="Manage" />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Tab_Tapped" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+
+                    <StackLayout
+                        x:Name="stkAccount"
+                        Grid.Column="3"
+                        Padding="10"
+                        ClassId="Account">
+                        <Image
+                            x:Name="imgAccount"
+                            Aspect="AspectFit"
+                            HeightRequest="30"
+                            HorizontalOptions="CenterAndExpand"
+                            Source="iconAccount.png"
+                            VerticalOptions="CenterAndExpand"
+                            WidthRequest="30" />
+                        <Label
+                            x:Name="lblAccount"
+                            FontSize="12"
+                            HorizontalOptions="CenterAndExpand"
+                            Style="{StaticResource lblLight}"
+                            Text="Account" />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Tab_Tapped" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
                 </Grid>
             </Grid>
+            <!--#endregion-->
 
         </Grid>
     </ContentPage.Content>

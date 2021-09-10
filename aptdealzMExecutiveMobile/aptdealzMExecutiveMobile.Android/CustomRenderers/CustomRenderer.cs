@@ -1,28 +1,30 @@
 ﻿using Android.Content;
 using Android.Graphics;
 using Android.Graphics.Drawables;
+using Android.Text;
 using Android.Widget;
 using aptdealzMExecutiveMobile.Droid.CustomRenderers;
 using aptdealzMExecutiveMobile.Extention;
 using aptdealzMExecutiveMobile.Utility;
+using dotMorten.Xamarin.Forms;
+using dotMorten.Xamarin.Forms.Platform.Android;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
-[assembly: ExportRenderer(typeof(ExtEntry), typeof(CustomEntryRender))]
+[assembly: ExportRenderer(typeof(Label), typeof(CustomLabelRenderer))]
+[assembly: ExportRenderer(typeof(ExtEntry), typeof(CustomEntryRenderer))]
 [assembly: ExportRenderer(typeof(Picker), typeof(CustomPickerRenderer))]
-[assembly: ExportRenderer(typeof(Label), typeof(CustomLabelRender))]
-[assembly: ExportRenderer(typeof(Xamarin.Forms.Button), typeof(CustomButtonRender))]
 [assembly: ExportRenderer(typeof(Editor), typeof(CustomEditorRenderer))]
+[assembly: ExportRenderer(typeof(Xamarin.Forms.Button), typeof(CustomButtonRender))]
+[assembly: ExportRenderer(typeof(ExtAutoSuggestBox), typeof(CustomeAutoSuggestBoxRenderer))]
 
 namespace aptdealzMExecutiveMobile.Droid.CustomRenderers
 {
-    public class CustomEntryRender : EntryRenderer
+#pragma warning disable CS0618 // Type or member is obsolete
+    public class CustomLabelRenderer : LabelRenderer
     {
-        public CustomEntryRender(Context context) : base(context)
-        {
-        }
-        protected override void OnElementChanged(ElementChangedEventArgs<Entry> e)
+        protected override void OnElementChanged(ElementChangedEventArgs<Label> e)
         {
             try
             {
@@ -31,9 +33,68 @@ namespace aptdealzMExecutiveMobile.Droid.CustomRenderers
                 if (!string.IsNullOrEmpty(fontFamily))
                 {
                     var label = (TextView)Control; // for example
-#pragma warning disable CS0618 // Type or member is obsolete
                     Typeface font = Typeface.CreateFromAsset(Forms.Context.Assets, fontFamily + ".otf");
-#pragma warning restore CS0618 // Type or member is obsolete
+                    label.Typeface = font;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Common.DisplayErrorMessage("Droid/LabelRenderer: " + ex.Message);
+            }
+        }
+    }
+
+    public class CustomEntryRenderer : EntryRenderer
+    {
+        protected override void OnElementChanged(ElementChangedEventArgs<Entry> e)
+        {
+            try
+            {
+                base.OnElementChanged(e);
+                string fontFamily = e.NewElement?.FontFamily;
+                if (!string.IsNullOrEmpty(fontFamily))
+                {
+                    var textbox = (TextView)Control; // for example
+                    Typeface font = Typeface.CreateFromAsset(Forms.Context.Assets, fontFamily + ".otf");
+                    textbox.Typeface = font;
+                }
+
+                var editText = (Android.Widget.EditText)this.Control;
+                GradientDrawable gd = new GradientDrawable();
+                gd.SetCornerRadius(0);
+                gd.SetColor(Android.Graphics.Color.Transparent);
+                editText.Background = gd;
+
+                var maxLenght = e.NewElement?.MaxLength;
+                if (maxLenght == 1)
+                {
+                    Control.Gravity = Android.Views.GravityFlags.Center;
+                }
+                else
+                {
+                    Control.Gravity = Android.Views.GravityFlags.CenterVertical;
+                }
+            }
+            catch (Exception ex)
+            {
+                Common.DisplayErrorMessage("Droid/EntryRenderer: " + ex.Message);
+            }
+        }
+    }
+
+    public class CustomPickerRenderer : PickerRenderer
+    {
+        protected override void OnElementChanged(ElementChangedEventArgs<Picker> e)
+        {
+            try
+            {
+                base.OnElementChanged(e);
+                string fontFamily = e.NewElement?.FontFamily;
+                if (!string.IsNullOrEmpty(fontFamily))
+                {
+                    var label = (TextView)Control; // for example
+                    Typeface font = Typeface.CreateFromAsset(Forms.Context.Assets, fontFamily + ".otf");
                     label.Typeface = font;
                 }
 
@@ -42,41 +103,45 @@ namespace aptdealzMExecutiveMobile.Droid.CustomRenderers
                 gd.SetCornerRadius(0);
                 gd.SetColor(Android.Graphics.Color.Transparent);
                 nativeedittextfield.Background = gd;
+
+                Control.SetPadding(0, 0, 0, 0);
+                Control.Gravity = Android.Views.GravityFlags.CenterVertical;
             }
             catch (Exception ex)
             {
-                Common.DisplayErrorMessage("CustomEntryRender: " + ex.Message);
+                Common.DisplayErrorMessage("Droid/PickerRenderer: " + ex.Message);
             }
-
         }
     }
 
-    public class CustomLabelRender : LabelRenderer
+    public class CustomEditorRenderer : EditorRenderer
     {
-        public CustomLabelRender(Context context) : base(context)
-        {
-        }
-        protected override void OnElementChanged(ElementChangedEventArgs<Label> e)
+        protected override void OnElementChanged(ElementChangedEventArgs<Editor> e)
         {
             try
             {
                 base.OnElementChanged(e);
-                if (e.OldElement != null)
-                    return;
-
-                if (!string.IsNullOrEmpty(e.NewElement?.FontFamily))
+                string fontFamily = e.NewElement?.FontFamily;
+                if (!string.IsNullOrEmpty(fontFamily))
                 {
-#pragma warning disable CS0618 // Type or member is obsolete
-                    var font = Typeface.CreateFromAsset(Forms.Context.ApplicationContext.Assets, e.NewElement.FontFamily + ".otf");
-#pragma warning restore CS0618 // Type or member is obsolete
-                    Control.Typeface = font;
+                    var label = (TextView)Control; // for example
+                    Typeface font = Typeface.CreateFromAsset(Forms.Context.Assets, fontFamily + ".otf");
+                    label.Typeface = font;
                 }
+
+                var nativeedittextfield = (Android.Widget.EditText)Control;
+                GradientDrawable gd = new GradientDrawable();
+                gd.SetCornerRadius(0);
+                gd.SetColor(Android.Graphics.Color.Transparent);
+                nativeedittextfield.Background = gd;
+
+                Control.SetPadding(0, 0, 0, 0);
+                Control.Gravity = Android.Views.GravityFlags.Start;
             }
             catch (Exception ex)
             {
-                Common.DisplayErrorMessage("Droid/CustomLabelRender: " + ex.Message);
+                Common.DisplayErrorMessage("Droid/EditorRenderer: " + ex.Message);
             }
-
         }
     }
 
@@ -95,80 +160,43 @@ namespace aptdealzMExecutiveMobile.Droid.CustomRenderers
 
                 if (!string.IsNullOrEmpty(e.NewElement?.FontFamily))
                 {
-#pragma warning disable CS0618 // Type or member is obsolete
                     var font = Typeface.CreateFromAsset(Forms.Context.ApplicationContext.Assets, e.NewElement.FontFamily + ".otf");
-#pragma warning restore CS0618 // Type or member is obsolete
                     Control.Typeface = font;
                 }
             }
             catch (Exception ex)
             {
-                Common.DisplayErrorMessage("Droid/CustomButtonRender: " + ex.Message);
+                Common.DisplayErrorMessage("Droid/ButtonRender: " + ex.Message);
             }
         }
     }
 
-    public class CustomPickerRenderer : PickerRenderer
+    public class CustomeAutoSuggestBoxRenderer : AutoSuggestBoxRenderer
     {
-        public CustomPickerRenderer(Context context) : base(context)
+        public CustomeAutoSuggestBoxRenderer(Context context) : base(context)
         {
+
         }
-        protected override void OnElementChanged(ElementChangedEventArgs<Picker> e)
+
+        protected override void OnElementChanged(ElementChangedEventArgs<AutoSuggestBox> e)
         {
             try
             {
                 base.OnElementChanged(e);
-                string fontFamily = e.NewElement?.FontFamily;
-                if (!string.IsNullOrEmpty(fontFamily))
-                {
-                    var label = (TextView)Control;
-#pragma warning disable CS0618 // Type or member is obsolete
-                    Typeface font = Typeface.CreateFromAsset(Forms.Context.Assets, fontFamily + ".otf");
-#pragma warning restore CS0618 // Type or member is obsolete
-                    label.Typeface = font;
-                }
 
-                var nativeedittextfield = (Android.Widget.EditText)this.Control;
-                GradientDrawable gd = new GradientDrawable();
-                gd.SetCornerRadius(0);
-                gd.SetColor(Android.Graphics.Color.Transparent);
-                nativeedittextfield.Background = gd;
+                if (Control != null)
+                {
+                    GradientDrawable gd = new GradientDrawable();
+                    gd.SetColor(global::Android.Graphics.Color.Transparent);
+                    Control.SetBackgroundDrawable(gd);
+                    this.Control.SetRawInputType(InputTypes.TextFlagNoSuggestions);
+                }
             }
             catch (Exception ex)
             {
-                Common.DisplayErrorMessage("Droid/CustomPickerRenderer: " + ex.Message);
+                Common.DisplayErrorMessage("Droid/AutoSuggestBoxRenderer: " + ex.Message);
             }
         }
     }
-
-    public class CustomEditorRenderer : EditorRenderer
-    {
-        public CustomEditorRenderer(Context context) : base(context)
-        {
-        }
-        protected override void OnElementChanged(ElementChangedEventArgs<Editor> e)
-        {
-            try
-            {
-                base.OnElementChanged(e);
-                var fontFamily = e.NewElement?.FontFamily;
-                if (!string.IsNullOrEmpty(fontFamily))
-                {
-                    var label = (TextView)Control; // for example
-#pragma warning disable CS0618 // Type or member is obsolete
-                    Typeface font = Typeface.CreateFromAsset(Forms.Context.Assets, fontFamily + ".otf");
 #pragma warning restore CS0618 // Type or member is obsolete
-                    label.Typeface = font;
-                }
-                var nativeedittextfield = (Android.Widget.EditText)this.Control;
-                GradientDrawable gd = new GradientDrawable();
-                nativeedittextfield.Background = gd;
-
-            }
-            catch (Exception ex)
-            {
-                Common.DisplayErrorMessage("Droid/CustomEditorRenderer: " + ex.Message);
-            }
-        }
-    }
 }

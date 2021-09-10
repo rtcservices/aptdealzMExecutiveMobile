@@ -1,8 +1,13 @@
-﻿using aptdealzMExecutiveMobile.Model;
+﻿using Acr.UserDialogs;
+using aptdealzMExecutiveMobile.API;
+using aptdealzMExecutiveMobile.Model.Response;
+using aptdealzMExecutiveMobile.Repository;
 using aptdealzMExecutiveMobile.Utility;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -11,68 +16,209 @@ namespace aptdealzMExecutiveMobile.Views.DashboardPages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NotificationPage : ContentPage
     {
-        #region Objects
-        // create objects here
-        public List<Notification> Notifications = new List<Notification>();
+        #region [ Objects ]
+        private List<NotificationData> mNotificationsList;
         #endregion
 
-        #region Constructor
+        #region [ Constructor ]
         public NotificationPage()
         {
             InitializeComponent();
+            mNotificationsList = new List<NotificationData>();
         }
         #endregion
 
-        #region Methods
-        // write methods here
+        #region [ Methods ]
+        public void Dispose()
+        {
+            GC.Collect();
+            GC.SuppressFinalize(this);
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            Dispose();
+        }
+
         protected override void OnAppearing()
         {
-            base.OnAppearing();
-            BindNotification();
+            try
+            {
+                base.OnAppearing();
+                GetNotification();
+            }
+            catch (Exception ex)
+            {
+                Common.DisplayErrorMessage("NotificationPage/Appearing: " + ex.Message);
+            }
         }
 
-        public void BindNotification()
+        protected override bool OnBackButtonPressed()
         {
-            lstNotification.ItemsSource = null;
-            Notifications = new List<Notification>()
+            base.OnBackButtonPressed();
+            try
             {
-                new Notification{ NotificationTitle="New quote received for REQ#123", NotificationDesc=""},
-                new Notification{ NotificationTitle="New quote received for REQ#121", NotificationDesc=""},
-                new Notification{ NotificationTitle="New response received for your grienvance GR#01", NotificationDesc=""},
-                new Notification{ NotificationTitle="Free Requirements post limit reached. Make payment to post further requirements.", NotificationDesc=""},
-                new Notification{ NotificationTitle="Your order for INV#121 has been shipped.", NotificationDesc=""},
-                new Notification{ NotificationTitle="New response received for your grienvance GR#03", NotificationDesc=""},
-                new Notification{ NotificationTitle="Your order for INV#123 has been shipped.", NotificationDesc=""},
-            };
-            lstNotification.ItemsSource = Notifications.ToList();
+                Common.MasterData.Detail = new NavigationPage(new MainTabbedPages.MainTabbedPage(Constraints.Str_Home));
+            }
+            catch (Exception ex)
+            {
+                Common.DisplayErrorMessage("NotificationPage/OnBackButtonPressed: " + ex.Message);
+            }
+            return true;
+        }
+
+        private async Task GetNotification()
+        {
+            NotificationAPI notificationAPI = new NotificationAPI();
+            if (!Common.EmptyFiels(Settings.UserToken))
+            {
+                if (Common.EmptyFiels(Common.Token))
+                {
+                    Common.Token = Settings.UserToken;
+                }
+            }
+            try
+            {
+                UserDialogs.Instance.ShowLoading(Constraints.Loading);
+                var mResponse = await notificationAPI.GetAllNotificationsForUser();
+                if (mResponse != null && mResponse.Succeeded)
+                {
+                    JArray result = (JArray)mResponse.Data;
+                    if (result != null)
+                    {
+                        mNotificationsList = result.ToObject<List<NotificationData>>();
+                        if (mNotificationsList != null && mNotificationsList.Count > 0)
+                        {
+                            lstNotification.IsVisible = true;
+                            lblNoRecord.IsVisible = false;
+                            lstNotification.ItemsSource = mNotificationsList.ToList();
+                        }
+                        else
+                        {
+                            lstNotification.IsVisible = false;
+                            lblNoRecord.IsVisible = true;
+                        }
+                    }
+                }
+                else
+                {
+                    lblNoRecord.IsVisible = true;
+                    if (mResponse != null && !Common.EmptyFiels(mResponse.Message))
+                        lblNoRecord.Text = mResponse.Message;
+                    else
+                        lblNoRecord.Text = Constraints.Something_Wrong;
+                }
+            }
+            catch (Exception ex)
+            {
+                Common.DisplayErrorMessage("NotificationPage/GetNotification: " + ex.Message);
+            }
+            finally
+            {
+                UserDialogs.Instance.HideLoading();
+            }
+        }
+
+        private async Task SetNoficiationAsRead(string NotificationId)
+        {
+            try
+            {
+                var isReded = await DependencyService.Get<INotificationRepository>().SetUserNoficiationAsRead(NotificationId);
+                if (isReded)
+                {
+                    mNotificationsList.Clear();
+                    await GetNotification();
+                }
+            }
+            catch (Exception ex)
+            {
+                Common.DisplayErrorMessage("NotificationPage/GetNotification: " + ex.Message);
+            }
         }
         #endregion
 
-        #region Events        
+        #region [ Events ]
         private void ImgMenu_Clicked(object sender, EventArgs e)
         {
-            Common.BindAnimation(ImgMenu);
+            Common.BindAnimation(imageButton: ImgMenu);
         }
 
-        private void ImgNotification_Tapped(object sender, EventArgs e)
+        private void ImgQuestion_Clicked(object sender, EventArgs e)
         {
-            Common.BindAnimation(null, null, null, null, null, ImgNotification);
+
         }
 
-        private void ImgQuestion_Tapped(object sender, EventArgs e)
+        private void ImgBack_Clicked(object sender, EventArgs e)
         {
-            Common.BindAnimation(null, null, null, null, null, ImgQuestion);
+            Common.BindAnimation(imageButton: ImgBack);
+            Common.MasterData.Detail = new NavigationPage(new MainTabbedPages.MainTabbedPage(Constraints.Str_Home));
         }
 
-        private void ImgBack_Tapped(object sender, EventArgs e)
+        private void BtnLogo_Clicked(object sender, EventArgs e)
         {
-            Common.BindAnimation(null, null, null, null, null, ImgBack);
-            Navigation.PushAsync(new MainTabbedPages.MainTabbedPage("Home"));
+            Common.MasterData.Detail = new NavigationPage(new MainTabbedPages.MainTabbedPage(Constraints.Str_Home));
         }
 
-        private void ImgClose_Tapped(object sender, EventArgs e)
+        private void lstNotification_ItemTapped(object sender, ItemTappedEventArgs e)
         {
+            lstNotification.SelectedItem = null;
+        }
 
+        private async void lstNotification_Refreshing(object sender, EventArgs e)
+        {
+            try
+            {
+                lstNotification.IsRefreshing = true;
+                mNotificationsList.Clear();
+                await GetNotification();
+                lstNotification.IsRefreshing = false;
+            }
+            catch (Exception ex)
+            {
+                Common.DisplayErrorMessage("NotificationPage/lstNotification_Refreshing: " + ex.Message);
+            }
+        }
+
+        private async void ImgClose_Tapped(object sender, EventArgs e)
+        {
+            try
+            {
+                var ImageButtonExp = (ImageButton)sender;
+                var notificationData = ImageButtonExp.BindingContext as NotificationData;
+                await SetNoficiationAsRead(notificationData.NotificationId);
+            }
+            catch (Exception ex)
+            {
+                Common.DisplayErrorMessage("NotificationPage/ImgClose_Tapped: " + ex.Message);
+            }
+        }
+
+        private void GrdList_Tapped(object sender, EventArgs e)
+        {
+            var Tab = (Grid)sender;
+            if (Tab.IsEnabled)
+            {
+                try
+                {
+                    Tab.IsEnabled = false;
+                    var mNotification = Tab.BindingContext as NotificationData;
+
+                    //if (mNotification.NavigationScreen == (int)NavigationScreen.RequirementDetails)
+                    //{
+                    //    await Navigation.PushAsync(new RequirementDetailPage(mNotification.ParentKeyId));
+                    //}                    
+                }
+                catch (Exception ex)
+                {
+                    Common.DisplayErrorMessage("NotificationPage/GrdList_Tapped: " + ex.Message);
+                }
+                finally
+                {
+                    Tab.IsEnabled = true;
+                }
+
+            }
         }
         #endregion
     }

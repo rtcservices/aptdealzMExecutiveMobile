@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="aptdealzMExecutiveMobile.Views.DashboardPages.ContactSupportView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converter="clr-namespace:aptdealzMExecutiveMobile.Converter"
+    xmlns:ext="clr-namespace:aptdealzMExecutiveMobile.Extention"
+    xmlns:iOS="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:pan="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    iOS:Page.UseSafeArea="True"
+    BackgroundColor="{StaticResource appColor6}"
+    NavigationPage.HasNavigationBar="False">
+    <ContentView.Content>
+        <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!--  Back Button  -->
+            <Grid
+                Grid.Row="0"
+                Margin="5,5,5,0"
+                ColumnDefinitions="Auto,*"
+                ColumnSpacing="0">
+                <ImageButton
+                    x:Name="ImgBack"
+                    Grid.Column="0"
+                    Clicked="ImgBack_Tapped"
+                    Source="iconBackArrow.png"
+                    Style="{StaticResource ImgBtnPrimary}" />
+                <Label
+                    Grid.Column="1"
+                    Style="{StaticResource lblHeader}"
+                    Text="Contact Support" />
+            </Grid>
+
+            <ext:ExtKeyboard Grid.Row="1" RowSpacing="0">
+                <ext:ExtKeyboard.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </ext:ExtKeyboard.RowDefinitions>
+
+                <ListView
+                    x:Name="lstChar"
+                    Grid.Row="0"
+                    Margin="20,0"
+                    IsPullToRefreshEnabled="True"
+                    ItemTapped="lstChar_ItemTapped"
+                    Refreshing="lstChar_Refreshing"
+                    Style="{StaticResource lstPrimary}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <pan:PancakeView
+                                    Margin="{Binding IsUser, Converter={converter:BooleanToMessageMargin}}"
+                                    Padding="10"
+                                    BackgroundColor="{StaticResource appColor8}"
+                                    CornerRadius="{Binding IsUser, Converter={converter:BooleanToPancakeRadius}}"
+                                    HorizontalOptions="{Binding IsUser, Converter={converter:BooleanToMessagePosition}}"
+                                    IsClippedToBounds="True"
+                                    VerticalOptions="CenterAndExpand">
+
+                                    <Grid Margin="0" ColumnDefinitions="Auto,*,Auto">
+
+                                        <Image
+                                            Grid.Column="0"
+                                            Margin="0"
+                                            Aspect="AspectFill"
+                                            HeightRequest="50"
+                                            HorizontalOptions="EndAndExpand"
+                                            IsVisible="{Binding IsContact}"
+                                            Source="{Binding ChatMessageFromUserProfileImage}"
+                                            VerticalOptions="StartAndExpand"
+                                            WidthRequest="50">
+                                            <Image.Clip>
+                                                <EllipseGeometry
+                                                    Center="25,25"
+                                                    RadiusX="25"
+                                                    RadiusY="25" />
+                                            </Image.Clip>
+                                        </Image>
+
+                                        <Grid
+                                            Grid.Column="1"
+                                            RowSpacing="0"
+                                            VerticalOptions="FillAndExpand">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <Label
+                                                Grid.Row="0"
+                                                FontSize="13"
+                                                HorizontalOptions="FillAndExpand"
+                                                LineBreakMode="WordWrap"
+                                                Style="{StaticResource lblLight}"
+                                                Text="{Binding Message}"
+                                                VerticalOptions="StartAndExpand" />
+                                            <StackLayout
+                                                Grid.Row="1"
+                                                HorizontalOptions="FillAndExpand"
+                                                Orientation="Horizontal"
+                                                Spacing="20"
+                                                VerticalOptions="EndAndExpand">
+                                                <Label
+                                                    FontSize="11"
+                                                    HorizontalOptions="StartAndExpand"
+                                                    Style="{StaticResource lblMedium}"
+                                                    Text="{Binding ChatMessageFromUserName}"
+                                                    VerticalOptions="EndAndExpand" />
+                                                <Label
+                                                    FontSize="9"
+                                                    HorizontalOptions="EndAndExpand"
+                                                    Style="{StaticResource lblSemiBold}"
+                                                    Text="{Binding CreatedDate, StringFormat='{0:hh:mm tt}'}"
+                                                    TextColor="{StaticResource appColor9}"
+                                                    VerticalOptions="EndAndExpand" />
+                                            </StackLayout>
+                                        </Grid>
+
+                                        <Image
+                                            Grid.Column="2"
+                                            Margin="0"
+                                            Aspect="AspectFill"
+                                            HeightRequest="50"
+                                            HorizontalOptions="EndAndExpand"
+                                            IsVisible="{Binding IsUser}"
+                                            Source="{Binding ChatMessageFromUserProfileImage}"
+                                            VerticalOptions="StartAndExpand"
+                                            WidthRequest="50">
+                                            <Image.Clip>
+                                                <EllipseGeometry
+                                                    Center="25,25"
+                                                    RadiusX="25"
+                                                    RadiusY="25" />
+                                            </Image.Clip>
+                                        </Image>
+                                    </Grid>
+                                </pan:PancakeView>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+                <Label
+                    x:Name="lblNoRecord"
+                    Grid.Row="0"
+                    FontSize="15"
+                    HorizontalOptions="CenterAndExpand"
+                    IsVisible="false"
+                    Style="{StaticResource lblMedium}"
+                    Text="No message found" />
+
+                <StackLayout
+                    Grid.Row="1"
+                    Padding="20,10,15,20"
+                    BackgroundColor="Transparent"
+                    VerticalOptions="EndAndExpand">
+                    <Grid
+                        ColumnDefinitions="*,Auto"
+                        ColumnSpacing="0"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="EndAndExpand">
+
+                        <Frame
+                            Grid.Column="0"
+                            Margin="0"
+                            Padding="15,10"
+                            BackgroundColor="Transparent"
+                            BorderColor="{StaticResource appColor8}"
+                            CornerRadius="5"
+                            HasShadow="False"
+                            HorizontalOptions="FillAndExpand"
+                            IsClippedToBounds="True"
+                            VerticalOptions="CenterAndExpand">
+                            <Editor
+                                x:Name="txtMessage"
+                                Margin="0"
+                                AutoSize="TextChanges"
+                                Keyboard="Text"
+                                Placeholder="Enter Your message "
+                                Style="{StaticResource edPrimary}" />
+                        </Frame>
+                        <ImageButton
+                            x:Name="BtnSend"
+                            Grid.Column="1"
+                            Padding="5"
+                            BackgroundColor="Transparent"
+                            Clicked="BtnSend_Clicked"
+                            HeightRequest="55"
+                            Source="iconSend.png"
+                            VerticalOptions="EndAndExpand"
+                            WidthRequest="55" />
+                    </Grid>
+                </StackLayout>
+            </ext:ExtKeyboard>
+        </Grid>
+    </ContentView.Content>
+</ContentView>
