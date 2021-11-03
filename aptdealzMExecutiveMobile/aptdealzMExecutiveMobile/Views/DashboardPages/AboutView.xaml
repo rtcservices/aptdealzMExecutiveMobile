@@ -3,7 +3,8 @@
     x:Class="aptdealzMExecutiveMobile.Views.DashboardPages.AboutView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    BackgroundColor="{StaticResource appColor6}">
+    BackgroundColor="{AppThemeBinding Dark={StaticResource appColor4},
+                                      Light={StaticResource appColor6}}">
 
     <ContentView.Content>
         <Grid Margin="0">
@@ -22,7 +23,6 @@
                     x:Name="ImgBack"
                     Grid.Column="0"
                     Clicked="ImgBack_Tapped"
-                    Source="iconBackArrow.png"
                     Style="{StaticResource ImgBtnPrimary}" />
                 <Label
                     Grid.Column="1"
@@ -34,23 +34,23 @@
                 <ScrollView Style="{StaticResource scrPrimary}">
                     <Grid
                         Padding="20,0,20,20"
-                        RowDefinitions="*,Auto"
+                        RowDefinitions="Auto,Auto"
                         RowSpacing="15">
                         <Label
+                            x:Name="lblAbout"
                             Grid.Row="0"
                             HorizontalOptions="FillAndExpand"
                             LineBreakMode="WordWrap"
                             LineHeight="1.2"
                             Style="{StaticResource lblLight}"
-                            Text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-                            VerticalOptions="FillAndExpand" />
+                            TextType="Html" />
 
                         <!--  Contact Info  -->
                         <Frame
                             Grid.Row="1"
                             Padding="15,10"
                             Style="{StaticResource frmBlank}">
-                            <Grid RowDefinitions="Auto,Auto,Auto" RowSpacing="10">
+                            <Grid RowDefinitions="Auto,Auto,Auto,Auto" RowSpacing="10">
 
                                 <Label
                                     Grid.Row="0"
@@ -59,17 +59,37 @@
                                     Style="{StaticResource lblMedium}"
                                     Text="Contact Info" />
 
-                                <Label
-                                    Grid.Row="1"
-                                    HorizontalOptions="StartAndExpand"
-                                    Style="{StaticResource lblLight}"
-                                    Text="30, ABC, XYZ Road &#x0a;Kochi, Kerala &#x0a;PIN - 682024" />
+                                <StackLayout Grid.Row="1" Spacing="0">
+                                    <Label
+                                        x:Name="lblAddress1"
+                                        Grid.Row="1"
+                                        HorizontalOptions="StartAndExpand"
+                                        Style="{StaticResource lblLight}" />
+
+                                    <Label
+                                        x:Name="lblAddress2"
+                                        Grid.Row="1"
+                                        HorizontalOptions="StartAndExpand"
+                                        Style="{StaticResource lblLight}" />
+
+                                    <Label
+                                        x:Name="lblPincode"
+                                        Grid.Row="1"
+                                        HorizontalOptions="StartAndExpand"
+                                        Style="{StaticResource lblLight}" />
+                                </StackLayout>
 
                                 <Label
+                                    x:Name="lblEmail"
                                     Grid.Row="2"
                                     HorizontalOptions="StartAndExpand"
-                                    Style="{StaticResource lblLight}"
-                                    Text="Phone: +91 012345678" />
+                                    Style="{StaticResource lblLight}" />
+
+                                <Label
+                                    x:Name="lblPhoneNo"
+                                    Grid.Row="3"
+                                    HorizontalOptions="StartAndExpand"
+                                    Style="{StaticResource lblLight}" />
                             </Grid>
                         </Frame>
                     </Grid>

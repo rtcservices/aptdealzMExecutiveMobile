@@ -53,10 +53,14 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
             try
             {
                 InitializeComponent();
-                txtFullName.Keyboard = Keyboard.Create(KeyboardFlags.CapitalizeWord);
-                txtStreet.Keyboard = Keyboard.Create(KeyboardFlags.CapitalizeWord);
-                txtCity.Keyboard = Keyboard.Create(KeyboardFlags.CapitalizeWord);
-                txtState.Keyboard = Keyboard.Create(KeyboardFlags.CapitalizeWord);
+
+                if (DeviceInfo.Platform == DevicePlatform.Android)
+                {
+                    txtFullName.Keyboard = Keyboard.Create(KeyboardFlags.CapitalizeWord);
+                    txtStreet.Keyboard = Keyboard.Create(KeyboardFlags.CapitalizeWord);
+                    txtCity.Keyboard = Keyboard.Create(KeyboardFlags.CapitalizeWord);
+                    txtState.Keyboard = Keyboard.Create(KeyboardFlags.CapitalizeWord);
+                }
                 BtnUpdate.IsEnabled = false;
                 BindProperties();
             }
@@ -105,13 +109,17 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
                 if (Common.mExecutiveDetails == null || Common.EmptyFiels(Common.mExecutiveDetails.UserId) || isUpdateProfile)
                 {
                     mExecutiveDetails = await DependencyService.Get<IProfileRepository>().GetMyProfileData();
+                    Common.mExecutiveDetails = mExecutiveDetails;
                 }
                 else
                 {
                     mExecutiveDetails = Common.mExecutiveDetails;
                 }
 
-                GetProfileDetails(mExecutiveDetails);
+                if (Common.mExecutiveDetails != null && !Common.EmptyFiels(Common.mExecutiveDetails.UserId))
+                {
+                    GetProfileDetails(mExecutiveDetails);
+                }
             }
             catch (Exception ex)
             {

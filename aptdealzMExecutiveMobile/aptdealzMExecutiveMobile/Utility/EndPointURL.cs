@@ -41,11 +41,20 @@
         public const string GetAllNotificationsForUser = "api/v{0}/Notifications/GetAllNotificationsForUser";
         public const string GetNotificationsCountForUser = "api/v{0}/Notifications/GetNotificationsCountForUser";
         public const string SetUserNoficiationAsRead = "api/v{0}/Notifications/SetUserNoficiationAsRead/{1}";
+        public const string SetUserNoficiationAsReadAndDelete = "/api/v{0}/Notifications/SetUserNoficiationAsReadAndDelete/{1}";
         #endregion
 
         #region [ SupportChat API ]
         public const string GetAllMyChat = "api/v{0}/SupportChat/GetAllMyChat";
         public const string SendChatSupportMessage = "api/v{0}/SupportChat/SendChatSupportMessage";
+        #endregion
+
+
+        #region MyRegion
+        public const string GetPrivacyPolicyTermsAndConditions = "api/v{0}/AppSettings/GetPrivacyPolicyTermsAndConditions";
+        public const string GetFAQ = "api/v{0}/AppSettings/GetFAQ";
+        public const string GetAppPromoBar = "api/v{0}/AppSettings/GetAppPromoBar";
+        public const string AboutAptdealzMEApp = "api/v{0}/AppSettings/AboutAptdealzMEApp";
         #endregion
     }
 }

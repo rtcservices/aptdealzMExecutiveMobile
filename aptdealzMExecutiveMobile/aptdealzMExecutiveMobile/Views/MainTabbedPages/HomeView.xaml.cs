@@ -49,36 +49,36 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
         #endregion
 
         #region [ Events ]  
-        private void ImgMenu_Tapped(object sender, EventArgs e)
-        {
-            //Common.OpenMenu();
-        }
+        //private void ImgMenu_Tapped(object sender, EventArgs e)
+        //{
+        //    //Common.OpenMenu();
+        //}
 
-        private async void ImgNotification_Tapped(object sender, EventArgs e)
-        {
-            var Tab = (Grid)sender;
-            if (Tab.IsEnabled)
-            {
-                try
-                {
-                    Tab.IsEnabled = false;
-                    await Navigation.PushAsync(new NotificationPage());
-                }
-                catch (Exception ex)
-                {
-                    Common.DisplayErrorMessage("HomeView/ImgNotification_Tapped: " + ex.Message);
-                }
-                finally
-                {
-                    Tab.IsEnabled = true;
-                }
-            }
-        }
+        //private async void ImgNotification_Tapped(object sender, EventArgs e)
+        //{
+        //    var Tab = (Grid)sender;
+        //    if (Tab.IsEnabled)
+        //    {
+        //        try
+        //        {
+        //            Tab.IsEnabled = false;
+        //            await Navigation.PushAsync(new NotificationPage());
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            Common.DisplayErrorMessage("HomeView/ImgNotification_Tapped: " + ex.Message);
+        //        }
+        //        finally
+        //        {
+        //            Tab.IsEnabled = true;
+        //        }
+        //    }
+        //}
 
-        private void ImgQuestion_Tapped(object sender, EventArgs e)
-        {
+        //private void ImgQuestion_Tapped(object sender, EventArgs e)
+        //{
 
-        }
+        //}
 
         private async void DashboardMenu_Tapped(object sender, EventArgs e)
         {

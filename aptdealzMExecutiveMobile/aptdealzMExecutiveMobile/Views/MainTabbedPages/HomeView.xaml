@@ -4,7 +4,8 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
-    BackgroundColor="{StaticResource appColor6}"
+    BackgroundColor="{AppThemeBinding Dark={StaticResource appColor4},
+                                      Light={StaticResource appColor6}}"
     NavigationPage.HasNavigationBar="False">
     <ContentView.Content>
         <!--#region [ Flow List ]-->
@@ -35,8 +36,10 @@
                         <Frame
                             Margin="6,0,6,12"
                             Padding="0"
-                            BackgroundColor="{StaticResource appColor8}"
-                            BorderColor="{StaticResource appColor7}"
+                            BackgroundColor="{AppThemeBinding Dark={StaticResource appColor4},
+                                                              Light={StaticResource appColor8}}"
+                            BorderColor="{AppThemeBinding Dark={StaticResource appColor8},
+                                                          Light={StaticResource appColor7}}"
                             CornerRadius="10"
                             HasShadow="False"
                             HeightRequest="100"

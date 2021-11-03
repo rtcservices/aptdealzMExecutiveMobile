@@ -22,16 +22,14 @@
 	</array>
 	<key>UIAppFonts</key>
 	<array>
-		<string>Poppins-Bold.otf</string>
-		<string>Poppins-SemiBold.otf</string>
-		<string>Poppins-Light.otf</string>
-		<string>Poppins-Medium.otf</string>
-		<string>Poppins-Regular.otf</string>
+		<string>Poppins-Medium.ttf</string>
+		<string>Poppins-SemiBold.ttf</string>
+		<string>Poppins-Regular.ttf</string>
 	</array>
 	<key>MinimumOSVersion</key>
-	<string>8.0</string>
+	<string>13.0</string>
 	<key>CFBundleDisplayName</key>
-	<string>aptdealzMExecutiveMobile</string>
+	<string>Aptdealz Pro</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.zartek.aptdealz.marketting</string>
 	<key>CFBundleVersion</key>
@@ -39,10 +37,55 @@
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>CFBundleName</key>
-	<string>aptdealzMExecutiveMobile</string>
+	<string>Aptdealz Pro</string>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
 	<key>UIUserInterfaceStyle</key>
 	<string>Light</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Need location for geolocator plugin.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>This app needs access to the camera to take photos.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This app needs access to photos.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>This app needs access to microphone.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>This app needs access to the photo gallery.</string>
+	<key>NSContactsUsageDescription</key>
+	<string>Contacts</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>AptDealz need to access your location for better application experience</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
+	<key>FirebaseAppDelegateProxyEnabled</key>
+  <false/>
+	<key>CFBundleShortVersionString</key>
+	<string>1</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>REVERSED_CLIENT_ID</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.50126607707-2gs40chim6ts0pc81hsnslnj4hg0c6oj</string>
+			</array>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+		</dict>
+    <dict>
+      <key>CFBundleURLName</key>
+      <string>FCM</string>
+      <key>CFBundleURLSchemes</key>
+      <array>
+        <string>com.google.fcm</string>
+      </array>
+      <key>CFBundleTypeRole</key>
+      <string>Editor</string>
+    </dict>
+	</array>
 </dict>
 </plist>

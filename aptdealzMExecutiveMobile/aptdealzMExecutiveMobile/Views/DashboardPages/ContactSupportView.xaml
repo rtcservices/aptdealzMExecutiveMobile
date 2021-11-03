@@ -8,7 +8,8 @@
     xmlns:iOS="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
     xmlns:pan="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     iOS:Page.UseSafeArea="True"
-    BackgroundColor="{StaticResource appColor6}"
+    BackgroundColor="{AppThemeBinding Dark={StaticResource appColor4},
+                                      Light={StaticResource appColor6}}"
     NavigationPage.HasNavigationBar="False">
     <ContentView.Content>
         <Grid RowSpacing="0">
@@ -27,7 +28,6 @@
                     x:Name="ImgBack"
                     Grid.Column="0"
                     Clicked="ImgBack_Tapped"
-                    Source="iconBackArrow.png"
                     Style="{StaticResource ImgBtnPrimary}" />
                 <Label
                     Grid.Column="1"
@@ -45,8 +45,8 @@
                     x:Name="lstChar"
                     Grid.Row="0"
                     Margin="20,0"
-                    IsPullToRefreshEnabled="True"
-                    ItemTapped="lstChar_ItemTapped"
+                                       ItemTapped="lstChar_ItemTapped"
+     IsPullToRefreshEnabled="True"
                     Refreshing="lstChar_Refreshing"
                     Style="{StaticResource lstPrimary}">
                     <ListView.ItemTemplate>
@@ -55,7 +55,8 @@
                                 <pan:PancakeView
                                     Margin="{Binding IsUser, Converter={converter:BooleanToMessageMargin}}"
                                     Padding="10"
-                                    BackgroundColor="{StaticResource appColor8}"
+                                    BackgroundColor="{AppThemeBinding Dark={StaticResource appColor11},
+                                                                      Light={StaticResource appColor8}}"
                                     CornerRadius="{Binding IsUser, Converter={converter:BooleanToPancakeRadius}}"
                                     HorizontalOptions="{Binding IsUser, Converter={converter:BooleanToMessagePosition}}"
                                     IsClippedToBounds="True"
@@ -70,7 +71,7 @@
                                             HeightRequest="50"
                                             HorizontalOptions="EndAndExpand"
                                             IsVisible="{Binding IsContact}"
-                                            Source="{Binding ChatMessageFromUserProfileImage}"
+                                            Source="{Binding ChatMessageFromUserProfileImage, Mode=OneTime}"
                                             VerticalOptions="StartAndExpand"
                                             WidthRequest="50">
                                             <Image.Clip>
@@ -113,8 +114,8 @@
                                                     FontSize="9"
                                                     HorizontalOptions="EndAndExpand"
                                                     Style="{StaticResource lblSemiBold}"
-                                                    Text="{Binding CreatedDate, StringFormat='{0:hh:mm tt}'}"
-                                                    TextColor="{StaticResource appColor9}"
+                                                    Text="{Binding CreatedDateStr}"
+                                                    TextColor="{StaticResource appColor4}"
                                                     VerticalOptions="EndAndExpand" />
                                             </StackLayout>
                                         </Grid>
@@ -179,7 +180,7 @@
                                 Margin="0"
                                 AutoSize="TextChanges"
                                 Keyboard="Text"
-                                Placeholder="Enter Your message "
+                                Placeholder="Enter your message "
                                 Style="{StaticResource edPrimary}" />
                         </Frame>
                         <ImageButton

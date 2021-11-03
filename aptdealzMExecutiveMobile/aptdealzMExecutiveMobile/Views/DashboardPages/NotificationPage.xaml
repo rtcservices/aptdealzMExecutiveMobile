@@ -3,9 +3,11 @@
     x:Class="aptdealzMExecutiveMobile.Views.DashboardPages.NotificationPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converter="clr-namespace:aptdealzMExecutiveMobile.Converter"
     xmlns:iOS="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
     iOS:Page.UseSafeArea="True"
-    BackgroundColor="{StaticResource appColor6}"
+    BackgroundColor="{AppThemeBinding Dark={StaticResource appColor4},
+                                      Light={StaticResource appColor6}}"
     NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Content>
@@ -17,21 +19,11 @@
 
             <Grid Grid.Row="0" ColumnSpacing="0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="55" />
+                    <ColumnDefinition Width="80" />
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="55" />
+                    <ColumnDefinition Width="80" />
                 </Grid.ColumnDefinitions>
-                <ImageButton
-                    x:Name="ImgMenu"
-                    Grid.Column="0"
-                    Padding="15"
-                    BackgroundColor="Transparent"
-                    Clicked="ImgMenu_Clicked"
-                    HeightRequest="55"
-                    HorizontalOptions="StartAndExpand"
-                    Source="iconMenu.png"
-                    VerticalOptions="CenterAndExpand"
-                    WidthRequest="55" />
+
 
                 <ImageButton
                     x:Name="BtnLogo"
@@ -39,17 +31,33 @@
                     Clicked="BtnLogo_Clicked"
                     Style="{StaticResource imgLogo}" />
 
-                <ImageButton
-                    x:Name="ImgQuestion"
-                    Grid.Column="2"
-                    Padding="5"
-                    BackgroundColor="Transparent"
-                    Clicked="ImgQuestion_Clicked"
-                    HeightRequest="55"
-                    HorizontalOptions="EndAndExpand"
-                    Source="iconQuestion.png"
-                    VerticalOptions="CenterAndExpand"
-                    WidthRequest="40" />
+                <Grid Grid.Column="2" ColumnDefinitions="*,*">
+                    <ImageButton
+                        x:Name="ImgQuestion"
+                        Grid.Column="0"
+                        Padding="5"
+                        Aspect="AspectFit"
+                        BackgroundColor="Transparent"
+                        Clicked="ImgQuestion_Clicked"
+                        HeightRequest="35"
+                        HorizontalOptions="EndAndExpand"
+                        Source="iconQuestion.png"
+                        VerticalOptions="CenterAndExpand"
+                        WidthRequest="35" />
+
+                    <ImageButton
+                        x:Name="ImgMenu"
+                        Grid.Column="1"
+                        Padding="5"
+                        Aspect="AspectFit"
+                        BackgroundColor="Transparent"
+                        Clicked="btnSettings_Clicked"
+                        HeightRequest="55"
+                        HorizontalOptions="CenterAndExpand"
+                        Source="iconGear.png"
+                        VerticalOptions="CenterAndExpand"
+                        WidthRequest="55" />
+                </Grid>
                 <BoxView Grid.ColumnSpan="3" Style="{StaticResource boxHorizontal}" />
             </Grid>
 
@@ -68,7 +76,6 @@
                         x:Name="ImgBack"
                         Grid.Column="0"
                         Clicked="ImgBack_Clicked"
-                        Source="iconBackArrow.png"
                         Style="{StaticResource ImgBtnPrimary}" />
                     <Label
                         Grid.Column="1"
@@ -86,6 +93,7 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
+
                                 <Grid>
                                     <Grid
                                         Margin="20,15"
@@ -97,7 +105,7 @@
                                             HorizontalOptions="StartAndExpand"
                                             Orientation="Horizontal">
                                             <BoxView
-                                                BackgroundColor="{StaticResource appColor1}"
+                                                BackgroundColor="{Binding IsRead, Converter={converter:BooleanToNotificationReadColor}}"
                                                 HorizontalOptions="EndAndExpand"
                                                 VerticalOptions="FillAndExpand"
                                                 WidthRequest="2" />
@@ -115,11 +123,12 @@
                                             Source="iconClose.png"
                                             Style="{StaticResource ImgBtnH40P13}" />
                                     </Grid>
-                                    <BoxView Style="{StaticResource boxHorizontal}" />
+                                    <!--<BoxView Style="{StaticResource boxHorizontal}" />-->
                                     <Grid.GestureRecognizers>
                                         <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="GrdList_Tapped" />
                                     </Grid.GestureRecognizers>
                                 </Grid>
+
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>

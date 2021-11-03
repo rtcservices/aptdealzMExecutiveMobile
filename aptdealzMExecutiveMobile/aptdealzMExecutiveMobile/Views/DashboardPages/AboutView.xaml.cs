@@ -1,4 +1,7 @@
-﻿using aptdealzMExecutiveMobile.Utility;
+﻿using Acr.UserDialogs;
+using aptdealzMExecutiveMobile.API;
+using aptdealzMExecutiveMobile.Model.Response;
+using aptdealzMExecutiveMobile.Utility;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -17,6 +20,7 @@ namespace aptdealzMExecutiveMobile.Views.DashboardPages
             try
             {
                 InitializeComponent();
+                BindAboutApzdealz();
             }
             catch (Exception ex)
             {
@@ -26,7 +30,38 @@ namespace aptdealzMExecutiveMobile.Views.DashboardPages
         #endregion
 
         #region [ Methods ]
+        async void BindAboutApzdealz()
+        {
+            try
+            {
+                UserDialogs.Instance.ShowLoading("Loading...");
+                AppSettingsAPI appSettingsAPI = new AppSettingsAPI();
+                var mResponse = await appSettingsAPI.AboutAptdealzMEApp();
+                UserDialogs.Instance.HideLoading();
 
+                if (mResponse != null && mResponse.Succeeded)
+                {
+                    var jObject = (Newtonsoft.Json.Linq.JObject)mResponse.Data;
+                    if (jObject != null)
+                    {
+                        var mAboutAptDealz = jObject.ToObject<AboutAptDealz>();
+                        if (mAboutAptDealz != null)
+                        {
+                            lblAbout.Text = mAboutAptDealz.About;
+                            lblAddress1.Text = mAboutAptDealz.ContactAddressLine1;
+                            lblAddress2.Text = mAboutAptDealz.ContactAddressLine2;
+                            lblPincode.Text = "PIN - " + mAboutAptDealz.ContactAddressPincode;
+                            lblEmail.Text = "Email : " + mAboutAptDealz.ContactAddressEmail;
+                            lblPhoneNo.Text = "Phone : " + mAboutAptDealz.ContactAddressPhone;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
         #endregion
 
         #region [ Events ]

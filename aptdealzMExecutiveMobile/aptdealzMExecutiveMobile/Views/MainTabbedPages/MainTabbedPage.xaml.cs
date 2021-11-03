@@ -28,8 +28,8 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
             BindViews(selectedView);
             GetProfile();
 
-            MessagingCenter.Unsubscribe<string>(this, "NotificationCount");
-            MessagingCenter.Subscribe<string>(this, "NotificationCount", (count) =>
+            MessagingCenter.Unsubscribe<string>(this, Constraints.Str_NotificationCount);
+            MessagingCenter.Subscribe<string>(this, Constraints.Str_NotificationCount, (count) =>
             {
                 if (!Common.EmptyFiels(Common.NotificationCount))
                 {
@@ -54,7 +54,7 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
                 if (!Common.EmptyFiels(selectedView))
                 {
                     if (selectedView == Constraints.Str_AddSeller || selectedView == Constraints.Str_Manage
-                        || selectedView == Constraints.Str_Account || selectedView == "About"
+                        || selectedView == Constraints.Str_Account || selectedView == "About" || selectedView == Constraints.Str_Settings
                         || selectedView == "Support")
                     {
                         isNavigate = true;
@@ -65,6 +65,15 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
                     {
                         isNavigate = true;
                         Navigation.PopAsync();
+                    }
+
+                    if (selectedView == "Support")
+                    {
+                        if (App.chatStoppableTimer != null)
+                        {
+                            App.chatStoppableTimer.Stop();
+                            App.chatStoppableTimer = null;
+                        }
                     }
                 }
 
@@ -102,6 +111,11 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
             {
                 Common.DisplayErrorMessage("MainTabbedPage/GetProfile: " + ex.Message);
             }
+        }
+
+        private Color BindTextColor()
+        {
+            return (Application.Current.UserAppTheme == OSAppTheme.Light) ? (Color)App.Current.Resources["appColor4"] : (Color)App.Current.Resources["appColor6"];
         }
 
         private void BindViews(string view)
@@ -149,6 +163,16 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
                     GrdTab.IsVisible = false;
                     grdMain.Children.Add(new ContactSupportView());
                 }
+                else if (view == Constraints.Str_FAQHelp)
+                {
+                    GrdTab.IsVisible = false;
+                    grdMain.Children.Add(new FaqHelpView());
+                }
+                else if (view == Constraints.Str_Settings)
+                {
+                    GrdTab.IsVisible = false;
+                    grdMain.Children.Add(new SettingsView());
+                }
                 else
                 {
                     imgHome.Source = Constraints.Img_Home_Active;
@@ -167,22 +191,37 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
         {
             grdMain.Children.Clear();
 
-            imgHome.Source = Constraints.Img_Home;
-            imgAddSeller.Source = Constraints.Img_AddSeller;
-            imgManage.Source = Constraints.Img_ManageSeller;
-            imgAccount.Source = Constraints.Img_Account;
+            imgHome.Source = (Application.Current.UserAppTheme == OSAppTheme.Light) ? Constraints.Img_Home : Constraints.Img_Home_Dark;
+            imgAddSeller.Source = (Application.Current.UserAppTheme == OSAppTheme.Light) ? Constraints.Img_AddSeller : Constraints.Img_AddSeller_Dark;
+            imgManage.Source = (Application.Current.UserAppTheme == OSAppTheme.Light) ? Constraints.Img_ManageSeller : Constraints.Img_ManageSeller_Dark;
+            imgAccount.Source = (Application.Current.UserAppTheme == OSAppTheme.Light) ? Constraints.Img_Account : Constraints.Img_Account_Dark;
 
-            lblHome.TextColor = (Color)App.Current.Resources["appColor4"];
-            lblAddSeller.TextColor = (Color)App.Current.Resources["appColor4"];
-            lblManage.TextColor = (Color)App.Current.Resources["appColor4"];
-            lblAccount.TextColor = (Color)App.Current.Resources["appColor4"];
+            lblHome.TextColor = lblAddSeller.TextColor = lblManage.TextColor = lblAccount.TextColor = BindTextColor();
         }
         #endregion
 
         #region [ Events ]
-        private void ImgMenu_Tapped(object sender, EventArgs e)
+        private async void ImgMenu_Tapped(object sender, EventArgs e)
         {
+            Common.MasterData.Detail = new NavigationPage(new MainTabbedPages.MainTabbedPage(Constraints.Str_Settings));
 
+            //var Tab = (Image)sender;
+            //if (Tab.IsEnabled)
+            //{
+            //    try
+            //    {
+            //        Tab.IsEnabled = false;
+            //        await Navigation.PushAsync(new SettingsPage());
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        Common.DisplayErrorMessage("MainTabbedPage/ImgMenu_Tapped: " + ex.Message);
+            //    }
+            //    finally
+            //    {
+            //        Tab.IsEnabled = true;
+            //    }
+            //}
         }
 
         private void BtnLogo_Clicked(object sender, EventArgs e)
@@ -216,7 +255,7 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
 
         private void ImgQuestion_Tapped(object sender, EventArgs e)
         {
-
+            Common.MasterData.Detail = new NavigationPage(new MainTabbedPages.MainTabbedPage(Constraints.Str_FAQHelp));
         }
 
         private void Tab_Tapped(object sender, EventArgs e)

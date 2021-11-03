@@ -66,14 +66,33 @@ namespace aptdealzMExecutiveMobile.Droid.CustomRenderers
                 gd.SetColor(Android.Graphics.Color.Transparent);
                 editText.Background = gd;
 
-                var maxLenght = e.NewElement?.MaxLength;
-                if (maxLenght == 1)
+                if (Control != null)
                 {
-                    Control.Gravity = Android.Views.GravityFlags.Center;
-                }
-                else
-                {
-                    Control.Gravity = Android.Views.GravityFlags.CenterVertical;
+                    var maxLenght = e.NewElement?.MaxLength;
+                    if (maxLenght == 1)
+                    {
+                        Control.Gravity = Android.Views.GravityFlags.Center;
+                    }
+                    else
+                    {
+                        Control.Gravity = Android.Views.GravityFlags.CenterVertical;
+                    }
+
+                    //disable emoji
+                    var keyboard = e.NewElement?.Keyboard;
+                    if (keyboard != Keyboard.Numeric)
+                    {
+                        Control.ImeOptions = Android.Views.InputMethods.ImeAction.Done;
+                        Control.InputType = Android.Text.InputTypes.ClassText | Android.Text.InputTypes.TextVariationVisiblePassword | Android.Text.InputTypes.TextFlagMultiLine;
+                        Control.SetTypeface(Typeface.Default, TypefaceStyle.Normal);
+                    }
+
+                    var password = e.NewElement?.IsPassword;
+                    if (password != null && password == true)
+                    {
+                        Control.InputType = Android.Text.InputTypes.TextVariationPassword | Android.Text.InputTypes.ClassText;
+                        editText.InputType = Android.Text.InputTypes.TextVariationPassword | Android.Text.InputTypes.ClassText;
+                    }
                 }
             }
             catch (Exception ex)
@@ -135,8 +154,16 @@ namespace aptdealzMExecutiveMobile.Droid.CustomRenderers
                 gd.SetColor(Android.Graphics.Color.Transparent);
                 nativeedittextfield.Background = gd;
 
-                Control.SetPadding(0, 0, 0, 0);
-                Control.Gravity = Android.Views.GravityFlags.Start;
+                if (Control != null)
+                {
+                    Control.SetPadding(0, 0, 0, 0);
+                    Control.Gravity = Android.Views.GravityFlags.Start;
+
+                    Control.ImeOptions = Android.Views.InputMethods.ImeAction.Done;
+                    Control.InputType = Android.Text.InputTypes.ClassText | Android.Text.InputTypes.TextVariationVisiblePassword | Android.Text.InputTypes.TextFlagMultiLine;
+                    Control.SetTypeface(Typeface.Default, TypefaceStyle.Normal);
+                }
+
             }
             catch (Exception ex)
             {

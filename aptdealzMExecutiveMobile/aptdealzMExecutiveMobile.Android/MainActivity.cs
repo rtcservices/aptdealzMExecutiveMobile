@@ -22,7 +22,7 @@ using Xamarin.Forms;
 
 namespace aptdealzMExecutiveMobile.Droid
 {
-    [Activity(Label = "aptdealzMExecutiveMobile", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize)]
+    [Activity(Label = "Aptdealz Pro", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
@@ -38,13 +38,12 @@ namespace aptdealzMExecutiveMobile.Droid
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
             FirebasePushNotificationManager.ProcessIntent(this, Intent);
-            //CreateNotificationFromIntent(Intent);
             Xamarin.Forms.DependencyService.Register<IFirebaseAuthenticator, FirebaseAuthenticator>();
 
             FlowListView.Init();
             CachedImageRenderer.Init(true);
             Rg.Plugins.Popup.Popup.Init(this);
-            GetPermission();
+            //GetPermission();
             CameraPermission();
             LoadApplication(new App());
         }

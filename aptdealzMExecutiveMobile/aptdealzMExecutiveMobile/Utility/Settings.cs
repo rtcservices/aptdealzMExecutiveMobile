@@ -103,6 +103,18 @@ namespace aptdealzMExecutiveMobile.Utility
                 PropertyChanged(this, new PropertyChangedEventArgs("IsViewWelcomeScreen"));
             }
         }
+
+        public bool isDarkMode = false;
+        public bool IsDarkMode
+        {
+            get { return IsDarkMode; }
+            set
+            {
+                isDarkMode = value;
+                Settings.IsDarkMode = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("IsDarkMode"));
+            }
+        }
     }
 
     public class Settings
@@ -120,9 +132,11 @@ namespace aptdealzMExecutiveMobile.Utility
         private const string RefreshTokenKey = "refreshToken_key";
         private const string LoginTrackingKey_Key = "loginTrackingKey_key";
         private const string IsViewWelcomeScreen_Key = "IsViewWelcomeScreen_Key";
+        private const string IsDarkMode_Key = "IsDarkModen_Key";
 
         private static readonly string SettingsDefault = string.Empty;
-        private static readonly bool SettingsBoolDefault = true;
+        private static readonly bool SettingsBoolDefault = false;
+        private static readonly bool SettingsBoolDefault1 = true;
 
         public static string EmailAddress
         {
@@ -168,8 +182,14 @@ namespace aptdealzMExecutiveMobile.Utility
 
         public static bool IsViewWelcomeScreen
         {
-            get { return AppSettings.GetValueOrDefault(IsViewWelcomeScreen_Key, SettingsBoolDefault); }
+            get { return AppSettings.GetValueOrDefault(IsViewWelcomeScreen_Key, SettingsBoolDefault1); }
             set { AppSettings.AddOrUpdateValue(IsViewWelcomeScreen_Key, value); }
+        }
+
+        public static bool IsDarkMode
+        {
+            get { return AppSettings.GetValueOrDefault(IsDarkMode_Key, SettingsBoolDefault); }
+            set { AppSettings.AddOrUpdateValue(IsDarkMode_Key, value); }
         }
     }
 }

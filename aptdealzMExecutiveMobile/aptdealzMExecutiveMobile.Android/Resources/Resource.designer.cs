@@ -6087,6 +6087,181 @@ namespace aptdealzMExecutiveMobile.Droid
 			global::Plugin.FirebasePushNotification.Resource.Styleable.SignInButton_buttonSize = global::aptdealzMExecutiveMobile.Droid.Resource.Styleable.SignInButton_buttonSize;
 			global::Plugin.FirebasePushNotification.Resource.Styleable.SignInButton_colorScheme = global::aptdealzMExecutiveMobile.Droid.Resource.Styleable.SignInButton_colorScheme;
 			global::Plugin.FirebasePushNotification.Resource.Styleable.SignInButton_scopeUris = global::aptdealzMExecutiveMobile.Droid.Resource.Styleable.SignInButton_scopeUris;
+			global::Plugin.LocalNotification.Resource.Attribute.alpha = global::aptdealzMExecutiveMobile.Droid.Resource.Attribute.alpha;
+			global::Plugin.LocalNotification.Resource.Attribute.font = global::aptdealzMExecutiveMobile.Droid.Resource.Attribute.font;
+			global::Plugin.LocalNotification.Resource.Attribute.fontProviderAuthority = global::aptdealzMExecutiveMobile.Droid.Resource.Attribute.fontProviderAuthority;
+			global::Plugin.LocalNotification.Resource.Attribute.fontProviderCerts = global::aptdealzMExecutiveMobile.Droid.Resource.Attribute.fontProviderCerts;
+			global::Plugin.LocalNotification.Resource.Attribute.fontProviderFetchStrategy = global::aptdealzMExecutiveMobile.Droid.Resource.Attribute.fontProviderFetchStrategy;
+			global::Plugin.LocalNotification.Resource.Attribute.fontProviderFetchTimeout = global::aptdealzMExecutiveMobile.Droid.Resource.Attribute.fontProviderFetchTimeout;
+			global::Plugin.LocalNotification.Resource.Attribute.fontProviderPackage = global::aptdealzMExecutiveMobile.Droid.Resource.Attribute.fontProviderPackage;
+			global::Plugin.LocalNotification.Resource.Attribute.fontProviderQuery = global::aptdealzMExecutiveMobile.Droid.Resource.Attribute.fontProviderQuery;
+			global::Plugin.LocalNotification.Resource.Attribute.fontStyle = global::aptdealzMExecutiveMobile.Droid.Resource.Attribute.fontStyle;
+			global::Plugin.LocalNotification.Resource.Attribute.fontVariationSettings = global::aptdealzMExecutiveMobile.Droid.Resource.Attribute.fontVariationSettings;
+			global::Plugin.LocalNotification.Resource.Attribute.fontWeight = global::aptdealzMExecutiveMobile.Droid.Resource.Attribute.fontWeight;
+			global::Plugin.LocalNotification.Resource.Attribute.ttcIndex = global::aptdealzMExecutiveMobile.Droid.Resource.Attribute.ttcIndex;
+			global::Plugin.LocalNotification.Resource.Boolean.enable_system_alarm_service_default = global::aptdealzMExecutiveMobile.Droid.Resource.Boolean.enable_system_alarm_service_default;
+			global::Plugin.LocalNotification.Resource.Boolean.enable_system_foreground_service_default = global::aptdealzMExecutiveMobile.Droid.Resource.Boolean.enable_system_foreground_service_default;
+			global::Plugin.LocalNotification.Resource.Boolean.enable_system_job_service_default = global::aptdealzMExecutiveMobile.Droid.Resource.Boolean.enable_system_job_service_default;
+			global::Plugin.LocalNotification.Resource.Boolean.workmanager_test_configuration = global::aptdealzMExecutiveMobile.Droid.Resource.Boolean.workmanager_test_configuration;
+			global::Plugin.LocalNotification.Resource.Color.notification_action_color_filter = global::aptdealzMExecutiveMobile.Droid.Resource.Color.notification_action_color_filter;
+			global::Plugin.LocalNotification.Resource.Color.notification_icon_bg_color = global::aptdealzMExecutiveMobile.Droid.Resource.Color.notification_icon_bg_color;
+			global::Plugin.LocalNotification.Resource.Color.ripple_material_light = global::aptdealzMExecutiveMobile.Droid.Resource.Color.ripple_material_light;
+			global::Plugin.LocalNotification.Resource.Color.secondary_text_default_material_light = global::aptdealzMExecutiveMobile.Droid.Resource.Color.secondary_text_default_material_light;
+			global::Plugin.LocalNotification.Resource.Dimension.compat_button_inset_horizontal_material = global::aptdealzMExecutiveMobile.Droid.Resource.Dimension.compat_button_inset_horizontal_material;
+			global::Plugin.LocalNotification.Resource.Dimension.compat_button_inset_vertical_material = global::aptdealzMExecutiveMobile.Droid.Resource.Dimension.compat_button_inset_vertical_material;
+			global::Plugin.LocalNotification.Resource.Dimension.compat_button_padding_horizontal_material = global::aptdealzMExecutiveMobile.Droid.Resource.Dimension.compat_button_padding_horizontal_material;
+			global::Plugin.LocalNotification.Resource.Dimension.compat_button_padding_vertical_material = global::aptdealzMExecutiveMobile.Droid.Resource.Dimension.compat_button_padding_vertical_material;
+			global::Plugin.LocalNotification.Resource.Dimension.compat_control_corner_material = global::aptdealzMExecutiveMobile.Droid.Resource.Dimension.compat_control_corner_material;
+			global::Plugin.LocalNotification.Resource.Dimension.compat_notification_large_icon_max_height = global::aptdealzMExecutiveMobile.Droid.Resource.Dimension.compat_notification_large_icon_max_height;
+			global::Plugin.LocalNotification.Resource.Dimension.compat_notification_large_icon_max_width = global::aptdealzMExecutiveMobile.Droid.Resource.Dimension.compat_notification_large_icon_max_width;
+			global::Plugin.LocalNotification.Resource.Dimension.notification_action_icon_size = global::aptdealzMExecutiveMobile.Droid.Resource.Dimension.notification_action_icon_size;
+			global::Plugin.LocalNotification.Resource.Dimension.notification_action_text_size = global::aptdealzMExecutiveMobile.Droid.Resource.Dimension.notification_action_text_size;
+			global::Plugin.LocalNotification.Resource.Dimension.notification_big_circle_margin = global::aptdealzMExecutiveMobile.Droid.Resource.Dimension.notification_big_circle_margin;
+			global::Plugin.LocalNotification.Resource.Dimension.notification_content_margin_start = global::aptdealzMExecutiveMobile.Droid.Resource.Dimension.notification_content_margin_start;
+			global::Plugin.LocalNotification.Resource.Dimension.notification_large_icon_height = global::aptdealzMExecutiveMobile.Droid.Resource.Dimension.notification_large_icon_height;
+			global::Plugin.LocalNotification.Resource.Dimension.notification_large_icon_width = global::aptdealzMExecutiveMobile.Droid.Resource.Dimension.notification_large_icon_width;
+			global::Plugin.LocalNotification.Resource.Dimension.notification_main_column_padding_top = global::aptdealzMExecutiveMobile.Droid.Resource.Dimension.notification_main_column_padding_top;
+			global::Plugin.LocalNotification.Resource.Dimension.notification_media_narrow_margin = global::aptdealzMExecutiveMobile.Droid.Resource.Dimension.notification_media_narrow_margin;
+			global::Plugin.LocalNotification.Resource.Dimension.notification_right_icon_size = global::aptdealzMExecutiveMobile.Droid.Resource.Dimension.notification_right_icon_size;
+			global::Plugin.LocalNotification.Resource.Dimension.notification_right_side_padding_top = global::aptdealzMExecutiveMobile.Droid.Resource.Dimension.notification_right_side_padding_top;
+			global::Plugin.LocalNotification.Resource.Dimension.notification_small_icon_background_padding = global::aptdealzMExecutiveMobile.Droid.Resource.Dimension.notification_small_icon_background_padding;
+			global::Plugin.LocalNotification.Resource.Dimension.notification_small_icon_size_as_large = global::aptdealzMExecutiveMobile.Droid.Resource.Dimension.notification_small_icon_size_as_large;
+			global::Plugin.LocalNotification.Resource.Dimension.notification_subtext_size = global::aptdealzMExecutiveMobile.Droid.Resource.Dimension.notification_subtext_size;
+			global::Plugin.LocalNotification.Resource.Dimension.notification_top_pad = global::aptdealzMExecutiveMobile.Droid.Resource.Dimension.notification_top_pad;
+			global::Plugin.LocalNotification.Resource.Dimension.notification_top_pad_large_text = global::aptdealzMExecutiveMobile.Droid.Resource.Dimension.notification_top_pad_large_text;
+			global::Plugin.LocalNotification.Resource.Drawable.notification_action_background = global::aptdealzMExecutiveMobile.Droid.Resource.Drawable.notification_action_background;
+			global::Plugin.LocalNotification.Resource.Drawable.notification_bg = global::aptdealzMExecutiveMobile.Droid.Resource.Drawable.notification_bg;
+			global::Plugin.LocalNotification.Resource.Drawable.notification_bg_low = global::aptdealzMExecutiveMobile.Droid.Resource.Drawable.notification_bg_low;
+			global::Plugin.LocalNotification.Resource.Drawable.notification_bg_low_normal = global::aptdealzMExecutiveMobile.Droid.Resource.Drawable.notification_bg_low_normal;
+			global::Plugin.LocalNotification.Resource.Drawable.notification_bg_low_pressed = global::aptdealzMExecutiveMobile.Droid.Resource.Drawable.notification_bg_low_pressed;
+			global::Plugin.LocalNotification.Resource.Drawable.notification_bg_normal = global::aptdealzMExecutiveMobile.Droid.Resource.Drawable.notification_bg_normal;
+			global::Plugin.LocalNotification.Resource.Drawable.notification_bg_normal_pressed = global::aptdealzMExecutiveMobile.Droid.Resource.Drawable.notification_bg_normal_pressed;
+			global::Plugin.LocalNotification.Resource.Drawable.notification_icon_background = global::aptdealzMExecutiveMobile.Droid.Resource.Drawable.notification_icon_background;
+			global::Plugin.LocalNotification.Resource.Drawable.notification_template_icon_bg = global::aptdealzMExecutiveMobile.Droid.Resource.Drawable.notification_template_icon_bg;
+			global::Plugin.LocalNotification.Resource.Drawable.notification_template_icon_low_bg = global::aptdealzMExecutiveMobile.Droid.Resource.Drawable.notification_template_icon_low_bg;
+			global::Plugin.LocalNotification.Resource.Drawable.notification_tile_bg = global::aptdealzMExecutiveMobile.Droid.Resource.Drawable.notification_tile_bg;
+			global::Plugin.LocalNotification.Resource.Drawable.notify_panel_notification_icon_bg = global::aptdealzMExecutiveMobile.Droid.Resource.Drawable.notify_panel_notification_icon_bg;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_action_clickable_span = global::aptdealzMExecutiveMobile.Droid.Resource.Id.accessibility_action_clickable_span;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_0 = global::aptdealzMExecutiveMobile.Droid.Resource.Id.accessibility_custom_action_0;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_1 = global::aptdealzMExecutiveMobile.Droid.Resource.Id.accessibility_custom_action_1;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_10 = global::aptdealzMExecutiveMobile.Droid.Resource.Id.accessibility_custom_action_10;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_11 = global::aptdealzMExecutiveMobile.Droid.Resource.Id.accessibility_custom_action_11;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_12 = global::aptdealzMExecutiveMobile.Droid.Resource.Id.accessibility_custom_action_12;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_13 = global::aptdealzMExecutiveMobile.Droid.Resource.Id.accessibility_custom_action_13;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_14 = global::aptdealzMExecutiveMobile.Droid.Resource.Id.accessibility_custom_action_14;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_15 = global::aptdealzMExecutiveMobile.Droid.Resource.Id.accessibility_custom_action_15;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_16 = global::aptdealzMExecutiveMobile.Droid.Resource.Id.accessibility_custom_action_16;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_17 = global::aptdealzMExecutiveMobile.Droid.Resource.Id.accessibility_custom_action_17;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_18 = global::aptdealzMExecutiveMobile.Droid.Resource.Id.accessibility_custom_action_18;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_19 = global::aptdealzMExecutiveMobile.Droid.Resource.Id.accessibility_custom_action_19;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_2 = global::aptdealzMExecutiveMobile.Droid.Resource.Id.accessibility_custom_action_2;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_20 = global::aptdealzMExecutiveMobile.Droid.Resource.Id.accessibility_custom_action_20;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_21 = global::aptdealzMExecutiveMobile.Droid.Resource.Id.accessibility_custom_action_21;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_22 = global::aptdealzMExecutiveMobile.Droid.Resource.Id.accessibility_custom_action_22;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_23 = global::aptdealzMExecutiveMobile.Droid.Resource.Id.accessibility_custom_action_23;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_24 = global::aptdealzMExecutiveMobile.Droid.Resource.Id.accessibility_custom_action_24;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_25 = global::aptdealzMExecutiveMobile.Droid.Resource.Id.accessibility_custom_action_25;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_26 = global::aptdealzMExecutiveMobile.Droid.Resource.Id.accessibility_custom_action_26;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_27 = global::aptdealzMExecutiveMobile.Droid.Resource.Id.accessibility_custom_action_27;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_28 = global::aptdealzMExecutiveMobile.Droid.Resource.Id.accessibility_custom_action_28;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_29 = global::aptdealzMExecutiveMobile.Droid.Resource.Id.accessibility_custom_action_29;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_3 = global::aptdealzMExecutiveMobile.Droid.Resource.Id.accessibility_custom_action_3;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_30 = global::aptdealzMExecutiveMobile.Droid.Resource.Id.accessibility_custom_action_30;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_31 = global::aptdealzMExecutiveMobile.Droid.Resource.Id.accessibility_custom_action_31;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_4 = global::aptdealzMExecutiveMobile.Droid.Resource.Id.accessibility_custom_action_4;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_5 = global::aptdealzMExecutiveMobile.Droid.Resource.Id.accessibility_custom_action_5;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_6 = global::aptdealzMExecutiveMobile.Droid.Resource.Id.accessibility_custom_action_6;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_7 = global::aptdealzMExecutiveMobile.Droid.Resource.Id.accessibility_custom_action_7;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_8 = global::aptdealzMExecutiveMobile.Droid.Resource.Id.accessibility_custom_action_8;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_9 = global::aptdealzMExecutiveMobile.Droid.Resource.Id.accessibility_custom_action_9;
+			global::Plugin.LocalNotification.Resource.Id.actions = global::aptdealzMExecutiveMobile.Droid.Resource.Id.actions;
+			global::Plugin.LocalNotification.Resource.Id.action_container = global::aptdealzMExecutiveMobile.Droid.Resource.Id.action_container;
+			global::Plugin.LocalNotification.Resource.Id.action_divider = global::aptdealzMExecutiveMobile.Droid.Resource.Id.action_divider;
+			global::Plugin.LocalNotification.Resource.Id.action_image = global::aptdealzMExecutiveMobile.Droid.Resource.Id.action_image;
+			global::Plugin.LocalNotification.Resource.Id.action_text = global::aptdealzMExecutiveMobile.Droid.Resource.Id.action_text;
+			global::Plugin.LocalNotification.Resource.Id.async = global::aptdealzMExecutiveMobile.Droid.Resource.Id.async;
+			global::Plugin.LocalNotification.Resource.Id.blocking = global::aptdealzMExecutiveMobile.Droid.Resource.Id.blocking;
+			global::Plugin.LocalNotification.Resource.Id.chronometer = global::aptdealzMExecutiveMobile.Droid.Resource.Id.chronometer;
+			global::Plugin.LocalNotification.Resource.Id.dialog_button = global::aptdealzMExecutiveMobile.Droid.Resource.Id.dialog_button;
+			global::Plugin.LocalNotification.Resource.Id.forever = global::aptdealzMExecutiveMobile.Droid.Resource.Id.forever;
+			global::Plugin.LocalNotification.Resource.Id.icon = global::aptdealzMExecutiveMobile.Droid.Resource.Id.icon;
+			global::Plugin.LocalNotification.Resource.Id.icon_group = global::aptdealzMExecutiveMobile.Droid.Resource.Id.icon_group;
+			global::Plugin.LocalNotification.Resource.Id.info = global::aptdealzMExecutiveMobile.Droid.Resource.Id.info;
+			global::Plugin.LocalNotification.Resource.Id.italic = global::aptdealzMExecutiveMobile.Droid.Resource.Id.italic;
+			global::Plugin.LocalNotification.Resource.Id.line1 = global::aptdealzMExecutiveMobile.Droid.Resource.Id.line1;
+			global::Plugin.LocalNotification.Resource.Id.line3 = global::aptdealzMExecutiveMobile.Droid.Resource.Id.line3;
+			global::Plugin.LocalNotification.Resource.Id.normal = global::aptdealzMExecutiveMobile.Droid.Resource.Id.normal;
+			global::Plugin.LocalNotification.Resource.Id.notification_background = global::aptdealzMExecutiveMobile.Droid.Resource.Id.notification_background;
+			global::Plugin.LocalNotification.Resource.Id.notification_main_column = global::aptdealzMExecutiveMobile.Droid.Resource.Id.notification_main_column;
+			global::Plugin.LocalNotification.Resource.Id.notification_main_column_container = global::aptdealzMExecutiveMobile.Droid.Resource.Id.notification_main_column_container;
+			global::Plugin.LocalNotification.Resource.Id.right_icon = global::aptdealzMExecutiveMobile.Droid.Resource.Id.right_icon;
+			global::Plugin.LocalNotification.Resource.Id.right_side = global::aptdealzMExecutiveMobile.Droid.Resource.Id.right_side;
+			global::Plugin.LocalNotification.Resource.Id.tag_accessibility_actions = global::aptdealzMExecutiveMobile.Droid.Resource.Id.tag_accessibility_actions;
+			global::Plugin.LocalNotification.Resource.Id.tag_accessibility_clickable_spans = global::aptdealzMExecutiveMobile.Droid.Resource.Id.tag_accessibility_clickable_spans;
+			global::Plugin.LocalNotification.Resource.Id.tag_accessibility_heading = global::aptdealzMExecutiveMobile.Droid.Resource.Id.tag_accessibility_heading;
+			global::Plugin.LocalNotification.Resource.Id.tag_accessibility_pane_title = global::aptdealzMExecutiveMobile.Droid.Resource.Id.tag_accessibility_pane_title;
+			global::Plugin.LocalNotification.Resource.Id.tag_screen_reader_focusable = global::aptdealzMExecutiveMobile.Droid.Resource.Id.tag_screen_reader_focusable;
+			global::Plugin.LocalNotification.Resource.Id.tag_transition_group = global::aptdealzMExecutiveMobile.Droid.Resource.Id.tag_transition_group;
+			global::Plugin.LocalNotification.Resource.Id.tag_unhandled_key_event_manager = global::aptdealzMExecutiveMobile.Droid.Resource.Id.tag_unhandled_key_event_manager;
+			global::Plugin.LocalNotification.Resource.Id.tag_unhandled_key_listeners = global::aptdealzMExecutiveMobile.Droid.Resource.Id.tag_unhandled_key_listeners;
+			global::Plugin.LocalNotification.Resource.Id.text = global::aptdealzMExecutiveMobile.Droid.Resource.Id.text;
+			global::Plugin.LocalNotification.Resource.Id.text2 = global::aptdealzMExecutiveMobile.Droid.Resource.Id.text2;
+			global::Plugin.LocalNotification.Resource.Id.time = global::aptdealzMExecutiveMobile.Droid.Resource.Id.time;
+			global::Plugin.LocalNotification.Resource.Id.title = global::aptdealzMExecutiveMobile.Droid.Resource.Id.title;
+			global::Plugin.LocalNotification.Resource.Integer.status_bar_notification_info_maxnum = global::aptdealzMExecutiveMobile.Droid.Resource.Integer.status_bar_notification_info_maxnum;
+			global::Plugin.LocalNotification.Resource.Layout.custom_dialog = global::aptdealzMExecutiveMobile.Droid.Resource.Layout.custom_dialog;
+			global::Plugin.LocalNotification.Resource.Layout.notification_action = global::aptdealzMExecutiveMobile.Droid.Resource.Layout.notification_action;
+			global::Plugin.LocalNotification.Resource.Layout.notification_action_tombstone = global::aptdealzMExecutiveMobile.Droid.Resource.Layout.notification_action_tombstone;
+			global::Plugin.LocalNotification.Resource.Layout.notification_template_custom_big = global::aptdealzMExecutiveMobile.Droid.Resource.Layout.notification_template_custom_big;
+			global::Plugin.LocalNotification.Resource.Layout.notification_template_icon_group = global::aptdealzMExecutiveMobile.Droid.Resource.Layout.notification_template_icon_group;
+			global::Plugin.LocalNotification.Resource.Layout.notification_template_part_chronometer = global::aptdealzMExecutiveMobile.Droid.Resource.Layout.notification_template_part_chronometer;
+			global::Plugin.LocalNotification.Resource.Layout.notification_template_part_time = global::aptdealzMExecutiveMobile.Droid.Resource.Layout.notification_template_part_time;
+			global::Plugin.LocalNotification.Resource.String.status_bar_notification_info_overflow = global::aptdealzMExecutiveMobile.Droid.Resource.String.status_bar_notification_info_overflow;
+			global::Plugin.LocalNotification.Resource.Style.TextAppearance_Compat_Notification = global::aptdealzMExecutiveMobile.Droid.Resource.Style.TextAppearance_Compat_Notification;
+			global::Plugin.LocalNotification.Resource.Style.TextAppearance_Compat_Notification_Info = global::aptdealzMExecutiveMobile.Droid.Resource.Style.TextAppearance_Compat_Notification_Info;
+			global::Plugin.LocalNotification.Resource.Style.TextAppearance_Compat_Notification_Line2 = global::aptdealzMExecutiveMobile.Droid.Resource.Style.TextAppearance_Compat_Notification_Line2;
+			global::Plugin.LocalNotification.Resource.Style.TextAppearance_Compat_Notification_Time = global::aptdealzMExecutiveMobile.Droid.Resource.Style.TextAppearance_Compat_Notification_Time;
+			global::Plugin.LocalNotification.Resource.Style.TextAppearance_Compat_Notification_Title = global::aptdealzMExecutiveMobile.Droid.Resource.Style.TextAppearance_Compat_Notification_Title;
+			global::Plugin.LocalNotification.Resource.Style.Widget_Compat_NotificationActionContainer = global::aptdealzMExecutiveMobile.Droid.Resource.Style.Widget_Compat_NotificationActionContainer;
+			global::Plugin.LocalNotification.Resource.Style.Widget_Compat_NotificationActionText = global::aptdealzMExecutiveMobile.Droid.Resource.Style.Widget_Compat_NotificationActionText;
+			global::Plugin.LocalNotification.Resource.Styleable.ColorStateListItem = global::aptdealzMExecutiveMobile.Droid.Resource.Styleable.ColorStateListItem;
+			global::Plugin.LocalNotification.Resource.Styleable.ColorStateListItem_alpha = global::aptdealzMExecutiveMobile.Droid.Resource.Styleable.ColorStateListItem_alpha;
+			global::Plugin.LocalNotification.Resource.Styleable.ColorStateListItem_android_alpha = global::aptdealzMExecutiveMobile.Droid.Resource.Styleable.ColorStateListItem_android_alpha;
+			global::Plugin.LocalNotification.Resource.Styleable.ColorStateListItem_android_color = global::aptdealzMExecutiveMobile.Droid.Resource.Styleable.ColorStateListItem_android_color;
+			global::Plugin.LocalNotification.Resource.Styleable.FontFamily = global::aptdealzMExecutiveMobile.Droid.Resource.Styleable.FontFamily;
+			global::Plugin.LocalNotification.Resource.Styleable.FontFamilyFont = global::aptdealzMExecutiveMobile.Droid.Resource.Styleable.FontFamilyFont;
+			global::Plugin.LocalNotification.Resource.Styleable.FontFamilyFont_android_font = global::aptdealzMExecutiveMobile.Droid.Resource.Styleable.FontFamilyFont_android_font;
+			global::Plugin.LocalNotification.Resource.Styleable.FontFamilyFont_android_fontStyle = global::aptdealzMExecutiveMobile.Droid.Resource.Styleable.FontFamilyFont_android_fontStyle;
+			global::Plugin.LocalNotification.Resource.Styleable.FontFamilyFont_android_fontVariationSettings = global::aptdealzMExecutiveMobile.Droid.Resource.Styleable.FontFamilyFont_android_fontVariationSettings;
+			global::Plugin.LocalNotification.Resource.Styleable.FontFamilyFont_android_fontWeight = global::aptdealzMExecutiveMobile.Droid.Resource.Styleable.FontFamilyFont_android_fontWeight;
+			global::Plugin.LocalNotification.Resource.Styleable.FontFamilyFont_android_ttcIndex = global::aptdealzMExecutiveMobile.Droid.Resource.Styleable.FontFamilyFont_android_ttcIndex;
+			global::Plugin.LocalNotification.Resource.Styleable.FontFamilyFont_font = global::aptdealzMExecutiveMobile.Droid.Resource.Styleable.FontFamilyFont_font;
+			global::Plugin.LocalNotification.Resource.Styleable.FontFamilyFont_fontStyle = global::aptdealzMExecutiveMobile.Droid.Resource.Styleable.FontFamilyFont_fontStyle;
+			global::Plugin.LocalNotification.Resource.Styleable.FontFamilyFont_fontVariationSettings = global::aptdealzMExecutiveMobile.Droid.Resource.Styleable.FontFamilyFont_fontVariationSettings;
+			global::Plugin.LocalNotification.Resource.Styleable.FontFamilyFont_fontWeight = global::aptdealzMExecutiveMobile.Droid.Resource.Styleable.FontFamilyFont_fontWeight;
+			global::Plugin.LocalNotification.Resource.Styleable.FontFamilyFont_ttcIndex = global::aptdealzMExecutiveMobile.Droid.Resource.Styleable.FontFamilyFont_ttcIndex;
+			global::Plugin.LocalNotification.Resource.Styleable.FontFamily_fontProviderAuthority = global::aptdealzMExecutiveMobile.Droid.Resource.Styleable.FontFamily_fontProviderAuthority;
+			global::Plugin.LocalNotification.Resource.Styleable.FontFamily_fontProviderCerts = global::aptdealzMExecutiveMobile.Droid.Resource.Styleable.FontFamily_fontProviderCerts;
+			global::Plugin.LocalNotification.Resource.Styleable.FontFamily_fontProviderFetchStrategy = global::aptdealzMExecutiveMobile.Droid.Resource.Styleable.FontFamily_fontProviderFetchStrategy;
+			global::Plugin.LocalNotification.Resource.Styleable.FontFamily_fontProviderFetchTimeout = global::aptdealzMExecutiveMobile.Droid.Resource.Styleable.FontFamily_fontProviderFetchTimeout;
+			global::Plugin.LocalNotification.Resource.Styleable.FontFamily_fontProviderPackage = global::aptdealzMExecutiveMobile.Droid.Resource.Styleable.FontFamily_fontProviderPackage;
+			global::Plugin.LocalNotification.Resource.Styleable.FontFamily_fontProviderQuery = global::aptdealzMExecutiveMobile.Droid.Resource.Styleable.FontFamily_fontProviderQuery;
+			global::Plugin.LocalNotification.Resource.Styleable.GradientColor = global::aptdealzMExecutiveMobile.Droid.Resource.Styleable.GradientColor;
+			global::Plugin.LocalNotification.Resource.Styleable.GradientColorItem = global::aptdealzMExecutiveMobile.Droid.Resource.Styleable.GradientColorItem;
+			global::Plugin.LocalNotification.Resource.Styleable.GradientColorItem_android_color = global::aptdealzMExecutiveMobile.Droid.Resource.Styleable.GradientColorItem_android_color;
+			global::Plugin.LocalNotification.Resource.Styleable.GradientColorItem_android_offset = global::aptdealzMExecutiveMobile.Droid.Resource.Styleable.GradientColorItem_android_offset;
+			global::Plugin.LocalNotification.Resource.Styleable.GradientColor_android_centerColor = global::aptdealzMExecutiveMobile.Droid.Resource.Styleable.GradientColor_android_centerColor;
+			global::Plugin.LocalNotification.Resource.Styleable.GradientColor_android_centerX = global::aptdealzMExecutiveMobile.Droid.Resource.Styleable.GradientColor_android_centerX;
+			global::Plugin.LocalNotification.Resource.Styleable.GradientColor_android_centerY = global::aptdealzMExecutiveMobile.Droid.Resource.Styleable.GradientColor_android_centerY;
+			global::Plugin.LocalNotification.Resource.Styleable.GradientColor_android_endColor = global::aptdealzMExecutiveMobile.Droid.Resource.Styleable.GradientColor_android_endColor;
+			global::Plugin.LocalNotification.Resource.Styleable.GradientColor_android_endX = global::aptdealzMExecutiveMobile.Droid.Resource.Styleable.GradientColor_android_endX;
+			global::Plugin.LocalNotification.Resource.Styleable.GradientColor_android_endY = global::aptdealzMExecutiveMobile.Droid.Resource.Styleable.GradientColor_android_endY;
+			global::Plugin.LocalNotification.Resource.Styleable.GradientColor_android_gradientRadius = global::aptdealzMExecutiveMobile.Droid.Resource.Styleable.GradientColor_android_gradientRadius;
+			global::Plugin.LocalNotification.Resource.Styleable.GradientColor_android_startColor = global::aptdealzMExecutiveMobile.Droid.Resource.Styleable.GradientColor_android_startColor;
+			global::Plugin.LocalNotification.Resource.Styleable.GradientColor_android_startX = global::aptdealzMExecutiveMobile.Droid.Resource.Styleable.GradientColor_android_startX;
+			global::Plugin.LocalNotification.Resource.Styleable.GradientColor_android_startY = global::aptdealzMExecutiveMobile.Droid.Resource.Styleable.GradientColor_android_startY;
+			global::Plugin.LocalNotification.Resource.Styleable.GradientColor_android_tileMode = global::aptdealzMExecutiveMobile.Droid.Resource.Styleable.GradientColor_android_tileMode;
+			global::Plugin.LocalNotification.Resource.Styleable.GradientColor_android_type = global::aptdealzMExecutiveMobile.Droid.Resource.Styleable.GradientColor_android_type;
 			global::Plugin.Media.Resource.Attribute.alpha = global::aptdealzMExecutiveMobile.Droid.Resource.Attribute.alpha;
 			global::Plugin.Media.Resource.Attribute.coordinatorLayoutStyle = global::aptdealzMExecutiveMobile.Droid.Resource.Attribute.coordinatorLayoutStyle;
 			global::Plugin.Media.Resource.Attribute.font = global::aptdealzMExecutiveMobile.Droid.Resource.Attribute.font;
@@ -21558,7 +21733,19 @@ namespace aptdealzMExecutiveMobile.Droid
 			public const int default_circle_indicator_snap = 2130968580;
 			
 			// aapt resource value: 0x7F040005
-			public const int mtrl_btn_textappearance_all_caps = 2130968581;
+			public const int enable_system_alarm_service_default = 2130968581;
+			
+			// aapt resource value: 0x7F040006
+			public const int enable_system_foreground_service_default = 2130968582;
+			
+			// aapt resource value: 0x7F040007
+			public const int enable_system_job_service_default = 2130968583;
+			
+			// aapt resource value: 0x7F040008
+			public const int mtrl_btn_textappearance_all_caps = 2130968584;
+			
+			// aapt resource value: 0x7F040009
+			public const int workmanager_test_configuration = 2130968585;
 			
 			static Boolean()
 			{
@@ -23721,130 +23908,181 @@ namespace aptdealzMExecutiveMobile.Droid
 			public const int iconAccountActive = 2131165322;
 			
 			// aapt resource value: 0x7F07008B
-			public const int iconAddSeller = 2131165323;
+			public const int iconAccountWgite = 2131165323;
 			
 			// aapt resource value: 0x7F07008C
-			public const int iconAddSellerBlack = 2131165324;
+			public const int iconAccountWhite = 2131165324;
 			
 			// aapt resource value: 0x7F07008D
-			public const int iconAddSellerOrange = 2131165325;
+			public const int iconAddSeller = 2131165325;
 			
 			// aapt resource value: 0x7F07008E
-			public const int iconBackArrow = 2131165326;
+			public const int iconAddSellerBlack = 2131165326;
 			
 			// aapt resource value: 0x7F07008F
-			public const int iconCamera = 2131165327;
+			public const int iconAddSellerOrange = 2131165327;
 			
 			// aapt resource value: 0x7F070090
-			public const int iconCheck = 2131165328;
+			public const int iconAddSellerOrangeWhite = 2131165328;
 			
 			// aapt resource value: 0x7F070091
-			public const int iconClose = 2131165329;
+			public const int iconAddSellerWhite = 2131165329;
 			
 			// aapt resource value: 0x7F070092
-			public const int iconDownArrow = 2131165330;
+			public const int iconBackArrow = 2131165330;
 			
 			// aapt resource value: 0x7F070093
-			public const int iconEdit = 2131165331;
+			public const int iconBackArrowWhite = 2131165331;
 			
 			// aapt resource value: 0x7F070094
-			public const int iconEditBlack = 2131165332;
+			public const int iconCamera = 2131165332;
 			
 			// aapt resource value: 0x7F070095
-			public const int iconFiles = 2131165333;
+			public const int iconCheck = 2131165333;
 			
 			// aapt resource value: 0x7F070096
-			public const int iconFiles2 = 2131165334;
+			public const int iconClose = 2131165334;
 			
 			// aapt resource value: 0x7F070097
-			public const int iconFilter = 2131165335;
+			public const int iconDownArrow = 2131165335;
 			
 			// aapt resource value: 0x7F070098
-			public const int iconHeaderLogo = 2131165336;
+			public const int iconEdit = 2131165336;
 			
 			// aapt resource value: 0x7F070099
-			public const int iconHide = 2131165337;
+			public const int iconEditBlack = 2131165337;
 			
 			// aapt resource value: 0x7F07009A
-			public const int iconHome = 2131165338;
+			public const int iconEditBlackWhite = 2131165338;
 			
 			// aapt resource value: 0x7F07009B
-			public const int iconHomeActive = 2131165339;
+			public const int iconFiles = 2131165339;
 			
 			// aapt resource value: 0x7F07009C
-			public const int iconLogo = 2131165340;
+			public const int iconFiles2 = 2131165340;
 			
 			// aapt resource value: 0x7F07009D
-			public const int iconManageSeller = 2131165341;
+			public const int iconFilter = 2131165341;
 			
 			// aapt resource value: 0x7F07009E
-			public const int iconManageSellerActive = 2131165342;
+			public const int iconFilterWhite = 2131165342;
 			
 			// aapt resource value: 0x7F07009F
-			public const int iconManageSellerBlack = 2131165343;
+			public const int iconGear = 2131165343;
 			
 			// aapt resource value: 0x7F0700A0
-			public const int iconMenu = 2131165344;
+			public const int iconGreenDownArrow = 2131165344;
 			
 			// aapt resource value: 0x7F0700A1
-			public const int iconMusic = 2131165345;
+			public const int iconGreenUpArrow = 2131165345;
 			
 			// aapt resource value: 0x7F0700A2
-			public const int iconNotification = 2131165346;
+			public const int iconHeaderLogo = 2131165346;
 			
 			// aapt resource value: 0x7F0700A3
-			public const int iconOrders = 2131165347;
+			public const int iconHide = 2131165347;
 			
 			// aapt resource value: 0x7F0700A4
-			public const int iconOrdersActive = 2131165348;
+			public const int iconHome = 2131165348;
 			
 			// aapt resource value: 0x7F0700A5
-			public const int iconQuestion = 2131165349;
+			public const int iconHomeActive = 2131165349;
 			
 			// aapt resource value: 0x7F0700A6
-			public const int iconRadioSelect = 2131165350;
+			public const int iconHomeWhite = 2131165350;
 			
 			// aapt resource value: 0x7F0700A7
-			public const int iconRadioUnselect = 2131165351;
+			public const int iconLogo = 2131165351;
 			
 			// aapt resource value: 0x7F0700A8
-			public const int iconRightArrow = 2131165352;
+			public const int iconManageSeller = 2131165352;
 			
 			// aapt resource value: 0x7F0700A9
-			public const int iconSad = 2131165353;
+			public const int iconManageSellerActive = 2131165353;
 			
 			// aapt resource value: 0x7F0700AA
-			public const int iconSearch = 2131165354;
+			public const int iconManageSellerBlack = 2131165354;
 			
 			// aapt resource value: 0x7F0700AB
-			public const int iconSend = 2131165355;
+			public const int iconManageSellerWhite = 2131165355;
 			
 			// aapt resource value: 0x7F0700AC
-			public const int iconShowGray = 2131165356;
+			public const int iconMenu = 2131165356;
 			
 			// aapt resource value: 0x7F0700AD
-			public const int iconSmile = 2131165357;
+			public const int iconMusic = 2131165357;
 			
 			// aapt resource value: 0x7F0700AE
-			public const int iconSortASC = 2131165358;
+			public const int iconNotification = 2131165358;
 			
 			// aapt resource value: 0x7F0700AF
-			public const int iconSortDSC = 2131165359;
+			public const int iconOrders = 2131165359;
 			
 			// aapt resource value: 0x7F0700B0
-			public const int iconUncheck = 2131165360;
+			public const int iconOrdersActive = 2131165360;
 			
 			// aapt resource value: 0x7F0700B1
-			public const int iconUpArrow = 2131165361;
+			public const int iconOrdersWhite = 2131165361;
 			
 			// aapt resource value: 0x7F0700B2
-			public const int iconUplode = 2131165362;
+			public const int iconQuestion = 2131165362;
 			
 			// aapt resource value: 0x7F0700B3
-			public const int iconUserAccount = 2131165363;
+			public const int iconRadioSelect = 2131165363;
 			
 			// aapt resource value: 0x7F0700B4
-			public const int iconVideo = 2131165364;
+			public const int iconRadioUnselect = 2131165364;
+			
+			// aapt resource value: 0x7F0700B5
+			public const int iconRightArrow = 2131165365;
+			
+			// aapt resource value: 0x7F0700B6
+			public const int iconSad = 2131165366;
+			
+			// aapt resource value: 0x7F0700B7
+			public const int iconSearch = 2131165367;
+			
+			// aapt resource value: 0x7F0700B8
+			public const int iconSend = 2131165368;
+			
+			// aapt resource value: 0x7F0700B9
+			public const int iconShowGray = 2131165369;
+			
+			// aapt resource value: 0x7F0700BA
+			public const int iconSmile = 2131165370;
+			
+			// aapt resource value: 0x7F0700BB
+			public const int iconSortASC = 2131165371;
+			
+			// aapt resource value: 0x7F0700BC
+			public const int iconSortASCWhite = 2131165372;
+			
+			// aapt resource value: 0x7F0700BD
+			public const int iconSortDSC = 2131165373;
+			
+			// aapt resource value: 0x7F0700BE
+			public const int iconSortDSCWhite = 2131165374;
+			
+			// aapt resource value: 0x7F0700BF
+			public const int iconSwitchOff = 2131165375;
+			
+			// aapt resource value: 0x7F0700C0
+			public const int iconSwitchOn = 2131165376;
+			
+			// aapt resource value: 0x7F0700C1
+			public const int iconUncheck = 2131165377;
+			
+			// aapt resource value: 0x7F0700C2
+			public const int iconUpArrow = 2131165378;
+			
+			// aapt resource value: 0x7F0700C3
+			public const int iconUplode = 2131165379;
+			
+			// aapt resource value: 0x7F0700C4
+			public const int iconUserAccount = 2131165380;
+			
+			// aapt resource value: 0x7F0700C5
+			public const int iconVideo = 2131165381;
 			
 			// aapt resource value: 0x7F070082
 			public const int ic_errorstatus = 2131165314;
@@ -23864,155 +24102,158 @@ namespace aptdealzMExecutiveMobile.Droid
 			// aapt resource value: 0x7F070087
 			public const int ic_successstatus = 2131165319;
 			
-			// aapt resource value: 0x7F0700B5
-			public const int imgAboutAptDealz = 2131165365;
-			
-			// aapt resource value: 0x7F0700B6
-			public const int imgActiveRequirements = 2131165366;
-			
-			// aapt resource value: 0x7F0700B7
-			public const int imgContact = 2131165367;
-			
-			// aapt resource value: 0x7F0700B8
-			public const int imgContactSupport = 2131165368;
-			
-			// aapt resource value: 0x7F0700B9
-			public const int imgNotifications = 2131165369;
-			
-			// aapt resource value: 0x7F0700BA
-			public const int imgPostRequirements = 2131165370;
-			
-			// aapt resource value: 0x7F0700BB
-			public const int imgProfile = 2131165371;
-			
-			// aapt resource value: 0x7F0700BC
-			public const int imgUploadImage = 2131165372;
-			
-			// aapt resource value: 0x7F0700BD
-			public const int imgWelcomeOne = 2131165373;
-			
-			// aapt resource value: 0x7F0700BE
-			public const int imgWelcomeThree = 2131165374;
-			
-			// aapt resource value: 0x7F0700BF
-			public const int imgWelcomeTwo = 2131165375;
-			
-			// aapt resource value: 0x7F0700C0
-			public const int material_ic_calendar_black_24dp = 2131165376;
-			
-			// aapt resource value: 0x7F0700C1
-			public const int material_ic_clear_black_24dp = 2131165377;
-			
-			// aapt resource value: 0x7F0700C2
-			public const int material_ic_edit_black_24dp = 2131165378;
-			
-			// aapt resource value: 0x7F0700C3
-			public const int material_ic_keyboard_arrow_left_black_24dp = 2131165379;
-			
-			// aapt resource value: 0x7F0700C4
-			public const int material_ic_keyboard_arrow_right_black_24dp = 2131165380;
-			
-			// aapt resource value: 0x7F0700C5
-			public const int material_ic_menu_arrow_down_black_24dp = 2131165381;
-			
 			// aapt resource value: 0x7F0700C6
-			public const int material_ic_menu_arrow_up_black_24dp = 2131165382;
+			public const int imgAboutAptDealz = 2131165382;
 			
 			// aapt resource value: 0x7F0700C7
-			public const int mtrl_dialog_background = 2131165383;
+			public const int imgActiveRequirements = 2131165383;
 			
 			// aapt resource value: 0x7F0700C8
-			public const int mtrl_dropdown_arrow = 2131165384;
+			public const int imgContact = 2131165384;
 			
 			// aapt resource value: 0x7F0700C9
-			public const int mtrl_ic_arrow_drop_down = 2131165385;
+			public const int imgContactSupport = 2131165385;
 			
 			// aapt resource value: 0x7F0700CA
-			public const int mtrl_ic_arrow_drop_up = 2131165386;
+			public const int imgContactWhite = 2131165386;
 			
 			// aapt resource value: 0x7F0700CB
-			public const int mtrl_ic_cancel = 2131165387;
+			public const int imgNotifications = 2131165387;
 			
 			// aapt resource value: 0x7F0700CC
-			public const int mtrl_ic_error = 2131165388;
+			public const int imgPostRequirements = 2131165388;
 			
 			// aapt resource value: 0x7F0700CD
-			public const int mtrl_popupmenu_background = 2131165389;
+			public const int imgProfile = 2131165389;
 			
 			// aapt resource value: 0x7F0700CE
-			public const int mtrl_popupmenu_background_dark = 2131165390;
+			public const int imgUploadImage = 2131165390;
 			
 			// aapt resource value: 0x7F0700CF
-			public const int mtrl_tabs_default_indicator = 2131165391;
+			public const int imgWelcomeOne = 2131165391;
 			
 			// aapt resource value: 0x7F0700D0
-			public const int navigation_empty_icon = 2131165392;
+			public const int imgWelcomeThree = 2131165392;
 			
 			// aapt resource value: 0x7F0700D1
-			public const int Next = 2131165393;
+			public const int imgWelcomeTwo = 2131165393;
 			
 			// aapt resource value: 0x7F0700D2
-			public const int notification_action_background = 2131165394;
+			public const int material_ic_calendar_black_24dp = 2131165394;
 			
 			// aapt resource value: 0x7F0700D3
-			public const int notification_bg = 2131165395;
+			public const int material_ic_clear_black_24dp = 2131165395;
 			
 			// aapt resource value: 0x7F0700D4
-			public const int notification_bg_low = 2131165396;
+			public const int material_ic_edit_black_24dp = 2131165396;
 			
 			// aapt resource value: 0x7F0700D5
-			public const int notification_bg_low_normal = 2131165397;
+			public const int material_ic_keyboard_arrow_left_black_24dp = 2131165397;
 			
 			// aapt resource value: 0x7F0700D6
-			public const int notification_bg_low_pressed = 2131165398;
+			public const int material_ic_keyboard_arrow_right_black_24dp = 2131165398;
 			
 			// aapt resource value: 0x7F0700D7
-			public const int notification_bg_normal = 2131165399;
+			public const int material_ic_menu_arrow_down_black_24dp = 2131165399;
 			
 			// aapt resource value: 0x7F0700D8
-			public const int notification_bg_normal_pressed = 2131165400;
+			public const int material_ic_menu_arrow_up_black_24dp = 2131165400;
 			
 			// aapt resource value: 0x7F0700D9
-			public const int notification_icon_background = 2131165401;
+			public const int mtrl_dialog_background = 2131165401;
 			
 			// aapt resource value: 0x7F0700DA
-			public const int notification_template_icon_bg = 2131165402;
+			public const int mtrl_dropdown_arrow = 2131165402;
 			
 			// aapt resource value: 0x7F0700DB
-			public const int notification_template_icon_low_bg = 2131165403;
+			public const int mtrl_ic_arrow_drop_down = 2131165403;
 			
 			// aapt resource value: 0x7F0700DC
-			public const int notification_tile_bg = 2131165404;
+			public const int mtrl_ic_arrow_drop_up = 2131165404;
 			
 			// aapt resource value: 0x7F0700DD
-			public const int notify_panel_notification_icon_bg = 2131165405;
+			public const int mtrl_ic_cancel = 2131165405;
 			
 			// aapt resource value: 0x7F0700DE
-			public const int Prev = 2131165406;
+			public const int mtrl_ic_error = 2131165406;
 			
 			// aapt resource value: 0x7F0700DF
-			public const int roundedbg = 2131165407;
+			public const int mtrl_popupmenu_background = 2131165407;
 			
 			// aapt resource value: 0x7F0700E0
-			public const int roundedbgdark = 2131165408;
+			public const int mtrl_popupmenu_background_dark = 2131165408;
 			
 			// aapt resource value: 0x7F0700E1
-			public const int SplashScreenLogo = 2131165409;
+			public const int mtrl_tabs_default_indicator = 2131165409;
 			
 			// aapt resource value: 0x7F0700E2
-			public const int test_custom_background = 2131165410;
+			public const int navigation_empty_icon = 2131165410;
 			
 			// aapt resource value: 0x7F0700E3
-			public const int tooltip_frame_dark = 2131165411;
+			public const int Next = 2131165411;
 			
 			// aapt resource value: 0x7F0700E4
-			public const int tooltip_frame_light = 2131165412;
+			public const int notification_action_background = 2131165412;
 			
 			// aapt resource value: 0x7F0700E5
-			public const int Up = 2131165413;
+			public const int notification_bg = 2131165413;
 			
 			// aapt resource value: 0x7F0700E6
-			public const int watermark = 2131165414;
+			public const int notification_bg_low = 2131165414;
+			
+			// aapt resource value: 0x7F0700E7
+			public const int notification_bg_low_normal = 2131165415;
+			
+			// aapt resource value: 0x7F0700E8
+			public const int notification_bg_low_pressed = 2131165416;
+			
+			// aapt resource value: 0x7F0700E9
+			public const int notification_bg_normal = 2131165417;
+			
+			// aapt resource value: 0x7F0700EA
+			public const int notification_bg_normal_pressed = 2131165418;
+			
+			// aapt resource value: 0x7F0700EB
+			public const int notification_icon_background = 2131165419;
+			
+			// aapt resource value: 0x7F0700EC
+			public const int notification_template_icon_bg = 2131165420;
+			
+			// aapt resource value: 0x7F0700ED
+			public const int notification_template_icon_low_bg = 2131165421;
+			
+			// aapt resource value: 0x7F0700EE
+			public const int notification_tile_bg = 2131165422;
+			
+			// aapt resource value: 0x7F0700EF
+			public const int notify_panel_notification_icon_bg = 2131165423;
+			
+			// aapt resource value: 0x7F0700F0
+			public const int Prev = 2131165424;
+			
+			// aapt resource value: 0x7F0700F1
+			public const int roundedbg = 2131165425;
+			
+			// aapt resource value: 0x7F0700F2
+			public const int roundedbgdark = 2131165426;
+			
+			// aapt resource value: 0x7F0700F3
+			public const int SplashScreenLogo = 2131165427;
+			
+			// aapt resource value: 0x7F0700F4
+			public const int test_custom_background = 2131165428;
+			
+			// aapt resource value: 0x7F0700F5
+			public const int tooltip_frame_dark = 2131165429;
+			
+			// aapt resource value: 0x7F0700F6
+			public const int tooltip_frame_light = 2131165430;
+			
+			// aapt resource value: 0x7F0700F7
+			public const int Up = 2131165431;
+			
+			// aapt resource value: 0x7F0700F8
+			public const int watermark = 2131165432;
 			
 			static Drawable()
 			{
@@ -25747,175 +25988,199 @@ namespace aptdealzMExecutiveMobile.Droid
 			public const int copy_toast_msg = 2131623988;
 			
 			// aapt resource value: 0x7F0E0035
-			public const int error_icon_content_description = 2131623989;
+			public const int default_web_client_id = 2131623989;
 			
 			// aapt resource value: 0x7F0E0036
-			public const int exposed_dropdown_menu_content_description = 2131623990;
+			public const int error_icon_content_description = 2131623990;
 			
 			// aapt resource value: 0x7F0E0037
-			public const int fab_transformation_scrim_behavior = 2131623991;
+			public const int exposed_dropdown_menu_content_description = 2131623991;
 			
 			// aapt resource value: 0x7F0E0038
-			public const int fab_transformation_sheet_behavior = 2131623992;
+			public const int fab_transformation_scrim_behavior = 2131623992;
 			
 			// aapt resource value: 0x7F0E0039
-			public const int fallback_menu_item_copy_link = 2131623993;
+			public const int fab_transformation_sheet_behavior = 2131623993;
 			
 			// aapt resource value: 0x7F0E003A
-			public const int fallback_menu_item_open_in_browser = 2131623994;
+			public const int fallback_menu_item_copy_link = 2131623994;
 			
 			// aapt resource value: 0x7F0E003B
-			public const int fallback_menu_item_share_link = 2131623995;
+			public const int fallback_menu_item_open_in_browser = 2131623995;
 			
 			// aapt resource value: 0x7F0E003C
-			public const int fcm_fallback_notification_channel_label = 2131623996;
+			public const int fallback_menu_item_share_link = 2131623996;
 			
 			// aapt resource value: 0x7F0E003D
-			public const int hide_bottom_view_on_scroll_behavior = 2131623997;
+			public const int fcm_fallback_notification_channel_label = 2131623997;
 			
 			// aapt resource value: 0x7F0E003E
-			public const int icon_content_description = 2131623998;
+			public const int firebase_database_url = 2131623998;
 			
 			// aapt resource value: 0x7F0E003F
-			public const int item_view_role_description = 2131623999;
+			public const int gcm_defaultSenderId = 2131623999;
 			
 			// aapt resource value: 0x7F0E0040
-			public const int library_name = 2131624000;
+			public const int google_api_key = 2131624000;
 			
 			// aapt resource value: 0x7F0E0041
-			public const int material_slider_range_end = 2131624001;
+			public const int google_app_id = 2131624001;
 			
 			// aapt resource value: 0x7F0E0042
-			public const int material_slider_range_start = 2131624002;
+			public const int google_crash_reporting_api_key = 2131624002;
 			
 			// aapt resource value: 0x7F0E0043
-			public const int mtrl_badge_numberless_content_description = 2131624003;
+			public const int google_storage_bucket = 2131624003;
 			
 			// aapt resource value: 0x7F0E0044
-			public const int mtrl_chip_close_icon_content_description = 2131624004;
+			public const int hide_bottom_view_on_scroll_behavior = 2131624004;
 			
 			// aapt resource value: 0x7F0E0045
-			public const int mtrl_exceed_max_badge_number_content_description = 2131624005;
+			public const int icon_content_description = 2131624005;
 			
 			// aapt resource value: 0x7F0E0046
-			public const int mtrl_exceed_max_badge_number_suffix = 2131624006;
+			public const int item_view_role_description = 2131624006;
 			
 			// aapt resource value: 0x7F0E0047
-			public const int mtrl_picker_a11y_next_month = 2131624007;
+			public const int library_name = 2131624007;
 			
 			// aapt resource value: 0x7F0E0048
-			public const int mtrl_picker_a11y_prev_month = 2131624008;
+			public const int material_slider_range_end = 2131624008;
 			
 			// aapt resource value: 0x7F0E0049
-			public const int mtrl_picker_announce_current_selection = 2131624009;
+			public const int material_slider_range_start = 2131624009;
 			
 			// aapt resource value: 0x7F0E004A
-			public const int mtrl_picker_cancel = 2131624010;
+			public const int mtrl_badge_numberless_content_description = 2131624010;
 			
 			// aapt resource value: 0x7F0E004B
-			public const int mtrl_picker_confirm = 2131624011;
+			public const int mtrl_chip_close_icon_content_description = 2131624011;
 			
 			// aapt resource value: 0x7F0E004C
-			public const int mtrl_picker_date_header_selected = 2131624012;
+			public const int mtrl_exceed_max_badge_number_content_description = 2131624012;
 			
 			// aapt resource value: 0x7F0E004D
-			public const int mtrl_picker_date_header_title = 2131624013;
+			public const int mtrl_exceed_max_badge_number_suffix = 2131624013;
 			
 			// aapt resource value: 0x7F0E004E
-			public const int mtrl_picker_date_header_unselected = 2131624014;
+			public const int mtrl_picker_a11y_next_month = 2131624014;
 			
 			// aapt resource value: 0x7F0E004F
-			public const int mtrl_picker_day_of_week_column_header = 2131624015;
+			public const int mtrl_picker_a11y_prev_month = 2131624015;
 			
 			// aapt resource value: 0x7F0E0050
-			public const int mtrl_picker_invalid_format = 2131624016;
+			public const int mtrl_picker_announce_current_selection = 2131624016;
 			
 			// aapt resource value: 0x7F0E0051
-			public const int mtrl_picker_invalid_format_example = 2131624017;
+			public const int mtrl_picker_cancel = 2131624017;
 			
 			// aapt resource value: 0x7F0E0052
-			public const int mtrl_picker_invalid_format_use = 2131624018;
+			public const int mtrl_picker_confirm = 2131624018;
 			
 			// aapt resource value: 0x7F0E0053
-			public const int mtrl_picker_invalid_range = 2131624019;
+			public const int mtrl_picker_date_header_selected = 2131624019;
 			
 			// aapt resource value: 0x7F0E0054
-			public const int mtrl_picker_navigate_to_year_description = 2131624020;
+			public const int mtrl_picker_date_header_title = 2131624020;
 			
 			// aapt resource value: 0x7F0E0055
-			public const int mtrl_picker_out_of_range = 2131624021;
+			public const int mtrl_picker_date_header_unselected = 2131624021;
 			
 			// aapt resource value: 0x7F0E0056
-			public const int mtrl_picker_range_header_only_end_selected = 2131624022;
+			public const int mtrl_picker_day_of_week_column_header = 2131624022;
 			
 			// aapt resource value: 0x7F0E0057
-			public const int mtrl_picker_range_header_only_start_selected = 2131624023;
+			public const int mtrl_picker_invalid_format = 2131624023;
 			
 			// aapt resource value: 0x7F0E0058
-			public const int mtrl_picker_range_header_selected = 2131624024;
+			public const int mtrl_picker_invalid_format_example = 2131624024;
 			
 			// aapt resource value: 0x7F0E0059
-			public const int mtrl_picker_range_header_title = 2131624025;
+			public const int mtrl_picker_invalid_format_use = 2131624025;
 			
 			// aapt resource value: 0x7F0E005A
-			public const int mtrl_picker_range_header_unselected = 2131624026;
+			public const int mtrl_picker_invalid_range = 2131624026;
 			
 			// aapt resource value: 0x7F0E005B
-			public const int mtrl_picker_save = 2131624027;
+			public const int mtrl_picker_navigate_to_year_description = 2131624027;
 			
 			// aapt resource value: 0x7F0E005C
-			public const int mtrl_picker_text_input_date_hint = 2131624028;
+			public const int mtrl_picker_out_of_range = 2131624028;
 			
 			// aapt resource value: 0x7F0E005D
-			public const int mtrl_picker_text_input_date_range_end_hint = 2131624029;
+			public const int mtrl_picker_range_header_only_end_selected = 2131624029;
 			
 			// aapt resource value: 0x7F0E005E
-			public const int mtrl_picker_text_input_date_range_start_hint = 2131624030;
+			public const int mtrl_picker_range_header_only_start_selected = 2131624030;
 			
 			// aapt resource value: 0x7F0E005F
-			public const int mtrl_picker_text_input_day_abbr = 2131624031;
+			public const int mtrl_picker_range_header_selected = 2131624031;
 			
 			// aapt resource value: 0x7F0E0060
-			public const int mtrl_picker_text_input_month_abbr = 2131624032;
+			public const int mtrl_picker_range_header_title = 2131624032;
 			
 			// aapt resource value: 0x7F0E0061
-			public const int mtrl_picker_text_input_year_abbr = 2131624033;
+			public const int mtrl_picker_range_header_unselected = 2131624033;
 			
 			// aapt resource value: 0x7F0E0062
-			public const int mtrl_picker_toggle_to_calendar_input_mode = 2131624034;
+			public const int mtrl_picker_save = 2131624034;
 			
 			// aapt resource value: 0x7F0E0063
-			public const int mtrl_picker_toggle_to_day_selection = 2131624035;
+			public const int mtrl_picker_text_input_date_hint = 2131624035;
 			
 			// aapt resource value: 0x7F0E0064
-			public const int mtrl_picker_toggle_to_text_input_mode = 2131624036;
+			public const int mtrl_picker_text_input_date_range_end_hint = 2131624036;
 			
 			// aapt resource value: 0x7F0E0065
-			public const int mtrl_picker_toggle_to_year_selection = 2131624037;
+			public const int mtrl_picker_text_input_date_range_start_hint = 2131624037;
 			
 			// aapt resource value: 0x7F0E0066
-			public const int overflow_tab_title = 2131624038;
+			public const int mtrl_picker_text_input_day_abbr = 2131624038;
 			
 			// aapt resource value: 0x7F0E0067
-			public const int password_toggle_content_description = 2131624039;
+			public const int mtrl_picker_text_input_month_abbr = 2131624039;
 			
 			// aapt resource value: 0x7F0E0068
-			public const int path_password_eye = 2131624040;
+			public const int mtrl_picker_text_input_year_abbr = 2131624040;
 			
 			// aapt resource value: 0x7F0E0069
-			public const int path_password_eye_mask_strike_through = 2131624041;
+			public const int mtrl_picker_toggle_to_calendar_input_mode = 2131624041;
 			
 			// aapt resource value: 0x7F0E006A
-			public const int path_password_eye_mask_visible = 2131624042;
+			public const int mtrl_picker_toggle_to_day_selection = 2131624042;
 			
 			// aapt resource value: 0x7F0E006B
-			public const int path_password_strike_through = 2131624043;
+			public const int mtrl_picker_toggle_to_text_input_mode = 2131624043;
 			
 			// aapt resource value: 0x7F0E006C
-			public const int search_menu_title = 2131624044;
+			public const int mtrl_picker_toggle_to_year_selection = 2131624044;
 			
 			// aapt resource value: 0x7F0E006D
-			public const int status_bar_notification_info_overflow = 2131624045;
+			public const int overflow_tab_title = 2131624045;
+			
+			// aapt resource value: 0x7F0E006E
+			public const int password_toggle_content_description = 2131624046;
+			
+			// aapt resource value: 0x7F0E006F
+			public const int path_password_eye = 2131624047;
+			
+			// aapt resource value: 0x7F0E0070
+			public const int path_password_eye_mask_strike_through = 2131624048;
+			
+			// aapt resource value: 0x7F0E0071
+			public const int path_password_eye_mask_visible = 2131624049;
+			
+			// aapt resource value: 0x7F0E0072
+			public const int path_password_strike_through = 2131624050;
+			
+			// aapt resource value: 0x7F0E0073
+			public const int project_id = 2131624051;
+			
+			// aapt resource value: 0x7F0E0074
+			public const int search_menu_title = 2131624052;
+			
+			// aapt resource value: 0x7F0E0075
+			public const int status_bar_notification_info_overflow = 2131624053;
 			
 			static String()
 			{

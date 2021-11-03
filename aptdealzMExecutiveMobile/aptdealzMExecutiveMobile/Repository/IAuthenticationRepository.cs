@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using aptdealzMExecutiveMobile.Model.Response;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace aptdealzMExecutiveMobile.Repository
 {
@@ -9,5 +11,7 @@ namespace aptdealzMExecutiveMobile.Repository
         Task DoLogout();
 
         Task<bool> SendOtpByEmail(string UserAuth);
+
+        Task<Response> APIResponse(HttpResponseMessage httpResponseMessage);
     }
 }

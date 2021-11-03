@@ -6,7 +6,8 @@
     xmlns:ext="clr-namespace:aptdealzMExecutiveMobile.Extention"
     xmlns:iOS="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
     iOS:Page.UseSafeArea="True"
-    BackgroundColor="{StaticResource appColor6}"
+    BackgroundColor="{AppThemeBinding Dark={StaticResource appColor4},
+                                      Light={StaticResource appColor6}}"
     NavigationPage.HasNavigationBar="False">
     <ContentView.Content>
         <Grid RowSpacing="0">
@@ -26,7 +27,6 @@
                     x:Name="ImgBack"
                     Grid.Column="0"
                     Clicked="ImgBack_Tapped"
-                    Source="iconBackArrow.png"
                     Style="{StaticResource ImgBtnPrimary}" />
                 <Label
                     Grid.Column="1"
@@ -115,7 +115,8 @@
                                 Margin="0"
                                 HeightRequest="20"
                                 HorizontalOptions="CenterAndExpand"
-                                Source="iconSortDSC.png"
+                                Source="{AppThemeBinding Dark=iconSortDSCWhite.png,
+                                                         Light=iconSortDSC.png}"
                                 VerticalOptions="CenterAndExpand" />
 
                             <Label
@@ -151,7 +152,8 @@
                                 Margin="0"
                                 HeightRequest="20"
                                 HorizontalOptions="CenterAndExpand"
-                                Source="iconFilter.png"
+                                Source="{AppThemeBinding Dark=iconFilterWhite.png,
+                                                         Light=iconFilter.png}"
                                 VerticalOptions="CenterAndExpand" />
 
                             <Label

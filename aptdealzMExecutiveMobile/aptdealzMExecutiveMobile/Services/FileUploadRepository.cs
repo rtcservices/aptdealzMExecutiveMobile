@@ -48,7 +48,7 @@ namespace aptdealzMExecutiveMobile.Services
                             var mExecutiveFile = jObject.ToObject<ExecutiveFileDocument>();
                             if (mExecutiveFile != null)
                             {
-                                relativePath = mExecutiveFile.DocumentPath;
+                                relativePath = mExecutiveFile.FileUri;
                             }
                         }
                     }

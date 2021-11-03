@@ -1,9 +1,12 @@
 ﻿using Acr.UserDialogs;
 using aptdealzMExecutiveMobile.API;
+using aptdealzMExecutiveMobile.Model.Response;
 using aptdealzMExecutiveMobile.Repository;
 using aptdealzMExecutiveMobile.Utility;
 using aptdealzMExecutiveMobile.Views.Login;
+using Newtonsoft.Json;
 using System;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -76,15 +79,8 @@ namespace aptdealzMExecutiveMobile.Services
                             Common.DisplayErrorMessage(mResponse.Message);
                     }
 
-                    Settings.EmailAddress = string.Empty;
-                    Settings.UserToken = string.Empty;
-                    Settings.RefreshToken = string.Empty;
-                    Settings.UserId = string.Empty;
-                    Settings.LoginTrackingKey = string.Empty;
-                    MessagingCenter.Unsubscribe<string>(this, "NotificationCount");
-                    App.stoppableTimer.Stop();
-                    //Settings.fcm_token = string.Empty; don't empty this token
-                    App.Current.MainPage = new NavigationPage(new LoginPage());
+                    MessagingCenter.Unsubscribe<string>(this, Constraints.Str_NotificationCount);
+                    Common.ClearAllData();
                 }
             }
             catch (Exception ex)
@@ -126,6 +122,90 @@ namespace aptdealzMExecutiveMobile.Services
                 UserDialogs.Instance.HideLoading();
             }
             return result;
+        }
+
+        public async Task<Response> APIResponse(HttpResponseMessage httpResponseMessage)
+        {
+            Response mResponse = new Response();
+            var responseJson = await httpResponseMessage.Content.ReadAsStringAsync();
+
+            if (httpResponseMessage != null)
+            {
+                if (!Common.EmptyFiels(responseJson))
+                {
+                    if (httpResponseMessage.IsSuccessStatusCode)
+                    {
+                        mResponse = JsonConvert.DeserializeObject<Response>(responseJson);
+                    }
+                    else if (httpResponseMessage.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                    {
+                        var errorString = JsonConvert.DeserializeObject<string>(responseJson);
+                        if (errorString == Constraints.Session_Expired)
+                        {
+                            mResponse.Message = Constraints.Session_Expired;
+                            MessagingCenter.Unsubscribe<string>(this, Constraints.Str_NotificationCount);
+                            Common.ClearAllData();
+                        }
+                    }
+                    else if (httpResponseMessage.StatusCode == System.Net.HttpStatusCode.ServiceUnavailable)
+                    {
+                        mResponse.Message = Constraints.ServiceUnavailable;
+                        MessagingCenter.Unsubscribe<string>(this, Constraints.Str_NotificationCount);
+                        Common.ClearAllData();
+                    }
+                    else if (httpResponseMessage.StatusCode == System.Net.HttpStatusCode.InternalServerError)
+                    {
+                        if (responseJson.Contains(Constraints.Str_Duplicate))
+                        {
+                            mResponse = JsonConvert.DeserializeObject<Response>(responseJson);
+                        }
+                        else
+                        {
+                            mResponse.Message = Constraints.Something_Wrong_Server;
+                            MessagingCenter.Unsubscribe<string>(this, Constraints.Str_NotificationCount);
+                            Common.ClearAllData();
+                        }
+                    }
+                    else if (responseJson.Contains(Constraints.Str_AccountDeactivated) && httpResponseMessage.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+                    {
+                        if (Common.mExecutiveDetails != null && !Common.EmptyFiels(Common.mExecutiveDetails.FullName))
+                            mResponse.Message = "Hey " + Common.mExecutiveDetails.FullName + ", your account is deactivated.Please contact customer support.";
+                        else
+                            mResponse.Message = "Hey, your account is deactivated.Please contact customer support.";
+
+                        MessagingCenter.Unsubscribe<string>(this, Constraints.Str_NotificationCount);
+                        Common.ClearAllData();
+                    }
+                    else
+                    {
+                        if (responseJson.Contains(Constraints.Str_TokenExpired) || httpResponseMessage.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+                        {
+                            var isRefresh = await DependencyService.Get<IAuthenticationRepository>().RefreshToken();
+                            if (!isRefresh)
+                            {
+                                mResponse.Message = Constraints.Session_Expired;
+                                MessagingCenter.Unsubscribe<string>(this, Constraints.Str_NotificationCount);
+                                Common.ClearAllData();
+                            }
+                        }
+                        else
+                        {
+                            mResponse = JsonConvert.DeserializeObject<Response>(responseJson);
+                        }
+                    }
+                }
+                else
+                {
+                    mResponse.Succeeded = false;
+                    mResponse.Message = Constraints.Something_Wrong;
+                }
+            }
+            else
+            {
+                mResponse.Succeeded = false;
+                mResponse.Message = Constraints.Something_Wrong;
+            }
+            return mResponse;
         }
     }
 }

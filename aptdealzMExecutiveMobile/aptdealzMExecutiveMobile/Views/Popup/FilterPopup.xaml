@@ -6,7 +6,8 @@
     xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
     NavigationPage.HasNavigationBar="False">
     <Grid
-        BackgroundColor="{StaticResource appColor6}"
+        BackgroundColor="{AppThemeBinding Dark={StaticResource appColor4},
+                                      Light={StaticResource appColor6}}"
         HorizontalOptions="FillAndExpand"
         RowDefinitions="Auto,Auto,Auto"
         RowSpacing="0"
@@ -26,7 +27,7 @@
         <Grid
             Grid.Row="2"
             Margin="20"
-            RowDefinitions="Auto,Auto,Auto,Auto"
+            RowDefinitions="Auto,Auto"
             RowSpacing="10">
 
             <StackLayout
@@ -73,54 +74,6 @@
                     WidthRequest="20" />
                 <StackLayout.GestureRecognizers>
                     <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="StkSecondType_Tapped" />
-                </StackLayout.GestureRecognizers>
-            </StackLayout>
-
-            <StackLayout
-                x:Name="StkThirdType"
-                Grid.Row="2"
-                HorizontalOptions="FillAndExpand"
-                Orientation="Horizontal"
-                VerticalOptions="CenterAndExpand">
-                <Label
-                    x:Name="lblThirdType"
-                    Grid.Row="0"
-                    HorizontalOptions="StartAndExpand"
-                    Style="{StaticResource lblLight}" />
-                <Image
-                    x:Name="imgThirdType"
-                    Aspect="Fill"
-                    HeightRequest="20"
-                    HorizontalOptions="EndAndExpand"
-                    Source="iconRadioUnselect.png"
-                    VerticalOptions="CenterAndExpand"
-                    WidthRequest="20" />
-                <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="StkThirdType_Tapped" />
-                </StackLayout.GestureRecognizers>
-            </StackLayout>
-
-            <StackLayout
-                x:Name="StkFourType"
-                Grid.Row="3"
-                HorizontalOptions="FillAndExpand"
-                Orientation="Horizontal"
-                VerticalOptions="CenterAndExpand">
-                <Label
-                    x:Name="lblFourType"
-                    Grid.Row="0"
-                    HorizontalOptions="StartAndExpand"
-                    Style="{StaticResource lblLight}" />
-                <Image
-                    x:Name="imgFourType"
-                    Aspect="Fill"
-                    HeightRequest="20"
-                    HorizontalOptions="EndAndExpand"
-                    Source="iconRadioUnselect.png"
-                    VerticalOptions="CenterAndExpand"
-                    WidthRequest="20" />
-                <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="StkFourType_Tapped" />
                 </StackLayout.GestureRecognizers>
             </StackLayout>
         </Grid>

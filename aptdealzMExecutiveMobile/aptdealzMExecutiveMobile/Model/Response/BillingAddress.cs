@@ -31,36 +31,36 @@ namespace aptdealzMExecutiveMobile.Model.Response
         [JsonProperty("landmark")]
         public string Landmark { get; set; }
 
-        #region [ Extra ]
-        [JsonIgnore]
-        public int Id { get; set; }
+        //#region [ Extra ]
+        //[JsonIgnore]
+        //public int Id { get; set; }
 
-        [JsonIgnore]
-        public string DisplayAddress
-        {
-            get
-            {
-                List<string> billingAddress = new List<string>();
+        //[JsonIgnore]
+        //public string DisplayAddress
+        //{
+        //    get
+        //    {
+        //        List<string> billingAddress = new List<string>();
 
-                if (!Common.EmptyFiels(BuildingNumber))
-                    billingAddress.Add(BuildingNumber + Environment.NewLine);
-                if (!Common.EmptyFiels(Street))
-                    billingAddress.Add(Street + ", ");
-                if (!Common.EmptyFiels(Landmark))
-                    billingAddress.Add(Landmark + Environment.NewLine);
-                if (!Common.EmptyFiels(City))
-                    billingAddress.Add(City + ", ");
-                if (!Common.EmptyFiels(PinCode))
-                    billingAddress.Add(PinCode + Environment.NewLine);
-                if (!Common.EmptyFiels(State))
-                    billingAddress.Add(State + ", ");
-                if (!Common.EmptyFiels(Nationality))
-                    billingAddress.Add(Nationality);
+        //        if (!Common.EmptyFiels(BuildingNumber))
+        //            billingAddress.Add(BuildingNumber + Environment.NewLine);
+        //        if (!Common.EmptyFiels(Street))
+        //            billingAddress.Add(Street + ", ");
+        //        if (!Common.EmptyFiels(Landmark))
+        //            billingAddress.Add(Landmark + Environment.NewLine);
+        //        if (!Common.EmptyFiels(City))
+        //            billingAddress.Add(City + ", ");
+        //        if (!Common.EmptyFiels(PinCode))
+        //            billingAddress.Add(PinCode + Environment.NewLine);
+        //        if (!Common.EmptyFiels(State))
+        //            billingAddress.Add(State + ", ");
+        //        if (!Common.EmptyFiels(Nationality))
+        //            billingAddress.Add(Nationality);
 
-                return string.Join("", billingAddress);
-            }
-        }
-        #endregion
+        //        return string.Join("", billingAddress);
+        //    }
+        //}
+        //#endregion
 
     }
 }

@@ -29,6 +29,9 @@ namespace aptdealzMExecutiveMobile.Model.Response
         [JsonProperty("createdDate")]
         public DateTime CreatedDate { get; set; }
 
+        [JsonProperty("createdDateStr")]
+        public string CreatedDateStr { get; set; }
+
         #region [ Extra ]     
         [JsonIgnore]
         public bool IsContact { get; set; } = true;

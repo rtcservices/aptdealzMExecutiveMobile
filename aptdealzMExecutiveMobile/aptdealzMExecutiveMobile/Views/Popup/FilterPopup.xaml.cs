@@ -39,9 +39,7 @@ namespace aptdealzMExecutiveMobile.Views.Popup
             try
             {
                 lblFirstType.Text = FilterEnums.ID.ToString();
-                lblSecondType.Text = FilterEnums.Date.ToString();
-                lblThirdType.Text = FilterEnums.Validity.ToString();
-                lblFourType.Text = FilterEnums.Amount.ToString();
+                lblSecondType.Text = FilterEnums.Name.ToString();
             }
             catch (Exception ex)
             {
@@ -60,20 +58,10 @@ namespace aptdealzMExecutiveMobile.Views.Popup
                         ClearSource();
                         imgFirstType.Source = Constraints.Redio_Selected;
                     }
-                    else if (viewSource == FilterEnums.Date.ToString())
+                    else if (viewSource == FilterEnums.Name.ToString())
                     {
                         ClearSource();
                         imgSecondType.Source = Constraints.Redio_Selected;
-                    }
-                    else if (viewSource == FilterEnums.Validity.ToString())
-                    {
-                        ClearSource();
-                        imgThirdType.Source = Constraints.Redio_Selected;
-                    }
-                    else if (viewSource == FilterEnums.Amount.ToString())
-                    {
-                        ClearSource();
-                        imgFourType.Source = Constraints.Redio_Selected;
                     }
                     else
                     {
@@ -92,8 +80,6 @@ namespace aptdealzMExecutiveMobile.Views.Popup
         {
             imgFirstType.Source = Constraints.Redio_UnSelected;
             imgSecondType.Source = Constraints.Redio_UnSelected;
-            imgThirdType.Source = Constraints.Redio_UnSelected;
-            imgFourType.Source = Constraints.Redio_UnSelected;
         }
         #endregion
 
@@ -116,41 +102,13 @@ namespace aptdealzMExecutiveMobile.Views.Popup
         {
             try
             {
-                BindSource(FilterEnums.Date.ToString());
-                isRefresh?.Invoke(FilterEnums.Date.ToString(), null);
+                BindSource(FilterEnums.Name.ToString());
+                isRefresh?.Invoke(FilterEnums.Name.ToString(), null);
                 PopupNavigation.Instance.PopAsync();
             }
             catch (Exception ex)
             {
                 Common.DisplayErrorMessage("FilterPopup/StkSecondType: " + ex.Message);
-            }
-        }
-
-        private void StkThirdType_Tapped(object sender, EventArgs e)
-        {
-            try
-            {
-                BindSource(FilterEnums.Validity.ToString());
-                isRefresh?.Invoke(FilterEnums.Validity.ToString(), null);
-                PopupNavigation.Instance.PopAsync();
-            }
-            catch (Exception ex)
-            {
-                Common.DisplayErrorMessage("FilterPopup/StkThirdType: " + ex.Message);
-            }
-        }
-
-        private void StkFourType_Tapped(object sender, EventArgs e)
-        {
-            try
-            {
-                BindSource(FilterEnums.Amount.ToString());
-                isRefresh?.Invoke(FilterEnums.Amount.ToString(), null);
-                PopupNavigation.Instance.PopAsync();
-            }
-            catch (Exception ex)
-            {
-                Common.DisplayErrorMessage("FilterPopup/StkFourType: " + ex.Message);
             }
         }
         #endregion

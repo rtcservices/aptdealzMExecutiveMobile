@@ -2,7 +2,6 @@
 using aptdealzMExecutiveMobile.API;
 using aptdealzMExecutiveMobile.Model.Response;
 using aptdealzMExecutiveMobile.Utility;
-using aptdealzMExecutiveMobile.Views.DashboardPages;
 using aptdealzMExecutiveMobile.Views.Popup;
 using Newtonsoft.Json.Linq;
 using Rg.Plugins.Popup.Services;
@@ -165,14 +164,17 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
         {
             try
             {
-                if (ImgSort.Source.ToString().Replace("File: ", "") == Constraints.Sort_ASC)
+                var ImgASC = (Application.Current.UserAppTheme == OSAppTheme.Light) ? Constraints.Sort_ASC : Constraints.Sort_ASC_Dark;
+                var ImgDSC = (Application.Current.UserAppTheme == OSAppTheme.Light) ? Constraints.Sort_DSC : Constraints.Sort_DSC_Dark;
+
+                if (ImgSort.Source.ToString().Replace("File: ", "") == ImgASC)
                 {
-                    ImgSort.Source = Constraints.Sort_DSC;
+                    ImgSort.Source = ImgDSC;
                     isAssending = false;
                 }
                 else
                 {
-                    ImgSort.Source = Constraints.Sort_ASC;
+                    ImgSort.Source = ImgASC;
                     isAssending = true;
                 }
                 pageNo = 1;
@@ -313,7 +315,8 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
                 if (mSeller != null && mSeller.ArrowImage == Constraints.Arrow_Right)
                 {
                     mSeller.ArrowImage = Constraints.Arrow_Down;
-                    mSeller.GridBg = (Color)App.Current.Resources["appColor8"];
+
+                    mSeller.GridBg = (Application.Current.UserAppTheme == OSAppTheme.Light) ? (Color)App.Current.Resources["appColor8"] : Color.Transparent;
                     mSeller.MoreDetail = true;
                     mSeller.HideDetail = false;
                     mSeller.NameFont = 15;

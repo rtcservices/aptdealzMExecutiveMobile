@@ -3,6 +3,7 @@ using aptdealzMExecutiveMobile.Services;
 using aptdealzMExecutiveMobile.Utility;
 using aptdealzMExecutiveMobile.Views.MasterData;
 using Plugin.FirebasePushNotification;
+using Plugin.LocalNotification;
 using System;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -15,8 +16,8 @@ namespace aptdealzMExecutiveMobile
         public static int latitude = 0;
         public static int longitude = 0;
         public static StoppableTimer stoppableTimer;
+        public static StoppableTimer chatStoppableTimer;
         public static bool IsNotification = false;
-
         #endregion
 
         #region [ Constructor ]
@@ -31,8 +32,16 @@ namespace aptdealzMExecutiveMobile
                 });
 
                 InitializeComponent();
+                // Application.Current.Resources.MergedDictionaries.Add(new Theme.Styles.LightModeResources());
 
-                Application.Current.UserAppTheme = OSAppTheme.Light;
+                if (Settings.IsDarkMode)
+                {
+                    Application.Current.UserAppTheme = OSAppTheme.Dark;
+                }
+                else
+                {
+                    Application.Current.UserAppTheme = OSAppTheme.Light;
+                }
 
                 RegisterDependencies();
                 GetCurrentLocation();
@@ -45,8 +54,8 @@ namespace aptdealzMExecutiveMobile
                 else
                 {
                     MainPage = new MasterDataPage(true);
-                    IsNotification = false;
                 }
+
             }
             catch (Exception ex)
             {
@@ -89,6 +98,10 @@ namespace aptdealzMExecutiveMobile
                 CrossFirebasePushNotification.Current.OnTokenRefresh += (s, p) =>
                 {
                     System.Diagnostics.Debug.WriteLine($"TOKEN : {p.Token}");
+                    if (DeviceInfo.Platform == DevicePlatform.iOS)
+                    {
+                        Utility.Settings.fcm_token = p.Token;
+                    }
                 };
 
                 CrossFirebasePushNotification.Current.OnNotificationReceived += (s, p) =>
@@ -126,6 +139,29 @@ namespace aptdealzMExecutiveMobile
             }
         }
 
+
+        public static void PushNotificationForiOS(string title, string message)
+        {
+            try
+            {
+                if (DeviceInfo.Platform == DevicePlatform.iOS)
+                {
+                    var notification = new NotificationRequest
+                    {
+                        NotificationId = 100,
+                        Title = title,
+                        Description = message,
+                        BadgeNumber = 1,
+                    };
+                    NotificationCenter.Current.Show(notification);
+                }
+            }
+            catch (System.Exception ex)
+            {
+                Common.DisplayErrorMessage("App/PushNotificationForiOS: " + ex.Message);
+            }
+        }
+
         protected override void OnStart()
         {
         }
@@ -138,6 +174,8 @@ namespace aptdealzMExecutiveMobile
 
         protected override void OnResume()
         {
+            if (App.stoppableTimer != null)
+                stoppableTimer.Start();
         }
         #endregion
     }

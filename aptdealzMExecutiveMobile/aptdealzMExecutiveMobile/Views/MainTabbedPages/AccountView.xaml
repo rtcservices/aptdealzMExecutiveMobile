@@ -8,7 +8,8 @@
     xmlns:ffTransformer="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
     xmlns:panCake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     x:Name="page1"
-    BackgroundColor="{StaticResource appColor6}"
+    BackgroundColor="{AppThemeBinding Dark={StaticResource appColor4},
+                                      Light={StaticResource appColor6}}"
     NavigationPage.HasNavigationBar="False">
 
     <ContentView.Content>
@@ -29,7 +30,6 @@
                     x:Name="ImgBack"
                     Grid.Column="0"
                     Clicked="ImgBack_Tapped"
-                    Source="iconBackArrow.png"
                     Style="{StaticResource ImgBtnPrimary}" />
                 <Label
                     Grid.Column="1"
@@ -91,7 +91,8 @@
                                 </Grid>
 
                                 <panCake:PancakeView
-                                    BackgroundColor="{StaticResource appColor1}"
+                                    BackgroundColor="{AppThemeBinding Dark={StaticResource appColor10},
+                                                                      Light={StaticResource appColor1}}"
                                     CornerRadius="0,10,10,0"
                                     HorizontalOptions="EndAndExpand"
                                     VerticalOptions="StartAndExpand">
@@ -154,7 +155,6 @@
 
                                 <ext:ExtEntry
                                     x:Name="txtEmailAddress"
-                                    IsEnabled="False"
                                     IsReadOnly="True"
                                     Style="{StaticResource entrPrimary}" />
                                 <BoxView Style="{StaticResource boxHorizontal}" />
@@ -168,7 +168,7 @@
                                 <ext:ExtEntry
                                     x:Name="txtPhoneNumber"
                                     ClassId="PhoneNumber"
-                                    Keyboard="Telephone"
+                                    Keyboard="Numeric"
                                     Style="{StaticResource entrPrimary}"
                                     TabIndex="2"
                                     Unfocused="Entry_Unfocused" />
@@ -257,7 +257,8 @@
                                     TabIndex="8"
                                     Text="{Binding countryText, Source={x:Reference page1}}"
                                     TextChanged="AutoSuggestBox_TextChanged"
-                                    TextColor="{StaticResource appColor4}"
+                                    TextColor="{AppThemeBinding Dark={StaticResource appColor6},
+                                                                Light={StaticResource appColor4}}"
                                     Unfocused="AutoSuggestBox_Unfocused" />
 
                                 <BoxView x:Name="BoxNationality" Style="{StaticResource boxHorizontal}" />
@@ -292,7 +293,8 @@
                                 HorizontalOptions="CenterAndExpand"
                                 Style="{StaticResource btnPrimary}"
                                 Text="Logout"
-                                TextColor="{StaticResource appColor4}" />
+                                TextColor="{AppThemeBinding Dark={StaticResource appColor6},
+                                                            Light={StaticResource appColor4}}" />
                         </Grid>
                     </Grid>
                 </ScrollView>

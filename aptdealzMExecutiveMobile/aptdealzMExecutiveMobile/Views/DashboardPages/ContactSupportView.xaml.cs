@@ -5,19 +5,33 @@ using aptdealzMExecutiveMobile.Utility;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace aptdealzMExecutiveMobile.Views.DashboardPages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ContactSupportView : ContentView
+    public partial class ContactSupportView : ContentView, INotifyPropertyChanged
     {
         #region [ Objects ]
         SupportChatAPI supportChatAPI;
-        private List<ChatSupport> mMessageList;
+        private List<ChatSupport> _mMessageList;
+        public List<ChatSupport> mMessageList
+        {
+            get { return _mMessageList; }
+            set { _mMessageList = value; PropertyChangedEventArgs("mMessageList"); }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void PropertyChangedEventArgs(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
         #endregion
 
         #region [ Constructor ]
@@ -28,11 +42,47 @@ namespace aptdealzMExecutiveMobile.Views.DashboardPages
                 InitializeComponent();
                 supportChatAPI = new SupportChatAPI();
                 mMessageList = new List<ChatSupport>();
-                txtMessage.Keyboard = Keyboard.Create(KeyboardFlags.CapitalizeWord);
-                GetMessages();
+
+
+                Binding binding = new Binding("mMessageList", mode: BindingMode.TwoWay, source: this);
+                lstChar.SetBinding(ListView.ItemsSourceProperty, binding);
+
+                if (DeviceInfo.Platform == DevicePlatform.Android)
+                    txtMessage.Keyboard = Keyboard.Create(KeyboardFlags.CapitalizeWord);
+
+                var backgroundWorker = new BackgroundWorker();
+                backgroundWorker.DoWork += async delegate
+                 {
+                     await GetMessages();
+
+                     if (App.chatStoppableTimer != null)
+                     {
+                         App.chatStoppableTimer.Stop();
+                         App.chatStoppableTimer = null;
+                     }
+
+                     if (App.chatStoppableTimer == null)
+                     {
+                         App.chatStoppableTimer = new StoppableTimer(TimeSpan.FromSeconds(1), async () =>
+                         {
+                             if (Common.PreviousNotificationCount != Common.NotificationCount)
+                             {
+                                 Common.PreviousNotificationCount = Common.NotificationCount;
+                                 await GetMessages();
+                             }
+                         });
+                     }
+                     App.chatStoppableTimer.Start();
+                 };
+                backgroundWorker.RunWorkerAsync();
             }
             catch (Exception ex)
             {
+                if (App.chatStoppableTimer != null)
+                {
+                    App.chatStoppableTimer.Stop();
+                    App.chatStoppableTimer = null;
+                }
                 Common.DisplayErrorMessage("ContactSupportPage/Ctor: " + ex.Message);
             }
         }
@@ -43,15 +93,14 @@ namespace aptdealzMExecutiveMobile.Views.DashboardPages
         {
             try
             {
-                UserDialogs.Instance.ShowLoading(Constraints.Loading);
+                //UserDialogs.Instance.ShowLoading(Constraints.Loading);
                 var mResponse = await supportChatAPI.GetAllMyChat();
-
                 if (mResponse != null && mResponse.Succeeded)
                 {
                     JArray result = (JArray)mResponse.Data;
                     if (result != null)
                     {
-                        txtMessage.Text = string.Empty;
+                        //txtMessage.Text = string.Empty;
                         mMessageList = result.ToObject<List<ChatSupport>>();
                         if (mMessageList != null && mMessageList.Count > 0)
                         {
@@ -77,7 +126,11 @@ namespace aptdealzMExecutiveMobile.Views.DashboardPages
                             }
                             lstChar.IsVisible = true;
                             lblNoRecord.IsVisible = false;
-                            lstChar.ItemsSource = mMessageList.ToList();
+                            //lstChar.ItemsSource = mMessageList.ToList();
+
+                            var mMessage = mMessageList.LastOrDefault();
+                            if (mMessage != null)
+                                lstChar.ScrollTo(mMessage, ScrollToPosition.End, false);
                         }
                         else
                         {
@@ -137,9 +190,16 @@ namespace aptdealzMExecutiveMobile.Views.DashboardPages
         }
         #endregion
 
-        #region [ events ]
+        #region [ Events ]
         private void ImgBack_Tapped(object sender, EventArgs e)
         {
+
+            if (App.chatStoppableTimer != null)
+            {
+                App.chatStoppableTimer.Stop();
+                App.chatStoppableTimer = null;
+            }
+
             Common.BindAnimation(imageButton: ImgBack);
             Common.MasterData.Detail = new NavigationPage(new MainTabbedPages.MainTabbedPage(Constraints.Str_Home));
         }
@@ -166,11 +226,6 @@ namespace aptdealzMExecutiveMobile.Views.DashboardPages
             }
         }
 
-        private void lstChar_ItemTapped(object sender, ItemTappedEventArgs e)
-        {
-            lstChar.SelectedItem = null;
-        }
-
         private async void lstChar_Refreshing(object sender, EventArgs e)
         {
             try
@@ -186,5 +241,10 @@ namespace aptdealzMExecutiveMobile.Views.DashboardPages
             }
         }
         #endregion
+
+        private void lstChar_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            lstChar.SelectedItem = null;
+        }
     }
 }

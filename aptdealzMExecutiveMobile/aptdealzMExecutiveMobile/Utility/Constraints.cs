@@ -1,8 +1,10 @@
-﻿namespace aptdealzMExecutiveMobile.Utility
+﻿using Xamarin.Forms;
+
+namespace aptdealzMExecutiveMobile.Utility
 {
     public class Constraints
     {
-        //KeyWords
+        #region [ KeyWords ]
         public const string Str_Home = "Home";
         public const string Str_AddSeller = "AddSeller";
         public const string Str_ManageSeller = "ManageSeller";
@@ -10,23 +12,41 @@
         public const string Str_Account = "Account";
         public const string Str_About = "About";
         public const string Str_Support = "Support";
+        public const string Str_FAQHelp = "FAQHelp";
+        public const string Str_Settings = "Settings";
         public const string Str_Notifications = "Notifications";
+        public const string Str_TokenExpired = "TokenExpired";
+        public const string Str_AccountDeactivated = "account is deactivated";
+        public const string Str_NotificationCount = "NotificationCount";
+        public const string Str_Duplicate = "duplicate";
+        public const string THEME_DARKMODE = "DarkModeResources";
+        public const string THEME_LIGHTMODE = "LightModeResources";
+        #endregion
 
         #region [ Image ]
         public const string Img_Home = "iconHome.png";
+        public const string Img_Home_Dark = "iconHomeWhite.png";
         public const string Img_Home_Active = "iconHomeActive.png";
+
         public const string Img_AddSeller = "iconAddSellerBlack.png";
+        public const string Img_AddSeller_Dark = "iconAddSellerWhite.png";
         public const string Img_AddSeller_Active = "iconAddSellerOrange.png";
+
         public const string Img_ManageSeller = "iconManageSellerBlack.png";
+        public const string Img_ManageSeller_Dark = "iconManageSellerWhite.png";
         public const string Img_ManageSeller_Active = "iconManageSellerActive.png";
+
         public const string Img_Account = "iconAccount.png";
+        public const string Img_Account_Dark = "iconAccountWhite.png";
         public const string Img_Account_Active = "iconAccountActive.png";
 
         public const string Redio_UnSelected = "iconRadioUnselect.png";
         public const string Redio_Selected = "iconRadioSelect.png";
 
         public const string Sort_ASC = "iconSortASC.png";
+        public const string Sort_ASC_Dark = "iconSortASCWhite.png";
         public const string Sort_DSC = "iconSortDSC.png";
+        public const string Sort_DSC_Dark = "iconSortDSCWhite.png";
 
         public const string CheckBox_UnChecked = "iconUncheck.png";
         public const string CheckBox_Checked = "iconCheck.png";
@@ -49,6 +69,12 @@
         public const string ImgSmile = "iconSmile.png";
 
         public const string ImgContact = "imgContact.jpg";
+
+        public const string Img_SwitchOff = "iconSwitchOff.png";
+        public const string Img_SwitchOn = "iconSwitchOn.png";
+
+        public const string Img_GreenArrowDown = "iconGreenDownArrow.png";
+        public const string Img_GreenArrowUp = "iconGreenUpArrow.png";
         #endregion
 
         #region [ Success ]
@@ -140,5 +166,8 @@
         public const string Same_Phone_AltPhone_Number = "Please enter different alternative number!";
         public const string Agree_T_C = "Please check box for Terms & Conditions.";
         #endregion
+
+
+
     }
 }

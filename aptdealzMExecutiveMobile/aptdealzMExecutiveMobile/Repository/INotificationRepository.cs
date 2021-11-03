@@ -7,5 +7,6 @@ namespace aptdealzMExecutiveMobile.Repository
         Task<string> GetNotificationCount();
 
         Task<bool> SetUserNoficiationAsRead(string NotificationId);
+        Task<bool> SetUserNoficiationAsReadAndDelete(string NotificationId);
     }
 }

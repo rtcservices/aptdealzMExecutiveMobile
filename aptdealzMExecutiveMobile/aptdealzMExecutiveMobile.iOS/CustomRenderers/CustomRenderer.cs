@@ -79,6 +79,13 @@ namespace aptdealzMExecutiveMobile.iOS.CustomRenderers
                     Control.LeftViewMode = UITextFieldViewMode.Always;
                     Control.RightView = new UIView(new CGRect(0, 0, 0, 0));
                     Control.RightViewMode = UITextFieldViewMode.Always;
+
+                    var keyboard = e.NewElement?.Keyboard;
+                    if (keyboard != Keyboard.Numeric)
+                    {
+                        Control.AutocapitalizationType = UITextAutocapitalizationType.Sentences;
+                        Control.KeyboardType = UIKeyboardType.ASCIICapable;
+                    }
                 }
             }
             catch (Exception ex)
@@ -124,6 +131,8 @@ namespace aptdealzMExecutiveMobile.iOS.CustomRenderers
                 {
                     Control.Layer.BorderColor = Color.Transparent.ToCGColor();
                     Control.Layer.BorderWidth = 0;
+                    Control.AutocapitalizationType = UITextAutocapitalizationType.Sentences;
+                    Control.KeyboardType = UIKeyboardType.ASCIICapable;
                 }
             }
             catch (Exception ex)

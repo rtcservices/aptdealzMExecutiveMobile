@@ -136,6 +136,23 @@ namespace aptdealzMExecutiveMobile.Views.DashboardPages
                 Common.DisplayErrorMessage("NotificationPage/GetNotification: " + ex.Message);
             }
         }
+
+        private async Task SetUserNoficiationAsReadAndDelete(string NotificationId)
+        {
+            try
+            {
+                var isReded = await DependencyService.Get<INotificationRepository>().SetUserNoficiationAsReadAndDelete(NotificationId);
+                if (isReded)
+                {
+                    mNotificationsList.Clear();
+                    await GetNotification();
+                }
+            }
+            catch (Exception ex)
+            {
+                Common.DisplayErrorMessage("NotificationPage/SetUserNoficiationAsReadAndDelete: " + ex.Message);
+            }
+        }
         #endregion
 
         #region [ Events ]
@@ -146,7 +163,7 @@ namespace aptdealzMExecutiveMobile.Views.DashboardPages
 
         private void ImgQuestion_Clicked(object sender, EventArgs e)
         {
-
+            Common.MasterData.Detail = new NavigationPage(new MainTabbedPages.MainTabbedPage(Constraints.Str_FAQHelp));
         }
 
         private void ImgBack_Clicked(object sender, EventArgs e)
@@ -185,8 +202,14 @@ namespace aptdealzMExecutiveMobile.Views.DashboardPages
             try
             {
                 var ImageButtonExp = (ImageButton)sender;
-                var notificationData = ImageButtonExp.BindingContext as NotificationData;
-                await SetNoficiationAsRead(notificationData.NotificationId);
+                if (ImageButtonExp != null)
+                {
+                    var notificationData = ImageButtonExp.BindingContext as NotificationData;
+                    if (notificationData != null && !Common.EmptyFiels(notificationData.NotificationId))
+                    {
+                        await SetUserNoficiationAsReadAndDelete(notificationData.NotificationId);
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -194,32 +217,46 @@ namespace aptdealzMExecutiveMobile.Views.DashboardPages
             }
         }
 
-        private void GrdList_Tapped(object sender, EventArgs e)
+        private async void GrdList_Tapped(object sender, EventArgs e)
         {
-            var Tab = (Grid)sender;
-            if (Tab.IsEnabled)
+            try
             {
-                try
+                var Tab = (Grid)sender;
+                if (Tab.IsEnabled)
                 {
-                    Tab.IsEnabled = false;
-                    var mNotification = Tab.BindingContext as NotificationData;
-
-                    //if (mNotification.NavigationScreen == (int)NavigationScreen.RequirementDetails)
-                    //{
-                    //    await Navigation.PushAsync(new RequirementDetailPage(mNotification.ParentKeyId));
-                    //}                    
+                    try
+                    {
+                        Tab.IsEnabled = false;
+                        var mNotification = Tab.BindingContext as NotificationData;
+                        if (mNotification != null && !Common.EmptyFiels(mNotification.NotificationId))
+                        {
+                            await SetNoficiationAsRead(mNotification.NotificationId);
+                            if (mNotification.NavigationScreen == (int)NavigationScreen.SupportChatDetails)
+                            {
+                                await Navigation.PushAsync(new MainTabbedPages.MainTabbedPage(Constraints.Str_Support));
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Common.DisplayErrorMessage("NotificationPage/GrdList_Tapped: " + ex.Message);
+                    }
+                    finally
+                    {
+                        Tab.IsEnabled = true;
+                    }
                 }
-                catch (Exception ex)
-                {
-                    Common.DisplayErrorMessage("NotificationPage/GrdList_Tapped: " + ex.Message);
-                }
-                finally
-                {
-                    Tab.IsEnabled = true;
-                }
-
+            }
+            catch (Exception ex)
+            {
+                Common.DisplayErrorMessage("NotificationPage/GrdList_Tapped: " + ex.Message);
             }
         }
         #endregion
+
+        private void btnSettings_Clicked(object sender, EventArgs e)
+        {
+            Common.MasterData.Detail = new NavigationPage(new MainTabbedPages.MainTabbedPage(Constraints.Str_Settings));
+        }
     }
 }
