@@ -36,5 +36,9 @@ namespace aptdealzMExecutiveMobile.Model.Request
 
         [JsonProperty("countryId")]
         public int CountryId { get; set; }
+
+        [JsonProperty("isNotificationMute")]
+        public bool IsNotificationMute { get; set; }
+
     }
 }

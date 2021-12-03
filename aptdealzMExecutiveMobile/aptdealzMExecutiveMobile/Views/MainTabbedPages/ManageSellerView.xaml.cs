@@ -121,42 +121,33 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
         #region [ Filtering ]
         private async void FrmFilterBy_Tapped(object sender, EventArgs e)
         {
-            var Tab = (Frame)sender;
-            if (Tab.IsEnabled)
+            try
             {
-                try
+                var sortby = new FilterPopup(filterBy);
+                sortby.isRefresh += (s1, e1) =>
                 {
-                    Tab.IsEnabled = false;
-                    var sortby = new FilterPopup(filterBy);
-                    sortby.isRefresh += (s1, e1) =>
+                    string result = s1.ToString();
+                    if (!Common.EmptyFiels(result))
                     {
-                        string result = s1.ToString();
-                        if (!Common.EmptyFiels(result))
+                        filterBy = result;
+                        if (filterBy == FilterEnums.ID.ToString())
                         {
-                            filterBy = result;
-                            if (filterBy == FilterEnums.ID.ToString())
-                            {
-                                lblFilterBy.Text = filterBy;
-                            }
-                            else
-                            {
-                                lblFilterBy.Text = filterBy.ToCamelCase();
-                            }
-                            pageNo = 1;
-                            mSellers.Clear();
-                            GetAllSellers(filterBy, searchValue, isAssending);
+                            lblFilterBy.Text = filterBy;
                         }
-                    };
-                    await PopupNavigation.Instance.PushAsync(sortby);
-                }
-                catch (Exception ex)
-                {
-                    Common.DisplayErrorMessage("ManageSellerView/CustomEntry_Unfocused: " + ex.Message);
-                }
-                finally
-                {
-                    Tab.IsEnabled = true;
-                }
+                        else
+                        {
+                            lblFilterBy.Text = filterBy.ToCamelCase();
+                        }
+                        pageNo = 1;
+                        mSellers.Clear();
+                        GetAllSellers(filterBy, searchValue, isAssending);
+                    }
+                };
+                await PopupNavigation.Instance.PushAsync(sortby);
+            }
+            catch (Exception ex)
+            {
+                Common.DisplayErrorMessage("ManageSellerView/CustomEntry_Unfocused: " + ex.Message);
             }
         }
 
@@ -220,22 +211,14 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
         private async void GrdSeller_Tapped(object sender, EventArgs e)
         {
             var GridExp = (Grid)sender;
-            if (GridExp.IsEnabled)
+            try
             {
-                try
-                {
-                    GridExp.IsEnabled = false;
-                    var mSeller = GridExp.BindingContext as Seller;
-                    await Navigation.PushAsync(new MainTabbedPage("ManageSeller", sellerId: mSeller.UserId));
-                }
-                catch (Exception ex)
-                {
-                    Common.DisplayErrorMessage("ManageSellerView/GrdSeller_Tapped: " + ex.Message);
-                }
-                finally
-                {
-                    GridExp.IsEnabled = true;
-                }
+                var mSeller = GridExp.BindingContext as Seller;
+                await Navigation.PushAsync(new MainTabbedPage("ManageSeller", sellerId: mSeller.UserId));
+            }
+            catch (Exception ex)
+            {
+                Common.DisplayErrorMessage("ManageSellerView/GrdSeller_Tapped: " + ex.Message);
             }
         }
 

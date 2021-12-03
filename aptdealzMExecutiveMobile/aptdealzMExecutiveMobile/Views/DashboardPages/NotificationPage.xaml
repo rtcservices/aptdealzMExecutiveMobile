@@ -39,11 +39,11 @@
                         Aspect="AspectFit"
                         BackgroundColor="Transparent"
                         Clicked="ImgQuestion_Clicked"
-                        HeightRequest="35"
+                        HeightRequest="55"
                         HorizontalOptions="EndAndExpand"
                         Source="iconQuestion.png"
                         VerticalOptions="CenterAndExpand"
-                        WidthRequest="35" />
+                        WidthRequest="55" />
 
                     <ImageButton
                         x:Name="ImgMenu"

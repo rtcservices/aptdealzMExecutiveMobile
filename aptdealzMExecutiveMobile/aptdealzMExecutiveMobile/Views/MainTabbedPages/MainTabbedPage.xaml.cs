@@ -54,20 +54,25 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
                 if (!Common.EmptyFiels(selectedView))
                 {
                     if (selectedView == Constraints.Str_AddSeller || selectedView == Constraints.Str_Manage
-                        || selectedView == Constraints.Str_Account || selectedView == "About" || selectedView == Constraints.Str_Settings
-                        || selectedView == "Support")
+                        || selectedView == Constraints.Str_Account || selectedView == Constraints.Str_About ||
+                        selectedView == Constraints.Str_Settings || selectedView == Constraints.Str_ManageSeller ||
+                        selectedView == Constraints.Str_Support)
                     {
                         isNavigate = true;
+
+                        if (selectedView == Constraints.Str_Settings)
+                            Navigation.PushAsync(new MainTabbedPages.MainTabbedPage(Constraints.Str_Home));
+
                         selectedView = Constraints.Str_Home;
                         BindViews(Constraints.Str_Home);
                     }
-                    else if (selectedView == Constraints.Str_ManageSeller)
-                    {
-                        isNavigate = true;
-                        Navigation.PopAsync();
-                    }
+                    //else if ()
+                    //{
+                    //    isNavigate = true;
+                    //    Navigation.PopAsync();
+                    //}
 
-                    if (selectedView == "Support")
+                    if (selectedView == Constraints.Str_Support)
                     {
                         if (App.chatStoppableTimer != null)
                         {
@@ -158,15 +163,10 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
                     GrdTab.IsVisible = false;
                     grdMain.Children.Add(new AboutView());
                 }
-                else if (view == Constraints.Str_Support)
+                else if (view == Constraints.Str_Support || view == Constraints.Str_FAQHelp)
                 {
                     GrdTab.IsVisible = false;
                     grdMain.Children.Add(new ContactSupportView());
-                }
-                else if (view == Constraints.Str_FAQHelp)
-                {
-                    GrdTab.IsVisible = false;
-                    grdMain.Children.Add(new FaqHelpView());
                 }
                 else if (view == Constraints.Str_Settings)
                 {
@@ -201,27 +201,9 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
         #endregion
 
         #region [ Events ]
-        private async void ImgMenu_Tapped(object sender, EventArgs e)
+        private void ImgMenu_Tapped(object sender, EventArgs e)
         {
             Common.MasterData.Detail = new NavigationPage(new MainTabbedPages.MainTabbedPage(Constraints.Str_Settings));
-
-            //var Tab = (Image)sender;
-            //if (Tab.IsEnabled)
-            //{
-            //    try
-            //    {
-            //        Tab.IsEnabled = false;
-            //        await Navigation.PushAsync(new SettingsPage());
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        Common.DisplayErrorMessage("MainTabbedPage/ImgMenu_Tapped: " + ex.Message);
-            //    }
-            //    finally
-            //    {
-            //        Tab.IsEnabled = true;
-            //    }
-            //}
         }
 
         private void BtnLogo_Clicked(object sender, EventArgs e)
@@ -234,12 +216,11 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
 
         private async void ImgNotification_Tapped(object sender, EventArgs e)
         {
-            var Tab = (Grid)sender;
-            if (Tab.IsEnabled)
+            if (ImgNotification.IsEnabled)
             {
                 try
                 {
-                    Tab.IsEnabled = false;
+                    ImgNotification.IsEnabled = false;
                     await Navigation.PushAsync(new NotificationPage());
                 }
                 catch (Exception ex)
@@ -248,7 +229,7 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
                 }
                 finally
                 {
-                    Tab.IsEnabled = true;
+                    ImgNotification.IsEnabled = true;
                 }
             }
         }
@@ -261,51 +242,43 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
         private void Tab_Tapped(object sender, EventArgs e)
         {
             var stack = (StackLayout)sender;
-            if (stack.IsEnabled)
+            try
             {
-                try
+                if (!Common.EmptyFiels(stack.ClassId))
                 {
-                    stack.IsEnabled = false;
-                    if (!Common.EmptyFiels(stack.ClassId))
+                    if (stack.ClassId == Constraints.Str_Home)
                     {
-                        if (stack.ClassId == Constraints.Str_Home)
+                        BindViews(Constraints.Str_Home);
+                    }
+                    else if (stack.ClassId == Constraints.Str_AddSeller)
+                    {
+                        this.isNavigate = true;
+                        if (selectedView != Constraints.Str_AddSeller)
                         {
-                            BindViews(Constraints.Str_Home);
+                            BindViews(Constraints.Str_AddSeller);
                         }
-                        else if (stack.ClassId == Constraints.Str_AddSeller)
+                    }
+                    else if (stack.ClassId == Constraints.Str_Manage)
+                    {
+                        this.isNavigate = true;
+                        if (selectedView != Constraints.Str_Manage)
                         {
-                            this.isNavigate = true;
-                            if (selectedView != Constraints.Str_AddSeller)
-                            {
-                                BindViews(Constraints.Str_AddSeller);
-                            }
+                            BindViews(Constraints.Str_Manage);
                         }
-                        else if (stack.ClassId == Constraints.Str_Manage)
+                    }
+                    else if (stack.ClassId == Constraints.Str_Account)
+                    {
+                        this.isNavigate = true;
+                        if (selectedView != Constraints.Str_Account)
                         {
-                            this.isNavigate = true;
-                            if (selectedView != Constraints.Str_Manage)
-                            {
-                                BindViews(Constraints.Str_Manage);
-                            }
-                        }
-                        else if (stack.ClassId == Constraints.Str_Account)
-                        {
-                            this.isNavigate = true;
-                            if (selectedView != Constraints.Str_Account)
-                            {
-                                BindViews(Constraints.Str_Account);
-                            }
+                            BindViews(Constraints.Str_Account);
                         }
                     }
                 }
-                catch (Exception ex)
-                {
-                    Common.DisplayErrorMessage("MainTabbedPage/Tab_Tapped: " + ex.Message);
-                }
-                finally
-                {
-                    stack.IsEnabled = true;
-                }
+            }
+            catch (Exception ex)
+            {
+                Common.DisplayErrorMessage("MainTabbedPage/Tab_Tapped: " + ex.Message);
             }
         }
         #endregion

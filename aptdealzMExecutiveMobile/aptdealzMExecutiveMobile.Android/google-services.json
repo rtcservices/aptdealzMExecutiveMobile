@@ -15,14 +15,6 @@
       },
       "oauth_client": [
         {
-          "client_id": "50126607707-qk6p8epraai7bguhe0kfoq416csq9e87.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.zartek.aptdealz.buyer",
-            "certificate_hash": "de323e972bceacd8b443ea390e1e02fffba5056b"
-          }
-        },
-        {
           "client_id": "50126607707-9rb50eiq9svl03g4vufrrmfvbu07a4g7.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -40,10 +32,10 @@
               "client_type": 3
             },
             {
-              "client_id": "50126607707-2gs40chim6ts0pc81hsnslnj4hg0c6oj.apps.googleusercontent.com",
+              "client_id": "50126607707-42lhcmb47jar0s0gnjg6c694rilrtnm1.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.zartek.aptdealz.marketting"
+                "bundle_id": "com.zartek.aptdealz"
               }
             }
           ]
@@ -84,10 +76,10 @@
               "client_type": 3
             },
             {
-              "client_id": "50126607707-2gs40chim6ts0pc81hsnslnj4hg0c6oj.apps.googleusercontent.com",
+              "client_id": "50126607707-42lhcmb47jar0s0gnjg6c694rilrtnm1.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.zartek.aptdealz.marketting"
+                "bundle_id": "com.zartek.aptdealz"
               }
             }
           ]
@@ -102,14 +94,6 @@
         }
       },
       "oauth_client": [
-        {
-          "client_id": "50126607707-vg8vjroobbgv5mk8qpq7v29g82knqes9.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.zartek.aptdealz.marketting",
-            "certificate_hash": "96f1f2d00cf54188c7275d4cf2ced3de239373f7"
-          }
-        },
         {
           "client_id": "50126607707-9rb50eiq9svl03g4vufrrmfvbu07a4g7.apps.googleusercontent.com",
           "client_type": 3
@@ -128,10 +112,10 @@
               "client_type": 3
             },
             {
-              "client_id": "50126607707-2gs40chim6ts0pc81hsnslnj4hg0c6oj.apps.googleusercontent.com",
+              "client_id": "50126607707-42lhcmb47jar0s0gnjg6c694rilrtnm1.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.zartek.aptdealz.marketting"
+                "bundle_id": "com.zartek.aptdealz"
               }
             }
           ]
@@ -164,10 +148,10 @@
               "client_type": 3
             },
             {
-              "client_id": "50126607707-2gs40chim6ts0pc81hsnslnj4hg0c6oj.apps.googleusercontent.com",
+              "client_id": "50126607707-42lhcmb47jar0s0gnjg6c694rilrtnm1.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.zartek.aptdealz.marketting"
+                "bundle_id": "com.zartek.aptdealz"
               }
             }
           ]

@@ -26,6 +26,7 @@
                 x:Name="flvMenus"
                 Grid.Row="1"
                 Margin="10,0"
+                BackgroundColor="Transparent"
                 FlowColumnCount="3"
                 HasUnevenRows="True"
                 HorizontalScrollBarVisibility="Never"

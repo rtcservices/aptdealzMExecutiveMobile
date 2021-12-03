@@ -13,6 +13,9 @@
         public const string Country = "api/v{0}/Country/Get";
         public const string FileUpload = "api/FileUpload";
         public const string GetPincodeInfo = "api/IndianPincode/GetPincodeInfo/{0}";
+
+        public const string UpdateUserMuteNotification = "api/Account/UpdateUserMuteNotification/{0}";
+
         #endregion
 
         #region [ AuthenticationAPI ]

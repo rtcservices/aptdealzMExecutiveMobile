@@ -257,6 +257,7 @@
             <Setter Property="TextColor" Value="{AppThemeBinding Dark={StaticResource appColor6}, Light={StaticResource appColor4}}" />
             <Setter Property="PlaceholderColor" Value="{StaticResource appColor7}" />
             <Setter Property="Margin" Value="0" />
+            <Setter Property="BackgroundColor" Value="Transparent" />
             <Setter Property="VerticalOptions" Value="FillAndExpand" />
             <Setter Property="HorizontalOptions" Value="FillAndExpand" />
             <Setter Property="FontSize" Value="15" />

@@ -83,29 +83,21 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
         private async void DashboardMenu_Tapped(object sender, EventArgs e)
         {
             var MenuTab = (Frame)sender;
-            if (MenuTab.IsEnabled)
+            try
             {
-                try
+                var mHomeMenu = MenuTab.BindingContext as HomeMenu;
+                if (mHomeMenu != null && mHomeMenu.MenuName == Constraints.Str_Notifications)
                 {
-                    MenuTab.IsEnabled = false;
-                    var mHomeMenu = MenuTab.BindingContext as HomeMenu;
-                    if (mHomeMenu != null && mHomeMenu.MenuName == Constraints.Str_Notifications)
-                    {
-                        await Navigation.PushAsync(new NotificationPage());
-                    }
-                    else if (mHomeMenu != null && mHomeMenu.MenuName != null)
-                    {
-                        Common.MasterData.Detail = new NavigationPage(new MainTabbedPage(mHomeMenu.MenuName, true));
-                    }
+                    await Navigation.PushAsync(new NotificationPage());
                 }
-                catch (Exception ex)
+                else if (mHomeMenu != null && mHomeMenu.MenuName != null)
                 {
-                    Common.DisplayErrorMessage("HomeView/DashboardMenu_Tapped: " + ex.Message);
+                    Common.MasterData.Detail = new NavigationPage(new MainTabbedPage(mHomeMenu.MenuName, true));
                 }
-                finally
-                {
-                    MenuTab.IsEnabled = true;
-                }
+            }
+            catch (Exception ex)
+            {
+                Common.DisplayErrorMessage("HomeView/DashboardMenu_Tapped: " + ex.Message);
             }
         }
         #endregion

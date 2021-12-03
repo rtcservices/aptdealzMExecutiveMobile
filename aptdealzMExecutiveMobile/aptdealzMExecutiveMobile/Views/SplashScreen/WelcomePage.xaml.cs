@@ -115,26 +115,16 @@ namespace aptdealzMExecutiveMobile.Views.SplashScreen
         #region [ Events ]  
         private async void BtnLogin_Clicked(object sender, EventArgs e)
         {
-            var Tab = (Button)sender;
-            if (Tab.IsEnabled)
+            try
             {
-                try
-                {
-                    Tab.IsEnabled = false;
-                    Common.BindAnimation(button: BtnLogin);
-                    await Navigation.PushAsync(new LoginPage());
-                }
-                catch (Exception ex)
-                {
-                    Common.DisplayErrorMessage("WelcomePage/BtnLogin_Clicked: " + ex.Message);
-                }
-                finally
-                {
-                    Tab.IsEnabled = true;
-                }
+                Common.BindAnimation(button: BtnLogin);
+                await Navigation.PushAsync(new LoginPage());
+            }
+            catch (Exception ex)
+            {
+                Common.DisplayErrorMessage("WelcomePage/BtnLogin_Clicked: " + ex.Message);
             }
         }
         #endregion
-
     }
 }

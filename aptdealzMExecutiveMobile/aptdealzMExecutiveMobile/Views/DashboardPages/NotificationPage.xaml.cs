@@ -222,29 +222,21 @@ namespace aptdealzMExecutiveMobile.Views.DashboardPages
             try
             {
                 var Tab = (Grid)sender;
-                if (Tab.IsEnabled)
+                try
                 {
-                    try
+                    var mNotification = Tab.BindingContext as NotificationData;
+                    if (mNotification != null && !Common.EmptyFiels(mNotification.NotificationId))
                     {
-                        Tab.IsEnabled = false;
-                        var mNotification = Tab.BindingContext as NotificationData;
-                        if (mNotification != null && !Common.EmptyFiels(mNotification.NotificationId))
+                        await SetNoficiationAsRead(mNotification.NotificationId);
+                        if (mNotification.NavigationScreen == (int)NavigationScreen.SupportChatDetails)
                         {
-                            await SetNoficiationAsRead(mNotification.NotificationId);
-                            if (mNotification.NavigationScreen == (int)NavigationScreen.SupportChatDetails)
-                            {
-                                await Navigation.PushAsync(new MainTabbedPages.MainTabbedPage(Constraints.Str_Support));
-                            }
+                            await Navigation.PushAsync(new MainTabbedPages.MainTabbedPage(Constraints.Str_Support));
                         }
                     }
-                    catch (Exception ex)
-                    {
-                        Common.DisplayErrorMessage("NotificationPage/GrdList_Tapped: " + ex.Message);
-                    }
-                    finally
-                    {
-                        Tab.IsEnabled = true;
-                    }
+                }
+                catch (Exception ex)
+                {
+                    Common.DisplayErrorMessage("NotificationPage/GrdList_Tapped: " + ex.Message);
                 }
             }
             catch (Exception ex)
@@ -252,11 +244,11 @@ namespace aptdealzMExecutiveMobile.Views.DashboardPages
                 Common.DisplayErrorMessage("NotificationPage/GrdList_Tapped: " + ex.Message);
             }
         }
-        #endregion
 
         private void btnSettings_Clicked(object sender, EventArgs e)
         {
             Common.MasterData.Detail = new NavigationPage(new MainTabbedPages.MainTabbedPage(Constraints.Str_Settings));
         }
+        #endregion
     }
 }
