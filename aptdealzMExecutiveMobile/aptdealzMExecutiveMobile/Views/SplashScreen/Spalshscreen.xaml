@@ -8,7 +8,7 @@
             Margin="0"
             Padding="0"
             BackgroundColor="{AppThemeBinding Dark={StaticResource appColor4},
-                                      Light={StaticResource appColor6}}"
+                                              Light={StaticResource appColor6}}"
             HorizontalOptions="FillAndExpand"
             VerticalOptions="FillAndExpand">
 

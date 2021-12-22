@@ -43,7 +43,10 @@
                     ColumnDefinitions="*,*,*"
                     ColumnSpacing="0"
                     HorizontalOptions="EndAndExpand">
-                    <Grid Grid.Column="0" BackgroundColor="Transparent">
+                    <Grid
+                        x:Name="ImgNotification"
+                        Grid.Column="0"
+                        BackgroundColor="Transparent">
                         <Image Source="iconNotification.png" Style="{StaticResource imgNotification}" />
                         <Frame
                             x:Name="frmNotification"
@@ -121,7 +124,7 @@
                             HeightRequest="30"
                             HorizontalOptions="CenterAndExpand"
                             Source="{AppThemeBinding Dark=iconHome.png,
-                                                     Light=iconHomeWhite.png.png}"
+                                                     Light=iconHomeWhite.png}"
                             VerticalOptions="CenterAndExpand"
                             WidthRequest="30" />
                         <Label

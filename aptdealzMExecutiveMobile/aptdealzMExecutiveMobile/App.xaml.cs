@@ -107,6 +107,7 @@ namespace aptdealzMExecutiveMobile
                 CrossFirebasePushNotification.Current.OnNotificationReceived += (s, p) =>
                 {
                     System.Diagnostics.Debug.WriteLine("Received");
+                    MainPage = new MasterDataPage(true);
                 };
 
                 CrossFirebasePushNotification.Current.OnNotificationOpened += (s, p) =>
@@ -174,8 +175,6 @@ namespace aptdealzMExecutiveMobile
 
         protected override void OnResume()
         {
-            if (App.stoppableTimer != null)
-                stoppableTimer.Start();
         }
         #endregion
     }

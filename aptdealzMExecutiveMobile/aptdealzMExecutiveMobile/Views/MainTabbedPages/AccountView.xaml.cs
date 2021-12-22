@@ -476,12 +476,8 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
 
         private async void BtnUpdate_Clicked(object sender, EventArgs e)
         {
-            var Tab = (Button)sender;
-            if (Tab.IsEnabled)
-            {
                 try
                 {
-                    Tab.IsEnabled = false;
                     Common.BindAnimation(button: BtnUpdate);
                     await UpdateProfile();
                 }
@@ -489,7 +485,6 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
                 {
                     Common.DisplayErrorMessage("AccountView/BtnUpdate_Clicked: " + ex.Message);
                 }
-            }
         }
 
         private async void ImgCamera_Tapped(object sender, EventArgs e)
@@ -617,12 +612,8 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
 
         private async void Logout_Tapped(object sender, EventArgs e)
         {
-            var Tab = (Button)sender;
-            if (Tab.IsEnabled)
-            {
                 try
                 {
-                    Tab.IsEnabled = false;
                     Common.BindAnimation(button: BtnLogout);
                     await DependencyService.Get<IAuthenticationRepository>().DoLogout();
                 }
@@ -630,11 +621,6 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
                 {
                     Common.DisplayErrorMessage("AccountView/Logout_Tapped: " + ex.Message);
                 }
-                finally
-                {
-                    Tab.IsEnabled = true;
-                }
-            }
         }
         #endregion
     }

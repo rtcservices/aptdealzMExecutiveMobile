@@ -37,7 +37,7 @@
     <EnableLLVM>false</EnableLLVM>
     <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
     <BundleAssemblies>false</BundleAssemblies>
-    <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
+    <EmbedAssembliesIntoApk>false</EmbedAssembliesIntoApk>
     <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
     <AndroidUseSharedRuntime>true</AndroidUseSharedRuntime>
     <AndroidKeyStore>true</AndroidKeyStore>
@@ -60,10 +60,10 @@
     <EnableLLVM>false</EnableLLVM>
     <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
     <BundleAssemblies>false</BundleAssemblies>
-    <AndroidKeyStore>false</AndroidKeyStore>
+    <AndroidKeyStore>true</AndroidKeyStore>
     <AndroidSigningKeyStore>..\aptdealzMExecutiveMobile.Android\KeyStore\aptdealzMExecutive.keystore</AndroidSigningKeyStore>
     <AndroidSigningStorePass>test123</AndroidSigningStorePass>
-    <AndroidSigningKeyPass>aptdealzMExecutive</AndroidSigningKeyPass>
+    <AndroidSigningKeyPass>test123</AndroidSigningKeyPass>
     <AndroidSigningKeyAlias>aptdealzMExecutive</AndroidSigningKeyAlias>
     <MandroidI18n />
     <JavaMaximumHeapSize>
@@ -442,7 +442,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties XamarinHotReloadDebuggerTimeoutExceptionaptdealzMExecutiveMobileAndroidHideInfoBar="True" XamarinHotReloadUnhandledDeviceExceptionaptdealzMExecutiveMobileAndroidHideInfoBar="True" />
+      <UserProperties XamarinHotReloadUnhandledDeviceExceptionaptdealzMExecutiveMobileAndroidHideInfoBar="True" XamarinHotReloadDebuggerTimeoutExceptionaptdealzMExecutiveMobileAndroidHideInfoBar="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

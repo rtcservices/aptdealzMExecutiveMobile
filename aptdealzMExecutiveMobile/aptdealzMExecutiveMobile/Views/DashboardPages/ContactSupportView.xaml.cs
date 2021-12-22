@@ -15,23 +15,11 @@ using Xamarin.Forms.Xaml;
 namespace aptdealzMExecutiveMobile.Views.DashboardPages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ContactSupportView : ContentView, INotifyPropertyChanged
+    public partial class ContactSupportView : ContentView
     {
         #region [ Objects ]
         SupportChatAPI supportChatAPI;
-        private List<ChatSupport> _mMessageList;
-        public List<ChatSupport> mMessageList
-        {
-            get { return _mMessageList; }
-            set { _mMessageList = value; PropertyChangedEventArgs("mMessageList"); }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected void PropertyChangedEventArgs(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+        private List<ChatSupport> mMessageList;
         #endregion
 
         #region [ Constructor ]
@@ -43,37 +31,27 @@ namespace aptdealzMExecutiveMobile.Views.DashboardPages
                 supportChatAPI = new SupportChatAPI();
                 mMessageList = new List<ChatSupport>();
 
-
-                Binding binding = new Binding("mMessageList", mode: BindingMode.TwoWay, source: this);
-                lstChar.SetBinding(ListView.ItemsSourceProperty, binding);
-
                 if (DeviceInfo.Platform == DevicePlatform.Android)
                     txtMessage.Keyboard = Keyboard.Create(KeyboardFlags.CapitalizeWord);
 
                 var backgroundWorker = new BackgroundWorker();
-                backgroundWorker.DoWork += async delegate
-                 {
-                     await GetMessages();
+                backgroundWorker.DoWork += delegate
+                {
+                    if (App.chatStoppableTimer != null)
+                    {
+                        App.chatStoppableTimer.Stop();
+                        App.chatStoppableTimer = null;
+                    }
 
-                     if (App.chatStoppableTimer != null)
-                     {
-                         App.chatStoppableTimer.Stop();
-                         App.chatStoppableTimer = null;
-                     }
-
-                     if (App.chatStoppableTimer == null)
-                     {
-                         App.chatStoppableTimer = new StoppableTimer(TimeSpan.FromSeconds(1), async () =>
-                         {
-                             if (Common.PreviousNotificationCount != Common.NotificationCount)
-                             {
-                                 Common.PreviousNotificationCount = Common.NotificationCount;
-                                 await GetMessages();
-                             }
-                         });
-                     }
-                     App.chatStoppableTimer.Start();
-                 };
+                    if (App.chatStoppableTimer == null)
+                    {
+                        App.chatStoppableTimer = new StoppableTimer(TimeSpan.FromSeconds(3), async () =>
+                        {
+                            await GetMessages();
+                        });
+                    }
+                    App.chatStoppableTimer.Start();
+                };
                 backgroundWorker.RunWorkerAsync();
             }
             catch (Exception ex)
@@ -95,6 +73,7 @@ namespace aptdealzMExecutiveMobile.Views.DashboardPages
             {
                 //UserDialogs.Instance.ShowLoading(Constraints.Loading);
                 var mResponse = await supportChatAPI.GetAllMyChat();
+
                 if (mResponse != null && mResponse.Succeeded)
                 {
                     JArray result = (JArray)mResponse.Data;
@@ -126,11 +105,11 @@ namespace aptdealzMExecutiveMobile.Views.DashboardPages
                             }
                             lstChar.IsVisible = true;
                             lblNoRecord.IsVisible = false;
-                            //lstChar.ItemsSource = mMessageList.ToList();
+                            lstChar.ItemsSource = mMessageList.ToList();
 
                             var mMessage = mMessageList.LastOrDefault();
                             if (mMessage != null)
-                                lstChar.ScrollTo(mMessage, ScrollToPosition.End, false);
+                                lstChar.ScrollTo(mMessage, ScrollToPosition.End, true);
                         }
                         else
                         {
@@ -206,23 +185,14 @@ namespace aptdealzMExecutiveMobile.Views.DashboardPages
 
         private async void BtnSend_Clicked(object sender, EventArgs e)
         {
-            var Tab = (ImageButton)sender;
-            if (Tab.IsEnabled)
+            try
             {
-                try
-                {
-                    Tab.IsEnabled = false;
-                    Common.BindAnimation(imageButton: BtnSend);
-                    await SentMessage();
-                }
-                catch (Exception ex)
-                {
-                    Common.DisplayErrorMessage("ContactSupportPage/BtnSend_Clicked: " + ex.Message);
-                }
-                finally
-                {
-                    Tab.IsEnabled = true;
-                }
+                Common.BindAnimation(imageButton: BtnSend);
+                await SentMessage();
+            }
+            catch (Exception ex)
+            {
+                Common.DisplayErrorMessage("ContactSupportPage/BtnSend_Clicked: " + ex.Message);
             }
         }
 
@@ -241,10 +211,5 @@ namespace aptdealzMExecutiveMobile.Views.DashboardPages
             }
         }
         #endregion
-
-        private void lstChar_ItemTapped(object sender, ItemTappedEventArgs e)
-        {
-            lstChar.SelectedItem = null;
-        }
     }
 }

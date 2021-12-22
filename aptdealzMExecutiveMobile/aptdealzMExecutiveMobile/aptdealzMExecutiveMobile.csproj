@@ -14,11 +14,13 @@
     <Compile Remove="Theme\Styles\DarkModeResources.xaml.cs" />
     <Compile Remove="Theme\Styles\LightModeResources.xaml.cs" />
     <Compile Remove="Theme\Styles\ThemeManager.cs" />
+    <Compile Remove="Views\DashboardPages\SettingsPage.xaml.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Remove="Theme\Styles\DarkModeResources.xaml" />
     <EmbeddedResource Remove="Theme\Styles\LightModeResources.xaml" />
+    <EmbeddedResource Remove="Views\DashboardPages\SettingsPage.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -47,12 +49,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Views\DashboardPages\SettingsPage.xaml.cs">
-      <DependentUpon>SettingsPage.xaml</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
     <EmbeddedResource Update="Views\DashboardPages\AboutView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -63,9 +59,6 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\DashboardPages\NotificationPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\DashboardPages\SettingsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\DashboardPages\SettingsView.xaml">

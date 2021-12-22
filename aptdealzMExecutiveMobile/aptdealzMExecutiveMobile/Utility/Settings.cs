@@ -115,6 +115,18 @@ namespace aptdealzMExecutiveMobile.Utility
                 PropertyChanged(this, new PropertyChangedEventArgs("IsDarkMode"));
             }
         }
+
+        public bool isMuteMode = false;
+        public bool IsMuteMode
+        {
+            get { return isMuteMode; }
+            set
+            {
+                isMuteMode = value;
+                Settings.IsMuteMode = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("IsMuteMode"));
+            }
+        }
     }
 
     public class Settings
@@ -133,10 +145,11 @@ namespace aptdealzMExecutiveMobile.Utility
         private const string LoginTrackingKey_Key = "loginTrackingKey_key";
         private const string IsViewWelcomeScreen_Key = "IsViewWelcomeScreen_Key";
         private const string IsDarkMode_Key = "IsDarkModen_Key";
+        private const string IsMuteMode_Key = "IsMuteModen_Key";
 
         private static readonly string SettingsDefault = string.Empty;
         private static readonly bool SettingsBoolDefault = false;
-        private static readonly bool SettingsBoolDefault1 = true;
+        private static readonly bool SettingsBoolDefault1 = false;
 
         public static string EmailAddress
         {
@@ -190,6 +203,11 @@ namespace aptdealzMExecutiveMobile.Utility
         {
             get { return AppSettings.GetValueOrDefault(IsDarkMode_Key, SettingsBoolDefault); }
             set { AppSettings.AddOrUpdateValue(IsDarkMode_Key, value); }
+        }
+        public static bool IsMuteMode
+        {
+            get { return AppSettings.GetValueOrDefault(IsMuteMode_Key, SettingsBoolDefault1); }
+            set { AppSettings.AddOrUpdateValue(IsMuteMode_Key, value); }
         }
     }
 }

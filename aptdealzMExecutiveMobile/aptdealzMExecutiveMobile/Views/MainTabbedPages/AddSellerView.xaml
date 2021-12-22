@@ -331,7 +331,8 @@
                                     TabIndex="10"
                                     Text="{Binding countryText, Source={x:Reference page1}}"
                                     TextChanged="AutoSuggestBox_TextChanged"
-                                    TextColor="{StaticResource appColor4}"
+                                    TextColor="{AppThemeBinding Dark={StaticResource appColor6},
+                                                                Light={StaticResource appColor4}}"
                                     Unfocused="AutoSuggestBox_Unfocused" />
                                 <BoxView x:Name="BoxNationality" Style="{StaticResource boxHorizontal}" />
                             </StackLayout>
@@ -501,7 +502,8 @@
                                                         Grid.Column="0"
                                                         Margin="0"
                                                         Padding="15,0,0,0"
-                                                        BackgroundColor="{StaticResource appColor8}"
+                                                        BackgroundColor="{AppThemeBinding Dark={StaticResource appColor7},
+                                                                                          Light={StaticResource appColor8}}"
                                                         BorderColor="Transparent"
                                                         CornerRadius="5"
                                                         HasShadow="False"
@@ -517,7 +519,9 @@
                                                                 HorizontalOptions="FillAndExpand"
                                                                 HorizontalTextAlignment="Center"
                                                                 Style="{StaticResource lblLight}"
-                                                                Text="{Binding .}" />
+                                                                Text="{Binding .}"
+                                                                TextColor="{AppThemeBinding Dark={StaticResource appColor4},
+                                                                                            Light={StaticResource appColor4}}" />
 
                                                             <Button
                                                                 x:Name="BtnDeleteSubCategory"
@@ -529,7 +533,8 @@
                                                                 FontFamily="Poppins-Regular"
                                                                 HorizontalOptions="End"
                                                                 Text="X"
-                                                                TextColor="{StaticResource appColor4}"
+                                                                TextColor="{AppThemeBinding Dark={StaticResource appColor4},
+                                                                                            Light={StaticResource appColor4}}"
                                                                 VerticalOptions="CenterAndExpand"
                                                                 WidthRequest="40" />
                                                         </Grid>
@@ -600,11 +605,19 @@
                                 <BoxView x:Name="BoxSupplyArea" Style="{StaticResource boxHorizontal}" />
                             </StackLayout>
 
-                            <Label
+                            <!--<Label
                                 Grid.Row="6"
                                 HorizontalOptions="StartAndExpand"
                                 Style="{StaticResource lblLight}"
-                                Text="Seller Commission : 3%" />
+                                Text="Seller Commission : 3%" />-->
+
+                            <StackLayout
+                                Grid.Row="6"
+                                HorizontalOptions="StartAndExpand"
+                                Orientation="Horizontal">
+                                <Label Style="{StaticResource lblLight}" Text="Seller Commission : " />
+                                <Label x:Name="lblSellerCommission" Style="{StaticResource lblLight}" />
+                            </StackLayout>
                         </Grid>
 
                         <!--  Bank Information Header  -->

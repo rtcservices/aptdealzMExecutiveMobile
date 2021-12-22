@@ -18,7 +18,6 @@ namespace aptdealzMExecutiveMobile.Utility
         public static List<Country> mCountries { get; set; }
         public static string Token { get; set; }
         public static string NotificationCount { get; set; }
-        public static string PreviousNotificationCount { get; set; }
         #endregion
 
         #region [ Regex Properties ]

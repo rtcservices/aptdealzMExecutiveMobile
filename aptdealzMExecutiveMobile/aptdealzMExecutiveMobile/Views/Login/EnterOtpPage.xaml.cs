@@ -272,22 +272,14 @@ namespace aptdealzMExecutiveMobile.Views.Login
 
         private async void BtnSubmit_Tapped(object sender, EventArgs e)
         {
-            var Tab = (Button)sender;
-            if (Tab.IsEnabled)
+            try
             {
-                try
-                {
-                    Tab.IsEnabled = false; Common.BindAnimation(button: BtnSubmit);
-                    await SubmitOTP();
-                }
-                catch (Exception ex)
-                {
-                    Common.DisplayErrorMessage("EnterOtpPage/BtnSubmit_Tapped: " + ex.Message);
-                }
-                finally
-                {
-                    Tab.IsEnabled = true;
-                }
+                Common.BindAnimation(button: BtnSubmit);
+                await SubmitOTP();
+            }
+            catch (Exception ex)
+            {
+                Common.DisplayErrorMessage("EnterOtpPage/BtnSubmit_Tapped: " + ex.Message);
             }
         }
 

@@ -45,8 +45,7 @@
                     x:Name="lstChar"
                     Grid.Row="0"
                     Margin="20,0"
-                                       ItemTapped="lstChar_ItemTapped"
-     IsPullToRefreshEnabled="True"
+                    IsPullToRefreshEnabled="True"
                     Refreshing="lstChar_Refreshing"
                     Style="{StaticResource lstPrimary}">
                     <ListView.ItemTemplate>
@@ -71,7 +70,7 @@
                                             HeightRequest="50"
                                             HorizontalOptions="EndAndExpand"
                                             IsVisible="{Binding IsContact}"
-                                            Source="{Binding ChatMessageFromUserProfileImage, Mode=OneTime}"
+                                            Source="{Binding ChatMessageFromUserProfileImage}"
                                             VerticalOptions="StartAndExpand"
                                             WidthRequest="50">
                                             <Image.Clip>

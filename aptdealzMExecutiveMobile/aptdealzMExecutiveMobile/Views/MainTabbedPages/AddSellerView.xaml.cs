@@ -328,6 +328,7 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
                     txtDescription.Text = mSellerDetail.CompanyProfile.Description;
                     txtExperience.Text = mSellerDetail.CompanyProfile.Experience;
                     txtSupplyArea.Text = mSellerDetail.CompanyProfile.AreaOfSupply;
+                    lblSellerCommission.Text = "" + mSellerDetail.CompanyProfile.CommissionRate + "%";
                     #endregion
 
                     #region [ Bank Information ]
@@ -483,7 +484,7 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
             {
                 Common.DisplayErrorMessage(Constraints.Required_GST);
             }
-            else if (!Common.IsValidGSTPIN(txtGstNumber.Text))
+            else if (!Common.IsValidGSTPIN(txtGstNumber.Text.ToUpper()))
             {
                 Common.DisplayErrorMessage(Constraints.InValid_GST);
             }
@@ -491,7 +492,7 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
             {
                 Common.DisplayErrorMessage(Constraints.Required_PAN);
             }
-            else if (!Common.IsValidPAN(txtPan.Text))
+            else if (!Common.IsValidPAN(txtPan.Text.ToUpper()))
             {
                 Common.DisplayErrorMessage(Constraints.InValid_PAN);
             }
@@ -511,7 +512,7 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
             {
                 Common.DisplayErrorMessage(Constraints.Agree_T_C);
             }
-            else if (Common.IsValidGSTPIN(txtGstNumber.Text) && Common.IsValidPAN(txtPan.Text))
+            else if (Common.IsValidGSTPIN(txtGstNumber.Text.ToUpper()) && Common.IsValidPAN(txtPan.Text.ToUpper()))
             {
                 string panFromGSTIN = txtGstNumber.Text.Substring(2, 10);
                 if (panFromGSTIN.ToUpper() != txtPan.Text.ToUpper())
@@ -684,9 +685,9 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
                         isUpdate = true;
                     else if (mSellerDetail.CompanyProfile.AreaOfSupply != txtSupplyArea.Text)
                         isUpdate = true;
-                    else if (mSellerDetail.BankInformation.Gstin != txtGstNumber.Text)
+                    else if (mSellerDetail.BankInformation.Gstin.ToUpper() != txtGstNumber.Text.ToUpper())
                         isUpdate = true;
-                    else if (mSellerDetail.BankInformation.Pan != txtPan.Text)
+                    else if (mSellerDetail.BankInformation.Pan.ToUpper() != txtPan.Text.ToUpper())
                         isUpdate = true;
                     else if (mSellerDetail.BankInformation.BankAccountNumber != txtBankAccount.Text)
                         isUpdate = true;
@@ -1698,22 +1699,14 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
         private async void ImgDocument_Clicked(object sender, EventArgs e)
         {
             var imgButton = (ImageButton)sender;
-            if (imgButton.IsEnabled)
+            try
             {
-                try
-                {
-                    imgButton.IsEnabled = false;
-                    var url = imgButton.BindingContext as string;
-                    await GenerateWebView.GenerateView(url);
-                }
-                catch (Exception ex)
-                {
-                    Common.DisplayErrorMessage("GrievancesPage/ImgDocument_Clicked: " + ex.Message);
-                }
-                finally
-                {
-                    imgButton.IsEnabled = true;
-                }
+                var url = imgButton.BindingContext as string;
+                await GenerateWebView.GenerateView(url);
+            }
+            catch (Exception ex)
+            {
+                Common.DisplayErrorMessage("GrievancesPage/ImgDocument_Clicked: " + ex.Message);
             }
         }
     }

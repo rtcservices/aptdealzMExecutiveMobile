@@ -234,25 +234,15 @@ namespace aptdealzMExecutiveMobile.Views.Login
         #region [ Events ]       
         private async void BtnGetOTP_Clicked(object sender, EventArgs e)
         {
-            var Tab = (Button)sender;
-            if (Tab.IsEnabled)
+            try
             {
-                try
-                {
-                    Tab.IsEnabled = false;
-                    Common.BindAnimation(button: BtnGetOTP);
-                    await AuthenticateUser();
-                }
-                catch (Exception ex)
-                {
-                    Common.DisplayErrorMessage("LoginPage/BtnGetOtp_Clicked: " + ex.Message);
-                }
-                finally
-                {
-                    Tab.IsEnabled = true;
-                }
+                Common.BindAnimation(button: BtnGetOTP);
+                await AuthenticateUser();
             }
-
+            catch (Exception ex)
+            {
+                Common.DisplayErrorMessage("LoginPage/BtnGetOtp_Clicked: " + ex.Message);
+            }
         }
 
         private void txtUserAuth_Unfocused(object sender, FocusEventArgs e)
