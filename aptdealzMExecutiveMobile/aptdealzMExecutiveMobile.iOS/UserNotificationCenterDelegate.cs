@@ -16,7 +16,8 @@ namespace aptdealzMExecutiveMobile.iOS
 
             // Tell system to display the notification anyway or use
             // `None` to say we have handled the display locally.
-            completionHandler(UNNotificationPresentationOptions.Alert);
+            //updated by BK 01-12-2022            
+            completionHandler(UNNotificationPresentationOptions.Sound | UNNotificationPresentationOptions.Alert | UNNotificationPresentationOptions.Badge);
         }
-    }
+    }   
 }

@@ -17,6 +17,7 @@ namespace aptdealzMExecutiveMobile.Droid.DependencService
             try
             {
                 var activity = (Activity)Xamarin.Forms.Forms.Context;
+                activity.SetResult(Result.Canceled);
                 activity.FinishAffinity();
             }
             catch (Exception ex)

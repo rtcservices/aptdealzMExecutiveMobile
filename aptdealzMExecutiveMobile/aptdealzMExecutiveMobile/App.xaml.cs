@@ -2,6 +2,7 @@
 using aptdealzMExecutiveMobile.Services;
 using aptdealzMExecutiveMobile.Utility;
 using aptdealzMExecutiveMobile.Views.MasterData;
+using aptdealzMExecutiveMobile.Views.SplashScreen;
 using Plugin.FirebasePushNotification;
 using Plugin.LocalNotification;
 using System;
@@ -17,7 +18,7 @@ namespace aptdealzMExecutiveMobile
         public static int longitude = 0;
         public static StoppableTimer stoppableTimer;
         public static StoppableTimer chatStoppableTimer;
-        public static bool IsNotification = false;
+        //public static bool IsNotification = false;
         #endregion
 
         #region [ Constructor ]
@@ -28,11 +29,12 @@ namespace aptdealzMExecutiveMobile
                 Device.SetFlags(new string[]
                 {
                     "MediaElement_Experimental",
-                    "AppTheme_Experimental"
+                    "AppTheme_Experimental",
+                    "FastRenderers_Experimental",
+                    "CollectionView_Experimental"
                 });
 
                 InitializeComponent();
-                // Application.Current.Resources.MergedDictionaries.Add(new Theme.Styles.LightModeResources());
 
                 if (Settings.IsDarkMode)
                 {
@@ -47,15 +49,22 @@ namespace aptdealzMExecutiveMobile
                 GetCurrentLocation();
                 BindCrossFirebasePushNotification();
 
-                if (!IsNotification)
+                //if (DeviceInfo.Platform == DevicePlatform.iOS)
+                //{
+                //    MainPage = new Views.SplashScreen.Spalshscreen();
+                //}
+                //else
+                //{
+                if (!Settings.IsNotification)
                 {
-                    MainPage = new Views.SplashScreen.Spalshscreen();
+                    MainPage = new SplashScreen();
                 }
                 else
                 {
-                    MainPage = new MasterDataPage(true);
+                    MainPage = new MasterDataPage();
+                    //Settings.IsNotification = false;
                 }
-
+                //}
             }
             catch (Exception ex)
             {
@@ -98,7 +107,7 @@ namespace aptdealzMExecutiveMobile
                 CrossFirebasePushNotification.Current.OnTokenRefresh += (s, p) =>
                 {
                     System.Diagnostics.Debug.WriteLine($"TOKEN : {p.Token}");
-                    if (DeviceInfo.Platform == DevicePlatform.iOS)
+                    if (DeviceInfo.Platform == DevicePlatform.iOS && !Common.EmptyFiels(p.Token))
                     {
                         Utility.Settings.fcm_token = p.Token;
                     }
@@ -106,13 +115,24 @@ namespace aptdealzMExecutiveMobile
 
                 CrossFirebasePushNotification.Current.OnNotificationReceived += (s, p) =>
                 {
+                    //work when platform is iOS
                     System.Diagnostics.Debug.WriteLine("Received");
-                    MainPage = new MasterDataPage(true);
+                    if (Settings.IsNotification)
+                    {
+                        if (Common.mExecutiveDetails != null && !Common.EmptyFiels(Common.Token))
+                        {
+                            MainPage = new MasterDataPage();
+                        }
+                        else
+                        {
+                            MainPage = new Views.SplashScreen.SplashScreen();
+                        }
+                    }
                 };
 
                 CrossFirebasePushNotification.Current.OnNotificationOpened += (s, p) =>
                 {
-                    IsNotification = true;
+                    Settings.IsNotification = true;
                 };
 
                 CrossFirebasePushNotification.Current.OnNotificationAction += (s, p) =>
@@ -175,6 +195,8 @@ namespace aptdealzMExecutiveMobile
 
         protected override void OnResume()
         {
+            if (App.stoppableTimer != null)
+                stoppableTimer.Start();
         }
         #endregion
     }

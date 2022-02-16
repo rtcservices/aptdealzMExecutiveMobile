@@ -2,6 +2,7 @@
 using Android.App;
 using Android.Content;
 using aptdealzMExecutiveMobile.Droid.DependencService;
+using aptdealzMExecutiveMobile.Utility;
 using Firebase.Messaging;
 
 namespace aptdealzMExecutiveMobile.Droid
@@ -16,8 +17,19 @@ namespace aptdealzMExecutiveMobile.Droid
         }
         public override void OnMessageReceived(RemoteMessage message)
         {
-            base.OnMessageReceived(message);
-            new NotificationHelper().ScheduleNotification(message.GetNotification().Title, message.GetNotification().Body);
+            try
+            {
+                base.OnMessageReceived(message);
+                if (!Utility.Settings.IsMuteMode)
+                {
+                    NotificationHelper notificationHelper = new NotificationHelper();
+                    notificationHelper.ScheduleNotification(message.GetNotification().Title, message.GetNotification().Body);
+                }
+            }
+            catch (System.Exception ex)
+            {
+                Common.DisplayErrorMessage("MyFirebaseMessagingService/OnMessageReceived: " + ex.Message);
+            }
         }
     }
 }

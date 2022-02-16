@@ -60,7 +60,7 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
                     {
                         isNavigate = true;
 
-                        if (selectedView == Constraints.Str_Settings)
+                        if (selectedView == Constraints.Str_Settings || selectedView == Constraints.Str_Support)
                             Navigation.PushAsync(new MainTabbedPages.MainTabbedPage(Constraints.Str_Home));
 
                         selectedView = Constraints.Str_Home;

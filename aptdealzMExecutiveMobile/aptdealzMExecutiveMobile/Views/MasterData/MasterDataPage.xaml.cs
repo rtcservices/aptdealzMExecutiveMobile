@@ -1,5 +1,6 @@
 ﻿using aptdealzMExecutiveMobile.Repository;
 using aptdealzMExecutiveMobile.Utility;
+using aptdealzMExecutiveMobile.Views.DashboardPages;
 using System;
 using System.ComponentModel;
 using Xamarin.Forms;
@@ -10,12 +11,12 @@ namespace aptdealzMExecutiveMobile.Views.MasterData
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MasterDataPage : MasterDetailPage
     {
-        public MasterDataPage(bool isNotification = false)
+        public MasterDataPage()
         {
             try
             {
                 InitializeComponent();
-                BindNavigation(isNotification);
+                BindNavigation();
 
                 BackgroundWorker backgroundWorker = new BackgroundWorker();
                 backgroundWorker.DoWork += delegate
@@ -37,16 +38,28 @@ namespace aptdealzMExecutiveMobile.Views.MasterData
             }
         }
 
-        void BindNavigation(bool isNotification = false)
+        void BindNavigation()
         {
             try
             {
                 Common.MasterData = this;
                 Common.MasterData.Master = new MenuPage();
-                if (isNotification == false)
+                if (!Settings.IsNotification)
+                {
                     Common.MasterData.Detail = new NavigationPage(new MainTabbedPages.MainTabbedPage(Constraints.Str_Home));
+                }
                 else
-                    Common.MasterData.Detail = new NavigationPage(new Views.DashboardPages.NotificationPage());
+                {
+                    if (Common.mExecutiveDetails != null && !Common.EmptyFiels(Common.Token))
+                    {
+                        Common.MasterData.Detail = new NavigationPage(new NotificationPage());
+                    }
+                    else
+                    {
+                        Common.MasterData.Detail = new Views.SplashScreen.SplashScreen();
+                    }
+                    Settings.IsNotification = false;
+                }
 
                 MasterBehavior = MasterBehavior.Popover;
                 Common.MasterData.IsGestureEnabled = false;

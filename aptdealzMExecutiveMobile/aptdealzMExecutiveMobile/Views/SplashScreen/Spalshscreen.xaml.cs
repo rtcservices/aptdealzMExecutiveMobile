@@ -9,10 +9,10 @@ using Xamarin.Forms.Xaml;
 namespace aptdealzMExecutiveMobile.Views.SplashScreen
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Spalshscreen : ContentPage
+    public partial class SplashScreen : ContentPage
     {
         #region [ Constructor ]
-        public Spalshscreen()
+        public SplashScreen()
         {
             InitializeComponent();
         }

@@ -59,7 +59,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARM64</MtouchArch>
-	<BuildIpa>true</BuildIpa>
+    <BuildIpa>true</BuildIpa>
     <CodesignKey>iPhone Distribution: SyamKumar Thundiyil Sasidharan (Z5A8L9L245)</CodesignKey>
     <CodesignEntitlements>
     </CodesignEntitlements>
@@ -75,13 +75,20 @@
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Service\FirebaseAuthenticator.cs" />
     <Compile Include="Service\HtmlToPDFService.cs" />
+    <Compile Include="Service\RingtoneManagerService.cs" />
     <Compile Include="UserNotificationCenterDelegate.cs" />
     <None Include="Entitlements.plist" />
     <BundleResource Include="GoogleService-Info.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
+    <BundleResource Include="Resources\Poppins-Bold.otf" />
+    <BundleResource Include="Resources\Poppins-Light.otf" />
+    <BundleResource Include="Resources\Poppins-Medium.otf" />
     <BundleResource Include="Resources\Poppins-Medium.ttf" />
+    <BundleResource Include="Resources\Poppins-Regular.otf" />
     <BundleResource Include="Resources\Poppins-Regular.ttf" />
+    <BundleResource Include="Resources\Poppins-SemiBold.otf" />
     <BundleResource Include="Resources\Poppins-SemiBold.ttf" />
   </ItemGroup>
   <ItemGroup>
@@ -139,7 +146,6 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon87.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
@@ -233,154 +239,142 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\iconAccount.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <SubType>Designer</SubType>
-    </BundleResource>
+    <BundleResource Include="Resources\Default-568h%402x.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\iconAccountActive.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <SubType>Designer</SubType>
-    </BundleResource>
+    <BundleResource Include="Resources\Default-Portrait.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\iconBackArrow.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <SubType>Designer</SubType>
-    </BundleResource>
+    <BundleResource Include="Resources\Default-Portrait%402x.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\iconCamera.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <SubType>Designer</SubType>
-    </BundleResource>
+    <BundleResource Include="Resources\Default.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\iconCheck.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <SubType>Designer</SubType>
-    </BundleResource>
+    <BundleResource Include="Resources\Default%402x.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\iconClose.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <SubType>Designer</SubType>
-    </BundleResource>
+    <BundleResource Include="Resources\icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\iconDownArrow.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <SubType>Designer</SubType>
-    </BundleResource>
+    <BundleResource Include="Resources\iconAccount.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\iconEdit.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <SubType>Designer</SubType>
-    </BundleResource>
+    <BundleResource Include="Resources\iconAccountActive.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\iconEditBlack.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <SubType>Designer</SubType>
-    </BundleResource>
+    <BundleResource Include="Resources\iconAccountWhite.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\iconFiles.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <SubType>Designer</SubType>
-    </BundleResource>
+    <BundleResource Include="Resources\iconAddSeller.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\iconFiles2.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <SubType>Designer</SubType>
-    </BundleResource>
+    <BundleResource Include="Resources\iconAddSellerBlack.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\iconFilter.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <SubType>Designer</SubType>
-    </BundleResource>
+    <BundleResource Include="Resources\iconAddSellerOrange.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\iconHeaderLogo.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <SubType>Designer</SubType>
-    </BundleResource>
+    <BundleResource Include="Resources\iconAddSellerWhite.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\iconHide.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <SubType>Designer</SubType>
-    </BundleResource>
+    <BundleResource Include="Resources\iconBackArrow.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\iconHome.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <SubType>Designer</SubType>
-    </BundleResource>
+    <BundleResource Include="Resources\iconBackArrowWhite.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\iconHomeActive.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <SubType>Designer</SubType>
-    </BundleResource>
+    <BundleResource Include="Resources\iconCamera.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\iconLogo.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <SubType>Designer</SubType>
-    </BundleResource>
+    <BundleResource Include="Resources\iconCheck.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\iconMenu.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <SubType>Designer</SubType>
-    </BundleResource>
+    <BundleResource Include="Resources\iconClose.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\iconMusic.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <SubType>Designer</SubType>
-    </BundleResource>
+    <BundleResource Include="Resources\iconDownArrow.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\iconNotification.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <SubType>Designer</SubType>
-    </BundleResource>
+    <BundleResource Include="Resources\iconEdit.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\iconOrders.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <SubType>Designer</SubType>
-    </BundleResource>
+    <BundleResource Include="Resources\iconEditBlack.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\iconOrdersActive.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <SubType>Designer</SubType>
-    </BundleResource>
+    <BundleResource Include="Resources\iconEditBlackWhite.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\iconQuestion.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <SubType>Designer</SubType>
-    </BundleResource>
+    <BundleResource Include="Resources\iconFiles.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\iconRadioSelect.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <SubType>Designer</SubType>
-    </BundleResource>
+    <BundleResource Include="Resources\iconFiles2.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\iconRadioUnselect.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <SubType>Designer</SubType>
-    </BundleResource>
+    <BundleResource Include="Resources\iconFilter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\iconFilterWhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\iconGear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\iconHeaderLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\iconHide.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\iconHome.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\iconHomeActive.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\iconHomeWhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\iconLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\iconManageSeller.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\iconManageSellerActive.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\iconManageSellerBlack.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\iconManageSellerWhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\iconMenu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\iconMusic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\iconNotification.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\iconOrders.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\iconOrdersActive.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\iconOrdersWhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\iconQuestion.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\iconRadioSelect.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\iconRadioUnselect.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\iconRequirements.png" />
@@ -389,229 +383,88 @@
     <BundleResource Include="Resources\iconRequirementsActive.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\iconRightArrow.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <SubType>Designer</SubType>
-    </BundleResource>
+    <BundleResource Include="Resources\iconRightArrow.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\iconSad.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <SubType>Designer</SubType>
-    </BundleResource>
+    <BundleResource Include="Resources\iconSad.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\iconSearch.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <SubType>Designer</SubType>
-    </BundleResource>
+    <BundleResource Include="Resources\iconSearch.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\iconSend.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <SubType>Designer</SubType>
-    </BundleResource>
+    <BundleResource Include="Resources\iconSend.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\iconShowGray.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <SubType>Designer</SubType>
-    </BundleResource>
+    <BundleResource Include="Resources\iconShowGray.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\iconSmile.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <SubType>Designer</SubType>
-    </BundleResource>
+    <BundleResource Include="Resources\iconSmile.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\iconSortASC.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <SubType>Designer</SubType>
-    </BundleResource>
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconSortDSC.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <SubType>Designer</SubType>
-    </BundleResource>
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconUncheck.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <SubType>Designer</SubType>
-    </BundleResource>
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconUplode.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <SubType>Designer</SubType>
-    </BundleResource>
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconUserAccount.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <SubType>Designer</SubType>
-    </BundleResource>
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconVideo.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <SubType>Designer</SubType>
-    </BundleResource>
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\imgAboutAptDealz.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <SubType>Designer</SubType>
-    </BundleResource>
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\imgActiveRequirements.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <SubType>Designer</SubType>
-    </BundleResource>
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\imgContact.jpg">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <SubType>Designer</SubType>
-    </BundleResource>
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\imgContactSupport.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <SubType>Designer</SubType>
-    </BundleResource>
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\imgNotifications.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <SubType>Designer</SubType>
-    </BundleResource>
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\imgPostRequirements.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <SubType>Designer</SubType>
-    </BundleResource>
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\imgProfile.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <SubType>Designer</SubType>
-    </BundleResource>
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\imgUploadImage.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <SubType>Designer</SubType>
-    </BundleResource>
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\imgWelcomeOne.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <SubType>Designer</SubType>
-    </BundleResource>
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\imgWelcomeThree.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <SubType>Designer</SubType>
-    </BundleResource>
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\imgWelcomeTwo.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <SubType>Designer</SubType>
-    </BundleResource>
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\SplashScreenLogo.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <SubType>Designer</SubType>
-    </BundleResource>
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconUpArrow.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <SubType>Designer</SubType>
-    </BundleResource>
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconAddSeller.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <SubType>Designer</SubType>
-    </BundleResource>
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconAddSellerBlack.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <SubType>Designer</SubType>
-    </BundleResource>
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconAddSellerOrange.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <SubType>Designer</SubType>
-    </BundleResource>
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconManageSeller.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <SubType>Designer</SubType>
-    </BundleResource>
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconManageSellerActive.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <SubType>Designer</SubType>
-    </BundleResource>
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconManageSellerBlack.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <SubType>Designer</SubType>
-    </BundleResource>
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\icon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconGear.png" />
+    <BundleResource Include="Resources\iconSortASC.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\iconSortASCWhite.png" />
   </ItemGroup>
   <ItemGroup>
+    <BundleResource Include="Resources\iconSortDSC.png" />
+  </ItemGroup>
+  <ItemGroup>
     <BundleResource Include="Resources\iconSortDSCWhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\iconUncheck.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\iconUpArrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\iconUplode.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\iconUserAccount.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\iconVideo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\imgAboutAptDealz.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\imgActiveRequirements.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\imgContact.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\imgContactSupport.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\imgContactWhite.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\iconBackArrowWhite.png" />
+    <BundleResource Include="Resources\imgNotifications.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\iconFilterWhite.png" />
+    <BundleResource Include="Resources\imgPostRequirements.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\iconHomeWhite.png" />
+    <BundleResource Include="Resources\imgProfile.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\iconOrdersWhite.png" />
+    <BundleResource Include="Resources\imgUploadImage.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\iconAccountWhite.png" />
+    <BundleResource Include="Resources\imgWelcomeOne.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\iconAddSellerWhite.png" />
+    <BundleResource Include="Resources\imgWelcomeThree.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\iconEditBlackWhite.png" />
+    <BundleResource Include="Resources\imgWelcomeTwo.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\iconManageSellerWhite.png" />
+    <BundleResource Include="Resources\SplashScreenLogo.png" />
   </ItemGroup>
   <ProjectExtensions>
     <VisualStudio>

@@ -44,7 +44,7 @@ namespace aptdealzMExecutiveMobile.iOS
             DependencyService.Register<IFirebaseAuthenticator, FirebaseAuthenticator>();
 
             // Added by BK 10-14-2021
-            FirebasePushNotificationManager.CurrentNotificationPresentationOption = UNNotificationPresentationOptions.Alert | UNNotificationPresentationOptions.Badge;
+            FirebasePushNotificationManager.CurrentNotificationPresentationOption = UNNotificationPresentationOptions.Sound | UNNotificationPresentationOptions.Alert | UNNotificationPresentationOptions.Badge;
             UNUserNotificationCenter.Current.Delegate = new UserNotificationCenterDelegate();
 
             return base.FinishedLaunching(app, options);

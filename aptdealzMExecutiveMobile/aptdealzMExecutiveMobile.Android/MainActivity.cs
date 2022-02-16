@@ -13,24 +13,28 @@ using aptdealzMExecutiveMobile.Utility;
 using DLToolkit.Forms.Controls;
 using FFImageLoading.Forms.Platform;
 using Firebase;
+using Plugin.CurrentActivity;
 using Plugin.FirebasePushNotification;
 using Plugin.Permissions;
 using System;
-using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using AndroidApp = Android.App.Application;
 
 namespace aptdealzMExecutiveMobile.Droid
 {
     [Activity(Label = "Aptdealz Pro", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
+        public static Android.Net.Uri DefaultNotificationSoundURI { get; set; }
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             UserDialogs.Init(this);
 
             base.OnCreate(savedInstanceState);
             AppCompatDelegate.DefaultNightMode = AppCompatDelegate.ModeNightNo;
+            CrossCurrentActivity.Current.Init(this, savedInstanceState);
 
             FirebaseApp.InitializeApp(this);
 
@@ -45,11 +49,36 @@ namespace aptdealzMExecutiveMobile.Droid
             Rg.Plugins.Popup.Popup.Init(this);
             //GetPermission();
             CameraPermission();
+
+            #region [ Get Notification Tone Name ]
+            var notificationManager = (NotificationManager)AndroidApp.Context.GetSystemService(AndroidApp.NotificationService);
+            var activeChannel = notificationManager.GetNotificationChannel("fcm_fallback_notification_channel");
+            if (activeChannel != null && activeChannel.Sound != null)
+            {
+                if (!Common.EmptyFiels(activeChannel.Sound.Query))
+                {
+                    Settings.NotificationToneName = activeChannel.Sound.Query.Split('&')[0].Replace("title=", "");
+                }
+            }
+            else
+            {
+                activeChannel = notificationManager.GetNotificationChannel("default");
+                if (activeChannel != null && activeChannel.Sound != null)
+                {
+                    if (!Common.EmptyFiels(activeChannel.Sound.Query))
+                    {
+                        Settings.NotificationToneName = activeChannel.Sound.Query.Split('&')[0].Replace("title=", "");
+                    }
+                }
+            }
+            #endregion
+
             LoadApplication(new App());
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
@@ -134,7 +163,7 @@ namespace aptdealzMExecutiveMobile.Droid
                     const string Camerapermission = Manifest.Permission.Camera;
                     if (CheckSelfPermission(Camerapermission) != (int)Android.Content.PM.Permission.Granted)
                     {
-                        RequestPermissions(new string[] { Manifest.Permission.Camera }, 101);
+                        RequestPermissions(new string[] { Manifest.Permission.Camera, }, 101);
                     }
                 }
             }
@@ -148,7 +177,7 @@ namespace aptdealzMExecutiveMobile.Droid
         protected override void OnNewIntent(Intent intent)
         {
             FirebasePushNotificationManager.ProcessIntent(this, intent);
-            //CreateNotificationFromIntent(intent);
+            CreateNotificationFromIntent(intent);
         }
 
         void CreateNotificationFromIntent(Intent intent)
