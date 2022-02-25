@@ -47,7 +47,7 @@
                                 HorizontalOptions="CenterAndExpand"
                                 HorizontalTextAlignment="Center"
                                 Style="{StaticResource lblLight}"
-                                Text="Login to your AptDealz Account of&#10;Marketting Executive" />
+                                Text="Login to your Quotesouk Account of&#10;Marketting Executive" />
                         </StackLayout>
 
                         <!--  Entry / Get Otp  Button  -->
