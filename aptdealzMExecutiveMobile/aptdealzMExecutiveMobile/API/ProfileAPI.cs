@@ -44,7 +44,59 @@ namespace aptdealzMExecutiveMobile.API
             }
             return mResponse;
         }
-
+        public async Task<List<State>> GetStateByCountryId(int CountryId)
+        {
+            List<State> mState = new List<State>();
+            try
+            {
+                if (CrossConnectivity.Current.IsConnected)
+                {
+                    using (var hcf = new HttpClientFactory())
+                    {
+                        string url = string.Format(EndPointURL.State, (int)App.Current.Resources["Version"], CountryId);
+                        var response = await hcf.GetAsync(url);
+                        var responseJson = await response.Content.ReadAsStringAsync();
+                        if (response.IsSuccessStatusCode)
+                        {
+                            mState = JsonConvert.DeserializeObject<List<State>>(responseJson);
+                        }
+                        else if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                        {
+                            var errorString = JsonConvert.DeserializeObject<string>(responseJson);
+                            if (errorString == Constraints.Session_Expired)
+                            {
+                                mState = null;
+                                MessagingCenter.Unsubscribe<string>(this, Constraints.Str_NotificationCount);
+                                Common.ClearAllData();
+                            }
+                        }
+                        else if (response.StatusCode == System.Net.HttpStatusCode.ServiceUnavailable
+                                || response.StatusCode == System.Net.HttpStatusCode.InternalServerError
+                                || responseJson.Contains(Constraints.Str_AccountDeactivated) && response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+                        {
+                            mState = null;
+                        }
+                        else
+                        {
+                            mState = null;
+                        }
+                    }
+                }
+                else
+                {
+                    if (await Common.InternetConnection())
+                    {
+                        await GetStateByCountryId(CountryId);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                mState = null;
+                Common.DisplayErrorMessage("ProfileAPI/GetStateByCountryId: " + ex.Message);
+            }
+            return mState;
+        }
         public async Task<List<Country>> GetCountry()
         {
             List<Country> mCountries = new List<Country>();
@@ -76,12 +128,15 @@ namespace aptdealzMExecutiveMobile.API
                                 || responseJson.Contains(Constraints.Str_AccountDeactivated) && response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
                         {
                             mCountries = null;
-                            MessagingCenter.Unsubscribe<string>(this, Constraints.Str_NotificationCount);
-                            Common.ClearAllData();
                         }
                         else
                         {
                             mCountries = null;
+                        }
+                        if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+                        {
+                            Common.ClearAllData();
+                            MessagingCenter.Unsubscribe<string>(this, Constraints.Str_NotificationCount);
                         }
                     }
                 }

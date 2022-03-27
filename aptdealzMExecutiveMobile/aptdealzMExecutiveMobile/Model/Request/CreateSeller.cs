@@ -45,10 +45,10 @@ namespace aptdealzMExecutiveMobile.Model.Request
         public int CountryId { get; set; }
 
         [JsonProperty("latitude")]
-        public int Latitude { get; set; }
+        public double Latitude { get; set; }
 
         [JsonProperty("longitude")]
-        public int Longitude { get; set; }
+        public double Longitude { get; set; }
 
         [JsonProperty("description")]
         public string Description { get; set; }

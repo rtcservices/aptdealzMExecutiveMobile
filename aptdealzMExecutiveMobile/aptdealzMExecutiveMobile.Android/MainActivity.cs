@@ -47,7 +47,7 @@ namespace aptdealzMExecutiveMobile.Droid
             FlowListView.Init();
             CachedImageRenderer.Init(true);
             Rg.Plugins.Popup.Popup.Init(this);
-            //GetPermission();
+            GetPermission();
             CameraPermission();
 
             #region [ Get Notification Tone Name ]
@@ -105,7 +105,7 @@ namespace aptdealzMExecutiveMobile.Droid
                 const string AccessFineLocationpermission = Manifest.Permission.AccessFineLocation;
                 const string AccessCoarseLocationpermission = Manifest.Permission.AccessCoarseLocation;
                 const string AccessLocationExtraCommandspermission = Manifest.Permission.AccessLocationExtraCommands;
-                const string AccessMockLocationpermission = Manifest.Permission.AccessMockLocation;
+                //const string AccessMockLocationpermission = Manifest.Permission.AccessMockLocation;
                 const string AccessNetworkStatepermission = Manifest.Permission.AccessNetworkState;
                 const string ChangeWifiStatepermission = Manifest.Permission.ChangeWifiState;
                 const string Internetpermission = Manifest.Permission.Internet;
@@ -120,7 +120,7 @@ namespace aptdealzMExecutiveMobile.Droid
                 if (CheckSelfPermission(AccessFineLocationpermission) != (int)Android.Content.PM.Permission.Granted
                    || CheckSelfPermission(AccessCoarseLocationpermission) != (int)Android.Content.PM.Permission.Granted
                    || CheckSelfPermission(AccessLocationExtraCommandspermission) != (int)Android.Content.PM.Permission.Granted
-                   || CheckSelfPermission(AccessMockLocationpermission) != (int)Android.Content.PM.Permission.Granted
+                   //|| CheckSelfPermission(AccessMockLocationpermission) != (int)Android.Content.PM.Permission.Granted
                    || CheckSelfPermission(AccessNetworkStatepermission) != (int)Android.Content.PM.Permission.Granted
                    || CheckSelfPermission(ChangeWifiStatepermission) != (int)Android.Content.PM.Permission.Granted
                    || CheckSelfPermission(Internetpermission) != (int)Android.Content.PM.Permission.Granted
@@ -137,7 +137,7 @@ namespace aptdealzMExecutiveMobile.Droid
                         Manifest.Permission.AccessFineLocation,
                         Manifest.Permission.AccessCoarseLocation,
                         Manifest.Permission.AccessLocationExtraCommands,
-                        Manifest.Permission.AccessMockLocation,
+                        //Manifest.Permission.AccessMockLocation,
                         Manifest.Permission.AccessNetworkState,
                         Manifest.Permission.ChangeWifiState,
                         Manifest.Permission.Internet,

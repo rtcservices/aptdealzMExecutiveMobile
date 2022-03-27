@@ -204,9 +204,11 @@
                                         </Grid.RowDefinitions>
                                         <Label
                                             Grid.Row="0"
+                                            BackgroundColor="Transparent"
                                             FontSize="15"
                                             HorizontalOptions="StartAndExpand"
                                             Style="{StaticResource lblSemiBold}"
+                                            TextColor="{StaticResource appColor1}"
                                             Text="{Binding SellerNo}" />
                                         <Label
                                             Grid.Row="1"

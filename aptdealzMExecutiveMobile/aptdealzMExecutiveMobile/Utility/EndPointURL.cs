@@ -11,6 +11,7 @@
         public const string GetMyProfileData = "api/v{0}/MarkettingExecutiveManagement/GetMyProfileData";
         public const string SaveProfile = "api/v{0}/MarkettingExecutiveManagement/Update";
         public const string Country = "api/v{0}/Country/Get";
+        public const string State = "api/v{0}/Country/GetAllStatesByCountryId?CountryId={1}";
         public const string FileUpload = "api/FileUpload";
         public const string GetPincodeInfo = "api/IndianPincode/GetPincodeInfo/{0}";
 

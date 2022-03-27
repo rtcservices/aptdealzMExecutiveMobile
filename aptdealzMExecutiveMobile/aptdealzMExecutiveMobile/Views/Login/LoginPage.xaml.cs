@@ -37,6 +37,7 @@ namespace aptdealzMExecutiveMobile.Views.Login
 
         protected override void OnDisappearing()
         {
+            UserDialogs.Instance.HideLoading();
             base.OnDisappearing();
             Dispose();
         }

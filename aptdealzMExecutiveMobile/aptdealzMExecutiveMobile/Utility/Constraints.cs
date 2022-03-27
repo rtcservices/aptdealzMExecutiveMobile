@@ -152,6 +152,7 @@ namespace aptdealzMExecutiveMobile.Utility
         public const string InValid_AltNumber = "Please enter valid alternate phone number!";
         public const string InValid_OTP = "Verification code is invalid! Try again!";
         public const string InValid_Nationality = "Please enter valid nationality!";
+        public const string InValid_State = "Please enter valid state!";
 
         public const string InValid_Pincode = "Please enter valid pincode!";
         public const string InValid_DeliveryPinCode = "Please enter valid delivery location pin code!";

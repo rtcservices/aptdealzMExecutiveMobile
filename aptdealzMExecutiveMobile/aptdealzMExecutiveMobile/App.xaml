@@ -26,7 +26,7 @@
         <!--#region [ Colors ]-->
 
         <Color x:Key="ErrorBackground">#ff4d4f</Color>
-        <Color x:Key="SuccessBackground">#52c41a</Color>
+        <Color x:Key="SuccessBackground">#5d0060</Color>
         <Color x:Key="WarningBackground">#1890ff</Color>
 
         <Color x:Key="appColor1">#7f017e</Color>
@@ -188,7 +188,7 @@
             <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
             <Setter Property="VerticalOptions" Value="CenterAndExpand" />
             <Setter Property="Margin" Value="0" />
-            <Setter Property="Padding" Value="10" />
+            <Setter Property="Padding" Value="0" />
             <Setter Property="BackgroundColor" Value="Transparent" />
             <Setter Property="Source" Value="iconHeaderLogo.png" />
         </Style>

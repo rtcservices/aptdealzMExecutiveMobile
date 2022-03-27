@@ -7,12 +7,15 @@ using aptdealzMExecutiveMobile.Repository;
 using aptdealzMExecutiveMobile.Utility;
 using aptdealzMExecutiveMobile.Views.DashboardPages;
 using dotMorten.Xamarin.Forms;
+using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -25,7 +28,7 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
     {
         #region [ Properties ]
         public event PropertyChangedEventHandler PropertyChanged;
-
+        private CancellationTokenSource cts;
         protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -41,6 +44,16 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
                 OnPropertyChanged("mCountriesData");
             }
         }
+        private ObservableCollection<string> _mStatesData;
+        public ObservableCollection<string> mStatesData
+        {
+            get { return _mStatesData; }
+            set
+            {
+                _mStatesData = value;
+                OnPropertyChanged("mStatesData");
+            }
+        }
         #endregion
 
         #region [ Object ]
@@ -51,6 +64,7 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
         private List<SubCategory> mSubCategories;
         private List<string> selectedSubCategory;
         private List<string> documentList;
+        private  List<State> mStates { get; set; }
 
         private string SellerId = string.Empty;
         private string relativePath = string.Empty;
@@ -68,9 +82,11 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
         {
             try
             {
+                cts = new CancellationTokenSource();
                 InitializeComponent();
                 SellerId = sellerId;
                 BindObjects();
+                CheckPermissionStatusAsync().ConfigureAwait(false);
             }
             catch (Exception ex)
             {
@@ -131,7 +147,6 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
 
                 txtStreet.Keyboard = Keyboard.Create(KeyboardFlags.CapitalizeWord);
                 txtCity.Keyboard = Keyboard.Create(KeyboardFlags.CapitalizeWord);
-                txtState.Keyboard = Keyboard.Create(KeyboardFlags.CapitalizeWord);
                 txtLandmark.Keyboard = Keyboard.Create(KeyboardFlags.CapitalizeWord);
 
                 txtDescription.Keyboard = Keyboard.Create(KeyboardFlags.CapitalizeWord);
@@ -259,6 +274,20 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
                 Common.DisplayErrorMessage("AddSellerView/GetCountries: " + ex.Message);
             }
         }
+        private async Task GetStateByCountryId(int CountryId)
+        {
+            try
+            {
+                UserDialogs.Instance.ShowLoading(Constraints.Loading);
+                mStates = await DependencyService.Get<IProfileRepository>().GetStateByCountryId(CountryId);
+            }
+            catch (Exception ex)
+            {
+                Common.DisplayErrorMessage("AddSellerView/GetStateByCountryId: " + ex.Message);
+                UserDialogs.Instance.HideLoading();
+            }
+            UserDialogs.Instance.HideLoading();
+        }
 
         private async Task BindSellerDetails()
         {
@@ -283,10 +312,16 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
                     txtBuildingNumber.Text = mSellerDetail.Building;
                     txtStreet.Text = mSellerDetail.Street;
                     txtCity.Text = mSellerDetail.City;
-                    txtState.Text = mSellerDetail.State;
+                    pkState.Text = mSellerDetail.State;
                     txtPinCode.Text = mSellerDetail.PinCode;
                     txtLandmark.Text = mSellerDetail.Landmark;
                     pkNationality.Text = mSellerDetail.Nationality;
+
+                    var Country = Common.mCountries.Where(x => x.Name.ToLower() == pkNationality.Text.ToLower().ToString()).FirstOrDefault();
+                    if (Country != null)
+                    {
+                        await GetStateByCountryId(Country.CountryId);
+                    }
                     #endregion
 
                     #region [ Company Profile ]
@@ -593,7 +628,7 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
             try
             {
                 if (Common.EmptyFiels(txtBuildingNumber.Text) || Common.EmptyFiels(txtStreet.Text)
-        || Common.EmptyFiels(txtCity.Text) || Common.EmptyFiels(txtState.Text)
+        || Common.EmptyFiels(txtCity.Text) || Common.EmptyFiels(pkState.Text)
         || Common.EmptyFiels(pkNationality.Text) || Common.EmptyFiels(txtPinCode.Text)
         || Common.EmptyFiels(txtLandmark.Text))
                 {
@@ -610,9 +645,13 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
                     {
                         Common.DisplayErrorMessage(Constraints.Required_City);
                     }
-                    else if (Common.EmptyFiels(txtState.Text))
+                    else if (Common.EmptyFiels(pkState.Text))
                     {
                         Common.DisplayErrorMessage(Constraints.Required_State);
+                    }
+                    else if (mStates.Where(x => x.Name.ToLower() == pkState.Text.ToLower()).Count() == 0)
+                    {
+                        Common.DisplayErrorMessage(Constraints.InValid_State);
                     }
                     else if (Common.EmptyFiels(pkNationality.Text))
                     {
@@ -707,7 +746,7 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
                         isUpdate = true;
                     else if (mSellerDetail.City != txtCity.Text)
                         isUpdate = true;
-                    else if (mSellerDetail.State != txtState.Text)
+                    else if (mSellerDetail.State != pkState.Text)
                         isUpdate = true;
                     else if (mSellerDetail.PinCode != txtPinCode.Text)
                         isUpdate = true;
@@ -756,7 +795,7 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
                     BoxCity.BackgroundColor = (Color)App.Current.Resources["appColor3"];
                 }
 
-                if (Common.EmptyFiels(txtState.Text))
+                if (Common.EmptyFiels(pkState.Text))
                 {
                     BoxState.BackgroundColor = (Color)App.Current.Resources["appColor3"];
                 }
@@ -1000,8 +1039,8 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
                     txtStreet.Text = txtStreet.Text.Trim();
                 if (!Common.EmptyFiels(txtCity.Text))
                     txtCity.Text = txtCity.Text.Trim();
-                if (!Common.EmptyFiels(txtState.Text))
-                    txtState.Text = txtState.Text.Trim();
+                if (!Common.EmptyFiels(pkState.Text))
+                    pkState.Text = pkState.Text.Trim();
                 if (!Common.EmptyFiels(txtPinCode.Text))
                     txtPinCode.Text = txtPinCode.Text.Trim();
                 if (!Common.EmptyFiels(txtLandmark.Text))
@@ -1082,7 +1121,7 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
                 mUpdateSeller.Building = txtBuildingNumber.Text;
                 mUpdateSeller.Street = txtStreet.Text;
                 mUpdateSeller.City = txtCity.Text;
-                mUpdateSeller.State = txtState.Text;
+                mUpdateSeller.State = pkState.Text;
                 mUpdateSeller.PinCode = txtPinCode.Text;
                 mUpdateSeller.Landmark = txtLandmark.Text;
                 mUpdateSeller.CountryId = (int)(Common.mCountries.Where(x => x.Name.ToLower() == pkNationality.Text.ToLower().ToString()).FirstOrDefault()?.CountryId);
@@ -1135,8 +1174,55 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
 
             return mUpdateSeller;
         }
+        private async Task CheckPermissionStatusAsync()
+        {
+            try
+            {
+                var status = await CrossPermissions.Current.CheckPermissionStatusAsync<LocationPermission>();
+                if (status != Plugin.Permissions.Abstractions.PermissionStatus.Granted)
+                {
+                    if (await CrossPermissions.Current.ShouldShowRequestPermissionRationaleAsync(Plugin.Permissions.Abstractions.Permission.Location))
+                    {
+                        Common.DisplayWarningMessage("Location permission is required, Please enable it to continue");
+                    }
+                    status = await CrossPermissions.Current.RequestPermissionAsync<LocationPermission>();
+                }
 
-        private Model.Request.CreateSeller FillCreateSeller()
+                if (status == Plugin.Permissions.Abstractions.PermissionStatus.Granted)
+                {
+                    //Query permission
+                }
+                else if (status != Plugin.Permissions.Abstractions.PermissionStatus.Unknown)
+                {
+                    Common.DisplayWarningMessage("Location permission is required, Please enable it from settings to continue");
+                    await Navigation.PushAsync(new MainTabbedPage(Constraints.Str_Home));
+                    //location denied
+                }
+            }
+            catch (Exception ex)
+            {
+                //Something went wrong
+            }
+        }
+        private async Task<Tuple<double, double>> GetCurrentLocation()
+        {
+            try
+            {
+                var request = new GeolocationRequest(GeolocationAccuracy.Medium, TimeSpan.FromSeconds(10));
+                var location = await Geolocation.GetLocationAsync(request, cts.Token);
+                //var location = await Geolocation.GetLocationAsync();
+                if (location != null)
+                {
+                    return Tuple.Create(location.Latitude, location.Longitude);
+                }
+            }
+            catch (Exception ex)
+            {
+                Common.DisplayErrorMessage(ex.Message);
+            }
+            return Tuple.Create(0.0, 0.0);
+        }
+        private async Task<Model.Request.CreateSeller> FillCreateSeller()
         {
             CreateSeller mCreateSeller = new CreateSeller();
             try
@@ -1147,6 +1233,10 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
                 mCreateSeller.Password = txtPassword.Text;
                 mCreateSeller.Email = txtEmail.Text;
                 mCreateSeller.PhoneNumber = txtPhoneNumber.Text;
+                var location = await GetCurrentLocation();
+                mCreateSeller.Latitude = location.Item1;
+                mCreateSeller.Longitude = location.Item2;
+
                 if (!Common.EmptyFiels(txtAltPhoneNumber.Text))
                 {
                     mCreateSeller.AlternativePhoneNumber = txtAltPhoneNumber.Text;
@@ -1157,7 +1247,7 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
                 mCreateSeller.Building = txtBuildingNumber.Text;
                 mCreateSeller.Street = txtStreet.Text;
                 mCreateSeller.City = txtCity.Text;
-                mCreateSeller.State = txtState.Text;
+                mCreateSeller.State = pkState.Text;
                 mCreateSeller.PinCode = txtPinCode.Text;
                 mCreateSeller.Landmark = txtLandmark.Text;
                 mCreateSeller.CountryId = (int)(Common.mCountries.Where(x => x.Name.ToLower() == pkNationality.Text.ToLower().ToString()).FirstOrDefault()?.CountryId);
@@ -1225,7 +1315,7 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
                     var mResponse = new Response();
                     if (Common.EmptyFiels(SellerId))
                     {
-                        var mCreateSellerDetails = FillCreateSeller();
+                        var mCreateSellerDetails = await FillCreateSeller();
                         if (mCreateSellerDetails != null)
                         {
                             mResponse = await sellerManagementAPI.CreateSeller(mCreateSellerDetails);
@@ -1311,7 +1401,7 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
             txtBuildingNumber.Text = string.Empty;
             txtStreet.Text = string.Empty;
             txtCity.Text = string.Empty;
-            txtState.Text = string.Empty;
+            pkState.Text = string.Empty;
             txtPinCode.Text = string.Empty;
             txtLandmark.Text = string.Empty;
             pkNationality.Text = string.Empty;
@@ -1502,6 +1592,11 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
                 if (e.ChosenSuggestion != null)
                 {
                     pkNationality.Text = e.ChosenSuggestion.ToString();
+                    var Country = Common.mCountries.Where(x => x.Name.ToLower() == pkNationality.Text.ToLower().ToString()).FirstOrDefault();
+                    if (Country != null)
+                    {
+                        GetStateByCountryId(Country.CountryId).ConfigureAwait(false);
+                    }
                 }
                 else
                 {
@@ -1518,8 +1613,79 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
         private void AutoSuggestBox_SuggestionChosen(object sender, AutoSuggestBoxSuggestionChosenEventArgs e)
         {
             pkNationality.Text = e.SelectedItem.ToString();
+            var Country = Common.mCountries.Where(x => x.Name.ToLower() == pkNationality.Text.ToLower().ToString()).FirstOrDefault();
+            if (Country != null)
+            {
+                GetStateByCountryId(Country.CountryId).ConfigureAwait(false);
+            }
         }
         #endregion
+
+
+
+        #region [ AutoSuggestBox-state ]
+        int stateI = 0;
+        private void AutoSuggestBox_StateTextChanged(object sender, AutoSuggestBoxTextChangedEventArgs e)
+        {
+            try
+            {
+                if (DeviceInfo.Platform == DevicePlatform.iOS)
+                {
+                    if (isFirstLoad || stateI < 2)
+                    {
+                        isFirstLoad = false;
+                        pkState.IsSuggestionListOpen = false;
+                        stateI++;
+                        return;
+                    }
+                }
+
+                if (mStatesData == null)
+                    mStatesData = new ObservableCollection<string>();
+
+                if (mStatesData != null)
+                    mStatesData.Clear();
+                if (!string.IsNullOrEmpty(pkState.Text))
+                {
+                    mStatesData = new ObservableCollection<string>(mStates.Where(x => x.Name.ToLower().Contains(pkState.Text.ToLower())).Select(x => x.Name));
+                }
+                else
+                {
+                    mStatesData = new ObservableCollection<string>(mStates.Select(x => x.Name));
+                }
+            }
+            catch (Exception ex)
+            {
+                //Common.DisplayErrorMessage("AddSellerView/AutoSuggestBox_StateTextChanged: " + ex.Message);
+            }
+        }
+
+        private void AutoSuggestBox_StateQuerySubmitted(object sender, AutoSuggestBoxQuerySubmittedEventArgs e)
+        {
+            try
+            {
+                if (e.ChosenSuggestion != null)
+                {
+                    pkState.Text = e.ChosenSuggestion.ToString();
+                }
+                else
+                {
+                    // User hit Enter from the search box. Use args.QueryText to determine what to do.
+                    pkState.Unfocus();
+                }
+            }
+            catch (Exception ex)
+            {
+                //Common.DisplayErrorMessage("AddSellerView/AutoSuggestBox_QuerySubmitted: " + ex.Message);
+            }
+        }
+
+        private void AutoSuggestBox_StateSuggestionChosen(object sender, AutoSuggestBoxSuggestionChosenEventArgs e)
+        {
+            pkState.Text = e.SelectedItem.ToString();
+        }
+        #endregion
+
 
         #region [ Category-SubCategory ]
         private async void pkCategory_SelectedIndexChanged(object sender, EventArgs e)

@@ -150,8 +150,8 @@ namespace aptdealzMExecutiveMobile.Services
                     else if (httpResponseMessage.StatusCode == System.Net.HttpStatusCode.ServiceUnavailable)
                     {
                         mResponse.Message = Constraints.ServiceUnavailable;
-                        MessagingCenter.Unsubscribe<string>(this, Constraints.Str_NotificationCount);
-                        Common.ClearAllData();
+                        //MessagingCenter.Unsubscribe<string>(this, Constraints.Str_NotificationCount);
+                        //Common.ClearAllData();
                     }
                     else if (httpResponseMessage.StatusCode == System.Net.HttpStatusCode.InternalServerError)
                     {
@@ -162,8 +162,8 @@ namespace aptdealzMExecutiveMobile.Services
                         else
                         {
                             mResponse.Message = Constraints.Something_Wrong_Server;
-                            MessagingCenter.Unsubscribe<string>(this, Constraints.Str_NotificationCount);
-                            Common.ClearAllData();
+                            //MessagingCenter.Unsubscribe<string>(this, Constraints.Str_NotificationCount);
+                            //Common.ClearAllData();
                         }
                     }
                     else if (responseJson.Contains(Constraints.Str_AccountDeactivated) && httpResponseMessage.StatusCode == System.Net.HttpStatusCode.Unauthorized)
@@ -184,13 +184,18 @@ namespace aptdealzMExecutiveMobile.Services
                             if (!isRefresh)
                             {
                                 mResponse.Message = Constraints.Session_Expired;
-                                MessagingCenter.Unsubscribe<string>(this, Constraints.Str_NotificationCount);
-                                Common.ClearAllData();
+                                //MessagingCenter.Unsubscribe<string>(this, Constraints.Str_NotificationCount);
+                                //Common.ClearAllData();
                             }
                         }
                         else
                         {
                             mResponse = JsonConvert.DeserializeObject<Response>(responseJson);
+                        }
+                        if (httpResponseMessage.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+                        {
+                            Common.ClearAllData();
+                            MessagingCenter.Unsubscribe<string>(this, Constraints.Str_NotificationCount);
                         }
                     }
                 }

@@ -28,6 +28,19 @@ namespace aptdealzMExecutiveMobile.Services
             }
             return mCountry;
         }
+        public async Task<List<State>> GetStateByCountryId(int CountryId)
+        {
+            List<State> mState = new List<State>();
+            try
+            {
+                mState = await profileAPI.GetStateByCountryId(CountryId);
+            }
+            catch (Exception ex)
+            {
+                Common.DisplayErrorMessage("ProfileRepository/GetStateByCountryId: " + ex.Message);
+            }
+            return mState;
+        }
 
         public async Task<List<Category>> GetCategory()
         {

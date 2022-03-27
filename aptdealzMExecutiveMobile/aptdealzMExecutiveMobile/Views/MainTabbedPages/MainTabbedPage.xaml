@@ -28,14 +28,7 @@
                 <ImageButton
                     x:Name="BtnLogo"
                     Grid.Column="1"
-                    Padding="10"
-                    BackgroundColor="Transparent"
-                    Clicked="BtnLogo_Clicked"
-                    HeightRequest="55"
-                    HorizontalOptions="CenterAndExpand"
-                    Source="iconHeaderLogo.png"
-                    VerticalOptions="CenterAndExpand"
-                    WidthRequest="55" />
+                    Style="{StaticResource imgLogo}" />
 
                 <Grid
                     x:Name="GrdNotification"
