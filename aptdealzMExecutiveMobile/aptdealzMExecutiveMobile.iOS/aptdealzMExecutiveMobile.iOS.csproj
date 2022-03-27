@@ -27,6 +27,7 @@
     <MtouchArch>x86_64</MtouchArch>
     <MtouchLink>SdkOnly</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
+    <CodesignKey>Apple Development: RESMY SIVASANKARAN BABU (3KQM2P3V27)</CodesignKey>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -65,6 +66,7 @@
     </CodesignEntitlements>
     <MtouchExtraArgs>--optimize=experimental-xforms-product-type</MtouchExtraArgs>
     <CodesignProvision>Marketting_AdHoc_10-12-2021</CodesignProvision>
+    <MtouchLink>SdkOnly</MtouchLink>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
     <AppExtensionDebugBundleId />
@@ -95,9 +97,6 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon1024.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon120.png">
-      <Visible>false</Visible>
-    </ImageAsset>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon1201.png">
       <Visible>false</Visible>
     </ImageAsset>
@@ -116,16 +115,10 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon29.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon40.png">
-      <Visible>false</Visible>
-    </ImageAsset>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon401.png">
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon402.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon58.png">
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon581.png">
@@ -137,9 +130,6 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon76.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon80.png">
-      <Visible>false</Visible>
-    </ImageAsset>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon801.png">
       <Visible>false</Visible>
     </ImageAsset>
@@ -149,6 +139,20 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon60-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon87-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon120-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon180-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon20-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon40-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon29-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon58-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon80-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon76-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon152-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon167-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\appstore.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon40-2.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -234,7 +238,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\aptdealzMExecutiveMobile\aptdealzMExecutiveMobile.csproj">
-      <Project>{12A6A22A-3341-43A6-8B8D-0A420B480492}</Project>
+      <Project>{830F4F76-74A8-4D3B-B25B-27D69D428946}</Project>
       <Name>aptdealzMExecutiveMobile</Name>
     </ProjectReference>
   </ItemGroup>

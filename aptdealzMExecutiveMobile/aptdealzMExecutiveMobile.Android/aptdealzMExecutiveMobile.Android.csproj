@@ -16,7 +16,6 @@
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-    <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
     <TargetFrameworkVersion>v11.0</TargetFrameworkVersion>
     <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
     <AndroidUseAapt2>true</AndroidUseAapt2>
@@ -215,7 +214,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\aptdealzMExecutiveMobile\aptdealzMExecutiveMobile.csproj">
-      <Project>{12A6A22A-3341-43A6-8B8D-0A420B480492}</Project>
+      <Project>{830F4F76-74A8-4D3B-B25B-27D69D428946}</Project>
       <Name>aptdealzMExecutiveMobile</Name>
     </ProjectReference>
   </ItemGroup>
