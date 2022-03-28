@@ -37,6 +37,7 @@
     <WarningLevel>4</WarningLevel>
     <MtouchLink>None</MtouchLink>
     <MtouchArch>x86_64</MtouchArch>
+    <CodesignKey>iPhone Developer</CodesignKey>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
@@ -61,11 +62,11 @@
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARM64</MtouchArch>
     <BuildIpa>true</BuildIpa>
-    <CodesignKey>iPhone Distribution: SyamKumar Thundiyil Sasidharan (Z5A8L9L245)</CodesignKey>
+    <CodesignKey>iPhone Distribution: APTDEALZ BUYER HUB AND E-TRADING PRIVATE LIMITED (5Y89QMBS2T)</CodesignKey>
     <CodesignEntitlements>
     </CodesignEntitlements>
     <MtouchExtraArgs>--optimize=experimental-xforms-product-type</MtouchExtraArgs>
-    <CodesignProvision>Marketting_AdHoc_10-12-2021</CodesignProvision>
+    <CodesignProvision>QuotesoukProStore</CodesignProvision>
     <MtouchLink>SdkOnly</MtouchLink>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
