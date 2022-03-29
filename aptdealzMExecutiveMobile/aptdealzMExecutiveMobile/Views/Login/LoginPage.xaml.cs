@@ -25,6 +25,7 @@ namespace aptdealzMExecutiveMobile.Views.Login
         public LoginPage()
         {
             InitializeComponent();
+            MessagingCenter.Unsubscribe<string>(this, Constraints.Str_NotificationCount);
         }
         #endregion
 
