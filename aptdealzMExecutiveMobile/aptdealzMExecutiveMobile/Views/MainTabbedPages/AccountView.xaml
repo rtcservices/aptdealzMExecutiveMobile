@@ -242,7 +242,7 @@
 
                             <StackLayout Grid.Row="8" Spacing="{OnPlatform Android=0, iOS=7}">
                                 <StackLayout HorizontalOptions="StartAndExpand" Orientation="Horizontal">
-                                    <Label Style="{StaticResource lblPrimary13}" Text="Nationality" />
+                                    <Label Style="{StaticResource lblPrimary13}" Text="Country" />
                                     <Label Text="*" TextColor="{StaticResource appColor2}" />
                                 </StackLayout>
 
@@ -255,7 +255,6 @@
                                     QuerySubmitted="AutoSuggestBox_QuerySubmitted"
                                     SuggestionChosen="AutoSuggestBox_SuggestionChosen"
                                     TabIndex="8"
-                                    Text="{Binding countryText, Source={x:Reference page1}}"
                                     TextChanged="AutoSuggestBox_TextChanged"
                                     TextColor="{AppThemeBinding Dark={StaticResource appColor6},
                                                                 Light={StaticResource appColor4}}"

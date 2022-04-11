@@ -133,7 +133,7 @@ namespace aptdealzMExecutiveMobile.Utility
         public const string Required_Street = "Please enter street!";
         public const string Required_City = "Please enter city!";
         public const string Required_State = "Please enter state!";
-        public const string Required_Nationality = "Please enter nationality!";
+        public const string Required_Nationality = "Please enter country!";
         public const string Required_PinCode = "Please enter pincode!";
         public const string Required_Landmark = "Please enter landmark!";
         public const string Required_Description = "Please enter description!";
@@ -151,7 +151,7 @@ namespace aptdealzMExecutiveMobile.Utility
         public const string InValid_PhoneNumber = "Please enter valid phone number!";
         public const string InValid_AltNumber = "Please enter valid alternate phone number!";
         public const string InValid_OTP = "Verification code is invalid! Try again!";
-        public const string InValid_Nationality = "Please enter valid nationality!";
+        public const string InValid_Nationality = "Please enter valid country!";
         public const string InValid_State = "Please enter valid state!";
 
         public const string InValid_Pincode = "Please enter valid pincode!";
