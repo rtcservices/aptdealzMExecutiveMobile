@@ -80,6 +80,7 @@ namespace aptdealzMExecutiveMobile.Views.DashboardPages
             }
             try
             {
+                GetNotificationCount();
                 UserDialogs.Instance.ShowLoading(Constraints.Loading);
                 var mResponse = await notificationAPI.GetAllNotificationsForUser();
                 if (mResponse != null && mResponse.Succeeded)
@@ -136,7 +137,22 @@ namespace aptdealzMExecutiveMobile.Views.DashboardPages
                 Common.DisplayErrorMessage("NotificationPage/GetNotification: " + ex.Message);
             }
         }
-
+        private async void GetNotificationCount()
+        {
+            try
+            {
+                var notificationCount = await DependencyService.Get<INotificationRepository>().GetNotificationCount();
+                if (!Common.EmptyFiels(notificationCount))
+                {
+                    Common.NotificationCount = notificationCount;
+                    MessagingCenter.Send<string>(Common.NotificationCount, Constraints.Str_NotificationCount);
+                }
+            }
+            catch (Exception ex)
+            {
+                Common.DisplayErrorMessage("MasterDataPage/GetNotificationCount: " + ex.Message);
+            }
+        }
         private async Task SetUserNoficiationAsReadAndDelete(string NotificationId)
         {
             try

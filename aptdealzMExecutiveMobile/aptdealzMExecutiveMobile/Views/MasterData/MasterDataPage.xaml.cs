@@ -17,20 +17,23 @@ namespace aptdealzMExecutiveMobile.Views.MasterData
             {
                 InitializeComponent();
                 BindNavigation();
-
-                BackgroundWorker backgroundWorker = new BackgroundWorker();
-                backgroundWorker.DoWork += delegate
+                GetNotificationCount();
+                MessagingCenter.Unsubscribe<string>(this, Constraints.NotificationReceived);
+                MessagingCenter.Subscribe<string>(this, Constraints.NotificationReceived, (response) =>
                 {
-                    if (App.stoppableTimer == null)
+                    if (!string.IsNullOrWhiteSpace(Common.NotificationCount))
                     {
-                        App.stoppableTimer = new StoppableTimer(TimeSpan.FromSeconds(3), () =>
+                        try
                         {
-                            GetNotificationCount();
-                        });
+                            var cnt = Convert.ToInt32(Common.NotificationCount) + 1;
+                            Common.NotificationCount = cnt.ToString();
+                        }
+                        catch
+                        {
+                        }
                     }
-                    App.stoppableTimer.Start();
-                };
-                backgroundWorker.RunWorkerAsync();
+                    MessagingCenter.Send<string>(Common.NotificationCount, Constraints.Str_NotificationCount);
+                });
             }
             catch (Exception ex)
             {

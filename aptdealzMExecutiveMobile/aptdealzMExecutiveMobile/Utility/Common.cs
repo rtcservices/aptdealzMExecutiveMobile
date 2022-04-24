@@ -231,11 +231,11 @@ namespace aptdealzMExecutiveMobile.Utility
             mExecutiveDetails = null;
             Token = string.Empty;
             mCountries = null;
-            
+            NotificationCount = string.Empty;
             //Settings.fcm_token = string.Empty; don't empty this token
             App.Current.MainPage = new NavigationPage(new Views.Login.LoginPage());
-            if (App.stoppableTimer != null)
-                App.stoppableTimer.Stop();
+            //if (App.stoppableTimer != null)
+            //    App.stoppableTimer.Stop();
         }
         #endregion
     }

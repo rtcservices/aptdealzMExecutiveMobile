@@ -27,7 +27,16 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
             selectedView = OpenView;
             BindViews(selectedView);
             GetProfile();
-
+            if (!Common.EmptyFiels(Common.NotificationCount))
+            {
+                lblNotificationCount.Text = Common.NotificationCount;
+                frmNotification.IsVisible = true;
+            }
+            else
+            {
+                frmNotification.IsVisible = false;
+                lblNotificationCount.Text = string.Empty;
+            }
             MessagingCenter.Unsubscribe<string>(this, Constraints.Str_NotificationCount);
             MessagingCenter.Subscribe<string>(this, Constraints.Str_NotificationCount, (count) =>
             {
@@ -72,14 +81,14 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
                     //    Navigation.PopAsync();
                     //}
 
-                    if (selectedView == Constraints.Str_Support)
-                    {
-                        if (App.chatStoppableTimer != null)
-                        {
-                            App.chatStoppableTimer.Stop();
-                            App.chatStoppableTimer = null;
-                        }
-                    }
+                    //if (selectedView == Constraints.Str_Support)
+                    //{
+                    //    if (App.chatStoppableTimer != null)
+                    //    {
+                    //        App.chatStoppableTimer.Stop();
+                    //        App.chatStoppableTimer = null;
+                    //    }
+                    //}
                 }
 
                 if (!isNavigate)
@@ -180,6 +189,7 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
                     grdMain.Children.Add(new HomeView());
                 }
                 selectedView = view;
+                MessagingCenter.Send<string>(string.IsNullOrWhiteSpace(Common.NotificationCount) ? "" : Common.NotificationCount, Constraints.Str_NotificationCount);
             }
             catch (Exception ex)
             {

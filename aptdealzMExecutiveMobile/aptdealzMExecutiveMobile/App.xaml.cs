@@ -16,8 +16,8 @@ namespace aptdealzMExecutiveMobile
         #region [ Objects ]
         public static int latitude = 0;
         public static int longitude = 0;
-        public static StoppableTimer stoppableTimer;
-        public static StoppableTimer chatStoppableTimer;
+        //public static StoppableTimer stoppableTimer;
+        //public static StoppableTimer chatStoppableTimer;
         //public static bool IsNotification = false;
         #endregion
 
@@ -189,14 +189,14 @@ namespace aptdealzMExecutiveMobile
 
         protected override void OnSleep()
         {
-            if (App.stoppableTimer != null)
-                stoppableTimer.Stop();
+            //if (App.stoppableTimer != null)
+            //    stoppableTimer.Stop();
         }
 
         protected override void OnResume()
         {
-            if (App.stoppableTimer != null)
-                stoppableTimer.Start();
+            //if (App.stoppableTimer != null)
+            //    stoppableTimer.Start();
         }
         #endregion
     }

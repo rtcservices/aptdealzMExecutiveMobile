@@ -70,7 +70,7 @@
     <AndroidEnableMultiDex>false</AndroidEnableMultiDex>
     <AndroidSupportedAbis>
     </AndroidSupportedAbis>
-    <AndroidPackageFormat>aab</AndroidPackageFormat>
+    <AndroidPackageFormat>apk</AndroidPackageFormat>
     <AndroidUseAapt2>true</AndroidUseAapt2>
     <AndroidCreatePackagePerAbi>false</AndroidCreatePackagePerAbi>
   </PropertyGroup>

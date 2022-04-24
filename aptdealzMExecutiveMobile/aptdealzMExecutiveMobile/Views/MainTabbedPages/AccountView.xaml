@@ -75,7 +75,7 @@
                                         </ffImage:CachedImage.Transformations>
                                     </ffImage:CachedImage>
 
-                                    <Image
+                                    <!--<Image
                                         x:Name="ImgCamera"
                                         Margin="0"
                                         Aspect="Fill"
@@ -87,7 +87,7 @@
                                         <Image.GestureRecognizers>
                                             <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ImgCamera_Tapped" />
                                         </Image.GestureRecognizers>
-                                    </Image>
+                                    </Image>-->
                                 </Grid>
 
                                 <panCake:PancakeView
@@ -302,6 +302,7 @@
                             <Button
                                 x:Name="BtnUpdate"
                                 Grid.Row="0"
+                                IsVisible="false"
                                 Clicked="BtnUpdate_Clicked"
                                 Style="{StaticResource btnPrimary}"
                                 Text="Update" />

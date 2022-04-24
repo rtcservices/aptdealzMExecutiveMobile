@@ -18,6 +18,7 @@ namespace aptdealzMExecutiveMobile.Utility
         public const string Str_TokenExpired = "TokenExpired";
         public const string Str_AccountDeactivated = "account is deactivated";
         public const string Str_NotificationCount = "NotificationCount";
+        public const string NotificationReceived = "NotificationReceived";
         public const string Str_Duplicate = "duplicate";
         public const string THEME_DARKMODE = "DarkModeResources";
         public const string THEME_LIGHTMODE = "LightModeResources";

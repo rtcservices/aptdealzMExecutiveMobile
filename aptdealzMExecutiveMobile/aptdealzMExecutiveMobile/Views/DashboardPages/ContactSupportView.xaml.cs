@@ -15,12 +15,28 @@ using Xamarin.Forms.Xaml;
 namespace aptdealzMExecutiveMobile.Views.DashboardPages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ContactSupportView : ContentView
+    public partial class ContactSupportView : ContentView, INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
         #region [ Objects ]
         SupportChatAPI supportChatAPI;
-        private List<ChatSupport> mMessageList;
+        private List<ChatSupport> _mMessageList;
+        public List<ChatSupport> mMessageList
+        {
+            get { return _mMessageList; }
+            set
+            {
+                _mMessageList = value;
+                OnPropertyChanged("mMessageList");
+            }
+        }
         #endregion
+
 
         #region [ Constructor ]
         public ContactSupportView()
@@ -31,55 +47,42 @@ namespace aptdealzMExecutiveMobile.Views.DashboardPages
                 supportChatAPI = new SupportChatAPI();
                 mMessageList = new List<ChatSupport>();
 
+                Binding binding = new Binding("mMessageList", mode: BindingMode.TwoWay, source: this);
+                lstChar.SetBinding(ListView.ItemsSourceProperty, binding);
+
                 if (DeviceInfo.Platform == DevicePlatform.Android)
                     txtMessage.Keyboard = Keyboard.Create(KeyboardFlags.CapitalizeWord);
-
+                
                 var backgroundWorker = new BackgroundWorker();
-                backgroundWorker.DoWork += delegate
+                backgroundWorker.DoWork += async delegate
                 {
-                    if (App.chatStoppableTimer != null)
-                    {
-                        App.chatStoppableTimer.Stop();
-                        App.chatStoppableTimer = null;
-                    }
-
-                    if (App.chatStoppableTimer == null)
-                    {
-                        App.chatStoppableTimer = new StoppableTimer(TimeSpan.FromSeconds(3), async () =>
-                        {
-                            await GetMessages();
-                        });
-                    }
-                    App.chatStoppableTimer.Start();
+                    await GetMessages();
                 };
-                backgroundWorker.RunWorkerAsync();
+                GetMessages().ConfigureAwait(false);
+                MessagingCenter.Unsubscribe<string>(this, Constraints.NotificationReceived);
+                MessagingCenter.Subscribe<string>(this, Constraints.NotificationReceived, (count) =>
+                {
+                    backgroundWorker.RunWorkerAsync();
+                });
             }
             catch (Exception ex)
             {
-                if (App.chatStoppableTimer != null)
-                {
-                    App.chatStoppableTimer.Stop();
-                    App.chatStoppableTimer = null;
-                }
                 Common.DisplayErrorMessage("ContactSupportPage/Ctor: " + ex.Message);
             }
         }
         #endregion
 
-        #region [ Methods ]     
+        #region [ Methods ]
         private async Task GetMessages()
         {
             try
             {
-                //UserDialogs.Instance.ShowLoading(Constraints.Loading);
                 var mResponse = await supportChatAPI.GetAllMyChat();
-
                 if (mResponse != null && mResponse.Succeeded)
                 {
                     JArray result = (JArray)mResponse.Data;
                     if (result != null)
                     {
-                        //txtMessage.Text = string.Empty;
                         mMessageList = result.ToObject<List<ChatSupport>>();
                         if (mMessageList != null && mMessageList.Count > 0)
                         {
@@ -95,48 +98,53 @@ namespace aptdealzMExecutiveMobile.Views.DashboardPages
                                 {
                                     if (message.IsMessageFromSupportTeam)
                                     {
-                                        message.ChatMessageFromUserProfileImage = "imgContact.jpg";
+                                        message.ChatMessageFromUserProfileImage = Constraints.ImgContact;
                                     }
                                     else
                                     {
-                                        message.ChatMessageFromUserProfileImage = "iconUserAccount.png";
+                                        message.ChatMessageFromUserProfileImage = Constraints.ImgUserAccount;
                                     }
                                 }
                             }
-                            lstChar.IsVisible = true;
-                            lblNoRecord.IsVisible = false;
-                            lstChar.ItemsSource = mMessageList.ToList();
 
-                            var mMessage = mMessageList.LastOrDefault();
-                            if (mMessage != null)
-                                lstChar.ScrollTo(mMessage, ScrollToPosition.End, true);
+                            Device.BeginInvokeOnMainThread(() =>
+                            {
+                                lstChar.IsVisible = true;
+                                lblNoRecord.IsVisible = false;
+                                //lstChar.ItemsSource = mMessageList.ToList();
+
+                                var mMessage = mMessageList.LastOrDefault();
+                                if (mMessage != null)
+                                    lstChar.ScrollTo(mMessage, ScrollToPosition.End, false);
+                            });
                         }
                         else
                         {
-                            lstChar.IsVisible = false;
-                            lblNoRecord.IsVisible = true;
+                            Device.BeginInvokeOnMainThread(() =>
+                            {
+                                lstChar.IsVisible = false;
+                                lblNoRecord.IsVisible = true;
+                            });
                         }
                     }
                 }
                 else
                 {
-                    lstChar.IsVisible = false;
-                    lblNoRecord.IsVisible = true;
-                    if (mResponse != null && !Common.EmptyFiels(mResponse.Message))
-                        lblNoRecord.Text = mResponse.Message;
-                    else
-                        lblNoRecord.Text = Constraints.Something_Wrong;
+                    Device.BeginInvokeOnMainThread(() =>
+                    {
+                        lstChar.IsVisible = false;
+                        lblNoRecord.IsVisible = true;
+                        if (mResponse != null && !Common.EmptyFiels(mResponse.Message))
+                            lblNoRecord.Text = mResponse.Message;
+                        else
+                            lblNoRecord.Text = Constraints.Something_Wrong;
+                    });
                 }
             }
             catch (Exception ex)
             {
                 Common.DisplayErrorMessage("ContactSupportPage/GetMessages: " + ex.Message);
             }
-            finally
-            {
-                UserDialogs.Instance.HideLoading();
-            }
-
         }
 
         private async Task SentMessage()
@@ -173,12 +181,12 @@ namespace aptdealzMExecutiveMobile.Views.DashboardPages
         private void ImgBack_Tapped(object sender, EventArgs e)
         {
 
-            if (App.chatStoppableTimer != null)
-            {
-                App.chatStoppableTimer.Stop();
-                App.chatStoppableTimer = null;
-            }
-
+            //if (App.chatStoppableTimer != null)
+            //{
+            //    App.chatStoppableTimer.Stop();
+            //    App.chatStoppableTimer = null;
+            //}
+            MessagingCenter.Unsubscribe<string>(this, Constraints.NotificationReceived);
             Common.BindAnimation(imageButton: ImgBack);
             Common.MasterData.Detail = new NavigationPage(new MainTabbedPages.MainTabbedPage(Constraints.Str_Home));
         }

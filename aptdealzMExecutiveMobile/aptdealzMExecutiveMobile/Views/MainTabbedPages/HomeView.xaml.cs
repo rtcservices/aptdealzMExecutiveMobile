@@ -43,7 +43,20 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
                 new HomeMenu{MenuImage="imgAboutAptDealz.png", UiName="About\nAptDealz",MenuName=Constraints.Str_About},
                 new HomeMenu{MenuImage="imgContactSupport.png", UiName="Contact\nSupport",MenuName=Constraints.Str_Support},
             };
-
+            if (App.Current.Resources["BaseURL"].ToString().Contains("https://aptdealzstaging1api.azurewebsites.net"))
+            {
+                lblStag.IsVisible = true;
+                lblStag.Text = "Stagging";
+            }
+            else if (App.Current.Resources["BaseURL"].ToString().Contains("https://aptdealzapidev.azurewebsites.net"))
+            {
+                lblStag.IsVisible = true;
+                lblStag.Text = "Dev";
+            }
+            else
+            {
+                lblStag.IsVisible = false;
+            }
             flvMenus.FlowItemsSource = mHomeMenu.ToList();
         }
         #endregion
@@ -90,6 +103,10 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
                 {
                     await Navigation.PushAsync(new NotificationPage());
                 }
+                //else if (mHomeMenu != null && mHomeMenu.MenuName == Constraints.Str_Support)
+                //{
+                //    await Navigation.PushAsync(new OtherPages.ContactSupportPage());
+                //}
                 else if (mHomeMenu != null && mHomeMenu.MenuName != null)
                 {
                     Common.MasterData.Detail = new NavigationPage(new MainTabbedPage(mHomeMenu.MenuName, true));

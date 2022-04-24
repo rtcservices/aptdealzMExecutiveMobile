@@ -151,8 +151,20 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
             {
                 Common.DisplayErrorMessage("AccountView/GetProfile: " + ex.Message);
             }
+            DisableInputFields();
         }
-
+        void DisableInputFields()
+        {
+            txtFullName.IsReadOnly = true;
+            txtEmailAddress.IsReadOnly = true;
+            txtPhoneNumber.IsReadOnly = true;
+            txtBuildingNumber.IsReadOnly = true;
+            txtStreet.IsReadOnly = true;
+            txtCity.IsReadOnly = true;
+            pkState.IsEnabled = false;
+            pkNationality.IsEnabled = false;
+            txtPinCode.IsReadOnly = true;
+        }
         private void GetProfileDetails(ExecutiveDetails mExecutiveDetails)
         {
             try
@@ -160,7 +172,6 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
                 txtFullName.Text = mExecutiveDetails.FullName;
                 txtEmailAddress.Text = mExecutiveDetails.Email;
                 txtPhoneNumber.Text = mExecutiveDetails.PhoneNumber;
-
                 if (!Common.EmptyFiels(mExecutiveDetails.ProfilePhoto))
                 {
                     string baseURL = (string)App.Current.Resources["BaseURL"];
@@ -200,6 +211,8 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
                          GetStateByCountryId(Country.CountryId).ConfigureAwait(true);
                     }
                 }
+
+                
             }
             catch (Exception ex)
             {
@@ -526,32 +539,32 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
                 }
         }
 
-        private async void ImgCamera_Tapped(object sender, EventArgs e)
-        {
-            try
-            {
-                Common.BindAnimation(image: ImgCamera);
-                UserDialogs.Instance.ShowLoading(Constraints.Loading);
-                ImageConvertion.SelectedImagePath = imgUser;
-                ImageConvertion.SetNullSource((int)FileUploadCategory.ProfilePicture);
-                await ImageConvertion.SelectImage();
+        //private async void ImgCamera_Tapped(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        Common.BindAnimation(image: ImgCamera);
+        //        UserDialogs.Instance.ShowLoading(Constraints.Loading);
+        //        ImageConvertion.SelectedImagePath = imgUser;
+        //        ImageConvertion.SetNullSource((int)FileUploadCategory.ProfilePicture);
+        //        await ImageConvertion.SelectImage();
 
-                if (ImageConvertion.SelectedImageByte != null)
-                {
-                    relativePath = await DependencyService.Get<IFileUploadRepository>().UploadFile((int)FileUploadCategory.ProfilePicture);
-                    isUpdatPhoto = true;
-                    HasUpdateProfileDetail();
-                }
-            }
-            catch (Exception ex)
-            {
-                Common.DisplayErrorMessage("AccountView/ImgCamera_Tapped: " + ex.Message);
-            }
-            finally
-            {
-                UserDialogs.Instance.HideLoading();
-            }
-        }
+        //        if (ImageConvertion.SelectedImageByte != null)
+        //        {
+        //            relativePath = await DependencyService.Get<IFileUploadRepository>().UploadFile((int)FileUploadCategory.ProfilePicture);
+        //            isUpdatPhoto = true;
+        //            HasUpdateProfileDetail();
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Common.DisplayErrorMessage("AccountView/ImgCamera_Tapped: " + ex.Message);
+        //    }
+        //    finally
+        //    {
+        //        UserDialogs.Instance.HideLoading();
+        //    }
+        //}
 
         private void Entry_Unfocused(object sender, FocusEventArgs e)
         {
