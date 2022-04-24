@@ -117,22 +117,35 @@ namespace aptdealzMExecutiveMobile
                 {
                     //work when platform is iOS
                     System.Diagnostics.Debug.WriteLine("Received");
-                    if (Settings.IsNotification)
-                    {
-                        if (Common.mExecutiveDetails != null && !Common.EmptyFiels(Common.Token))
-                        {
-                            MainPage = new MasterDataPage();
-                        }
-                        else
-                        {
-                            MainPage = new Views.SplashScreen.SplashScreen();
-                        }
-                    }
+                    MessagingCenter.Send<string>(string.Empty, Constraints.NotificationReceived);
+                    //if (Settings.IsNotification)
+                    //{
+                    //    if (Common.mExecutiveDetails != null && !Common.EmptyFiels(Common.Token))
+                    //    {
+                    //        MainPage = new MasterDataPage();
+                    //    }
+                    //    else
+                    //    {
+                    //        MainPage = new Views.SplashScreen.SplashScreen();
+                    //    }
+                    //}
                 };
 
                 CrossFirebasePushNotification.Current.OnNotificationOpened += (s, p) =>
                 {
                     Settings.IsNotification = true;
+                    if (Settings.IsNotification)
+                    {
+                        if (Common.mExecutiveDetails != null && !Common.EmptyFiels(Common.mExecutiveDetails.UserId) && !Common.EmptyFiels(Common.Token))
+                        {
+                            MainPage = new MasterDataPage();
+                        }
+                        else
+                        {
+                            MainPage = new SplashScreen();
+                        }
+                    }
+                    Settings.IsNotification = false;
                 };
 
                 CrossFirebasePushNotification.Current.OnNotificationAction += (s, p) =>
