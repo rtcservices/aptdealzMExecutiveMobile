@@ -645,14 +645,6 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
                     {
                         Common.DisplayErrorMessage(Constraints.Required_City);
                     }
-                    else if (Common.EmptyFiels(pkState.Text))
-                    {
-                        Common.DisplayErrorMessage(Constraints.Required_State);
-                    }
-                    else if (mStates.Where(x => x.Name.ToLower() == pkState.Text.ToLower()).Count() == 0)
-                    {
-                        Common.DisplayErrorMessage(Constraints.InValid_State);
-                    }
                     else if (Common.EmptyFiels(pkNationality.Text))
                     {
                         Common.DisplayErrorMessage(Constraints.Required_Nationality);
@@ -660,6 +652,14 @@ namespace aptdealzMExecutiveMobile.Views.MainTabbedPages
                     else if (Common.mCountries.Where(x => x.Name.ToLower() == pkNationality.Text.ToLower()).Count() == 0)
                     {
                         Common.DisplayErrorMessage(Constraints.InValid_Nationality);
+                    }
+                    else if (Common.EmptyFiels(pkState.Text))
+                    {
+                        Common.DisplayErrorMessage(Constraints.Required_State);
+                    }
+                    else if (mStates != null && (mStates.Where(x => x.Name.ToLower() == pkState.Text.ToLower()).Count() == 0))
+                    {
+                        Common.DisplayErrorMessage(Constraints.InValid_State);
                     }
                     else if (Common.EmptyFiels(txtLandmark.Text))
                     {

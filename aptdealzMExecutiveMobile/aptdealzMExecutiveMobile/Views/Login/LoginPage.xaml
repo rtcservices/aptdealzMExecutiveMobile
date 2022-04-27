@@ -48,6 +48,9 @@
                                 HorizontalTextAlignment="Center"
                                 Style="{StaticResource lblLight}"
                                 Text="Login to your Quotesouk Account of&#10;Marketting Executive" />
+
+                            <Label x:Name="lblStag" IsVisible="false" HorizontalOptions="CenterAndExpand" TextColor="Red" Style="{StaticResource lblHeader}" Text="Stagging" />
+
                         </StackLayout>
 
                         <!--  Entry / Get Otp  Button  -->
