@@ -23,7 +23,7 @@ namespace aptdealzMExecutiveMobile.iOS
             FlowListView.Init();
             CachedImageRenderer.Init();
             Rg.Plugins.Popup.Popup.Init();
-            Firebase.Core.App.Configure();
+            // Firebase.Core.App.Configure();
 
             Plugin.LocalNotification.NotificationCenter.AskPermission();
             LoadApplication(new App());
