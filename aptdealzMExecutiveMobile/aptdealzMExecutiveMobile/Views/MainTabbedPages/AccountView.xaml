@@ -90,7 +90,7 @@
                                     </Image>-->
                                 </Grid>
 
-                                <panCake:PancakeView
+                                <!--<panCake:PancakeView
                                     BackgroundColor="{AppThemeBinding Dark={StaticResource appColor10},
                                                                       Light={StaticResource appColor1}}"
                                     CornerRadius="0,10,10,0"
@@ -104,7 +104,7 @@
                                         Source="iconEdit.png"
                                         VerticalOptions="CenterAndExpand"
                                         WidthRequest="25" />
-                                </panCake:PancakeView>
+                                </panCake:PancakeView>-->
 
                             </Grid>
                         </Frame>
